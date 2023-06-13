@@ -270,6 +270,8 @@ class Connector implements \Laminas\Log\LoggerAwareInterface
     {
         $urlSuffix = '/' . $handler;
         $paramString = implode('&', $params->request());
+        // replace id per search.uniqueid
+        $paramString = str_replace('=id', '=search.uniqueid', $paramString);
         if (strlen($paramString) > self::MAX_GET_URL_LENGTH) {
             $method = Request::METHOD_POST;
             $callback = function ($client) use ($paramString) {

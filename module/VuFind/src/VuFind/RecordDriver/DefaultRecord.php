@@ -1327,7 +1327,8 @@ class DefaultRecord extends AbstractBase
      */
     public function getTitle()
     {
-        return $this->fields['title'] ?? '';
+        $title = $this->fields['title'] ?? '';
+        return is_array($title) ? $title[0] : $title;
     }
 
     /**
@@ -1513,10 +1514,10 @@ class DefaultRecord extends AbstractBase
      */
     public function getUniqueID()
     {
-        if (!isset($this->fields['id'])) {
+        if (!isset($this->fields['search.uniqueid'])) {
             throw new \Exception('ID not set!');
         }
-        return $this->fields['id'];
+        return $this->fields['search.uniqueid'];
     }
 
     /**
@@ -1539,11 +1540,11 @@ class DefaultRecord extends AbstractBase
             $dc = 'http://purl.org/dc/elements/1.1/';
             $xml = new \SimpleXMLElement(
                 '<oai_dc:dc '
-                . 'xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" '
-                . 'xmlns:dc="' . $dc . '" '
-                . 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
-                . 'xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ '
-                . 'http://www.openarchives.org/OAI/2.0/oai_dc.xsd" />'
+                    . 'xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" '
+                    . 'xmlns:dc="' . $dc . '" '
+                    . 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
+                    . 'xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ '
+                    . 'http://www.openarchives.org/OAI/2.0/oai_dc.xsd" />'
             );
             $xml->addChild('title', htmlspecialchars($this->getTitle()), $dc);
             $authors = $this->getDeduplicatedAuthors();
