@@ -1514,10 +1514,12 @@ class DefaultRecord extends AbstractBase
      */
     public function getUniqueID()
     {
-        if (!isset($this->fields['search.uniqueid'])) {
+        $uniqueID = $this->fields['id'] ?? $this->fields['search.uniqueid'];
+
+        if (!isset($uniqueID)) {
             throw new \Exception('ID not set!');
         }
-        return $this->fields['search.uniqueid'];
+        return $uniqueID;
     }
 
     /**
