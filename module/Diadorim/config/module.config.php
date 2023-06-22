@@ -1,21 +1,16 @@
 <?php
 
-return array (
-  'vufind' => 
-  array (
-    'plugin_managers' => 
-    array (
-      'recorddriver' => 
-      array (
-        'factories' => 
-        array (
-          'Diadorim\\RecordDriver\\SolrDefault' => 'VuFind\\RecordDriver\\SolrDefaultFactory',
-        ),
-        'aliases' => 
-        array (
-          'VuFind\\RecordDriver\\SolrDefault' => 'Diadorim\\RecordDriver\\SolrDefault',
-        ),
-      ),
-    ),
-  ),
-);
+return [
+    "vufind" => [
+        "plugin_managers" => [
+            "recorddriver" => [
+                "factories" => [
+                    "Diadorim\\RecordDriver\\SolrDefault" => "VuFind\\RecordDriver\\SolrDefaultFactory",
+                ],
+                "aliases" => [
+                    "VuFind\\RecordDriver\\SolrDefault" => "Diadorim\\RecordDriver\\SolrDefault",
+                ],
+            ],
+        ],
+    ],
+];
