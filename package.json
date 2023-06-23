@@ -43,7 +43,10 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "vendor/bin/phing php-cs-fixer && git add -A ."
+            "pre-commit": "lint-staged"
         }
+    },
+    "lint-staged": {
+        "*": "vendor/bin/phing php-cs-fixer"
     }
 }

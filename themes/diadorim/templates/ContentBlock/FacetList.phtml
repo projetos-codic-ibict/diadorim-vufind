@@ -18,16 +18,16 @@ $noJsSupport = $this->config()->nonJavascriptSupportEnabled();
           $this->headScript()->appendFile('facets.js');
           $sort = $hierarchicalFacetSortOptions[$field] ?? ($hierarchicalFacetSortOptions['*'] ?? 'all');
           $script = <<<JS
-          $(document).ready(function() {
-            $('#facet_{$this->escapeHtml($field)}_container').removeClass('hide');
-            loadFacetTree($('#facet_{$this->escapeHtml($field)}'), false);
-          });
-          JS;
+              $(document).ready(function() {
+                $('#facet_{$this->escapeHtml($field)}_container').removeClass('hide');
+                loadFacetTree($('#facet_{$this->escapeHtml($field)}'), false);
+              });
+              JS;
           echo $this->inlineScript(\Laminas\View\Helper\HeadScript::SCRIPT, $script, 'SET');
           ?>
         <div id="facet_<?= $this->escapeHtml(
-            $field,
-        ) ?>_container" role="listbox" class="home-facet <?= $this->escapeHtmlAttr($field) ?> hide">
+              $field,
+          ) ?>_container" role="listbox" class="home-facet <?= $this->escapeHtmlAttr($field) ?> hide">
           <h2><?= $labelHeading ?></h2>
           <div id="facet_<?= $this->escapeHtml($field) ?>" class="jstree-facet"
               data-source="<?= $this->escapeHtml($this->searchClassId) ?>"
@@ -78,8 +78,8 @@ $noJsSupport = $this->config()->nonJavascriptSupportEnabled();
                 <?php if ($i >= $maxListLength):// list too long? show more link!
                      ?>
                   <li><a href="<?= $moreUrl ?>"><strong><?= $this->transEsc(
-    'more_options_ellipsis',
-) ?></strong></a></li>
+                         'more_options_ellipsis',
+                     ) ?></strong></a></li>
                   <?php break; ?>
                 <?php // end of column? insert break! // end of column? insert break!
                     // end of column? insert break!
