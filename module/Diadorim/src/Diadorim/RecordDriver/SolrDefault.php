@@ -106,7 +106,6 @@ class SolrDefault extends \VuFind\RecordDriver\SolrDefault
         return $this->getFieldValue("dc.publisher.name");
     }
 
-
     /**
      * Get first field occurrence
      *
