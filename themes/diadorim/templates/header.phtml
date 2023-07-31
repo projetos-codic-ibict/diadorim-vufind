@@ -31,7 +31,7 @@
               </a>
             </li>
           <?php endif; ?>
-          <?php if (is_object($account) && $account->loginEnabled()) : // hide login/logout if unavailable 
+          <?php if (is_object($account) && $account->loginEnabled()) : // hide login/logout if unavailable
           ?>
             <?php if ($account->isLoggedIn()) : ?>
               <li class="logoutOptions<?php if ($account->dropdownEnabled()) : ?> with-dropdown<?php endif ?>">
@@ -76,13 +76,13 @@
               'toggleLabel' => 'Theme',
               'wrapperTag' => 'li',
               'menuItems' => array_map(
-                function ($item) {
+                  function ($item) {
                   $item['label'] = $item['desc'];
                   $item['url'] = $this->url()->addQueryParameters(['ui' => $item['name']]);
 
                   return $item;
                 },
-                $this->layout()->themeOptions
+                  $this->layout()->themeOptions
               ),
             ]) ?>
           <?php endif; ?>
@@ -93,15 +93,15 @@
               'wrapperClass' => 'language',
               'wrapperTag' => 'li',
               'menuItems' => array_map(
-                function ($langCode, $langName) {
+                  function ($langCode, $langName) {
                   return [
                     'label' => $this->displayLanguageOption($langName),
                     'url' => $this->url()->addQueryParameters(['lng' => $langCode]),
                     'selected' => $this->layout()->userLang == $langCode,
                   ];
                 },
-                array_keys($this->layout()->allLangs),
-                array_values($this->layout()->allLangs),
+                  array_keys($this->layout()->allLangs),
+                  array_values($this->layout()->allLangs),
               ),
             ]) ?>
           <?php endif; ?>

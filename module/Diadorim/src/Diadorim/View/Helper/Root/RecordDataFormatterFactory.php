@@ -37,6 +37,7 @@ class RecordDataFormatterFactory extends \VuFind\View\Helper\Root\RecordDataForm
     {
         $spec = new SpecBuilder(parent::getDefaultCoreSpecs());
         $spec->setLine("Publisher", "getPublisher");
+        $spec->setLine("Title", "getTitle");
         return $spec->getArray();
     }
 }

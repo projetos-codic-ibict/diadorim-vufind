@@ -21,8 +21,8 @@ if ($results = ($this->results ?? $this->searchMemory()->getCurrentSearch())) {
 
 // Load search actions and settings (if any):
 $handlers = $this->searchbox()->getHandlers(
-  $this->searchClassId,
-  $this->searchIndex ?? null
+    $this->searchClassId,
+    $this->searchIndex ?? null
 );
 $handlerCount = count($handlers);
 $basicSearch = $this->searchbox()->combinedHandlersActive() ? 'combined-searchbox' : $options->getSearchAction();
@@ -53,8 +53,8 @@ $showFilters = $filterDetails && ($results || $options->getRetainFilterSetting()
     </p>
     <?=
     $this->context($this)->renderInContext(
-      'search/filters.phtml',
-      [
+        'search/filters.phtml',
+        [
         'params' => $params ?? null,
         'urlQuery' => isset($results) ? $results->getUrlQuery() : null,
         'filterList' => $showFilters ? $filterList : [],
@@ -151,8 +151,8 @@ $showFilters = $filterDetails && ($results || $options->getRetainFilterSetting()
     }
     ?>
     <?= $this->context($this)->renderInContext(
-      'search/filters.phtml',
-      [
+        'search/filters.phtml',
+        [
         'params' => $params ?? null,
         'urlQuery' => isset($results) ? $results->getUrlQuery() : null,
         'filterList' => $showFilters ? $filterList : [],
