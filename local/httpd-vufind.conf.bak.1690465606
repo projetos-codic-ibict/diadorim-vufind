@@ -1,20 +1,20 @@
 # Configuration for theme-specific resources:
-AliasMatch ^/diadorim/themes/([0-9a-zA-Z-_]*)/(assets|css|images|js)/(.*)$ /home/rafaelramos/Projects/diadorim-vufind/themes/$1/$2/$3
-<Directory ~ "^/home/rafaelramos/Projects/diadorim-vufind/themes/([0-9a-zA-Z-_]*)/(assets|css|images|js)/">
+AliasMatch ^/diadorim/themes/([0-9a-zA-Z-_]*)/(assets|css|images|js)/(.*)$ /home/jesielviana/dev/ibict/diadorim/diadorim-vufind/themes/$1/$2/$3
+<Directory ~ "^/home/jesielviana/dev/ibict/diadorim/diadorim-vufind/themes/([0-9a-zA-Z-_]*)/(assets|css|images|js)/">
   Require all granted
   AllowOverride All
 </Directory>
 
 # Configuration for public cache (used for asset pipeline minification)
-AliasMatch ^/diadorim/cache/(.*)$ /home/rafaelramos/Projects/diadorim-vufind/local/cache/public/$1
-<Directory /home/rafaelramos/Projects/diadorim-vufind/local/cache/public/>
+AliasMatch ^/diadorim/cache/(.*)$ /home/jesielviana/dev/ibict/diadorim/diadorim-vufind/local/cache/public/$1
+<Directory /home/jesielviana/dev/ibict/diadorim/diadorim-vufind/local/cache/public/>
   Require all granted
   AllowOverride All
 </Directory>
 
 # Configuration for general VuFind base:
-Alias /diadorim /home/rafaelramos/Projects/diadorim-vufind/public
-<Directory /home/rafaelramos/Projects/diadorim-vufind/public/>
+Alias /diadorim /home/jesielviana/dev/ibict/diadorim/diadorim-vufind/public
+<Directory /home/jesielviana/dev/ibict/diadorim/diadorim-vufind/public/>
   Require all granted
   AllowOverride All
 
@@ -36,7 +36,7 @@ Alias /diadorim /home/rafaelramos/Projects/diadorim-vufind/public
   RewriteRule ^.*$ index.php [NC,L]
 
   # Uncomment this line to put VuFind into development mode in order to see more detailed messages:
-  #SetEnv VUFIND_ENV development
+  SetEnv VUFIND_ENV development
 
   # Uncomment this line if you want to use the XHProf or Tideways profiler; this is a
   # developer-oriented option that most users will not need.
@@ -45,7 +45,7 @@ Alias /diadorim /home/rafaelramos/Projects/diadorim-vufind/public
 
   # This line points to the local override directory where you should place your customized files
   # to override VuFind core features/settings.  Set to blank string ("") to disable.
-  SetEnv VUFIND_LOCAL_DIR /home/rafaelramos/Projects/diadorim-vufind/local
+  SetEnv VUFIND_LOCAL_DIR /home/jesielviana/dev/ibict/diadorim/diadorim-vufind/local
 
   # This line can be used to force caching in a specific location other than the
   # default location inside the local settings directory.
@@ -54,7 +54,7 @@ Alias /diadorim /home/rafaelramos/Projects/diadorim-vufind/public
   # local settings directory, there should be exactly one separate cache location per
   # local settings directory.
   # If you adjust this, be sure to change the public cache AliasMatch above to match.
-  #SetEnv VUFIND_CACHE_DIR /home/rafaelramos/Projects/diadorim-vufind/local/cache
+  #SetEnv VUFIND_CACHE_DIR /home/jesielviana/dev/ibict/diadorim/diadorim-vufind/local/cache
 
   # This line specifies additional code modules to load after the standard VuFind module.
   # Multiple modules may be specified separated by commas.  This mechanism can be used to override
@@ -64,7 +64,7 @@ Alias /diadorim /home/rafaelramos/Projects/diadorim-vufind/public
   # This line overrides the detection of VuFind base directory. By default it is determined from
   # the location of the index.php file, but in case it is e.g. symlinked or there is another reason
   # to define the path manually, you can uncomment and modify this line.
-  #SetEnv VUFIND_APPLICATION_PATH /home/rafaelramos/Projects/diadorim-vufind
+  #SetEnv VUFIND_APPLICATION_PATH /home/jesielviana/dev/ibict/diadorim/diadorim-vufind
 
   # This line allows Apache to pass the Authorization header on to PHP when running
   # PHP-FPM. This is required for the OAuth2 / OpenID Connect server to function
