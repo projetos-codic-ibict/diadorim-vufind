@@ -28,6 +28,7 @@ use VuFind\View\Helper\Root\RecordDataFormatter\SpecBuilder;
 
 class RecordDataFormatterFactory extends \VuFind\View\Helper\Root\RecordDataFormatterFactory
 {
+<<<<<<< HEAD
   /**
    * Get Publisher for displaying data in collection-info metadata.
    *
@@ -59,4 +60,18 @@ class RecordDataFormatterFactory extends \VuFind\View\Helper\Root\RecordDataForm
     $spec->setLine("Creative Commons", "getCreativeCommons");
     return $spec->getArray();
   }
+=======
+    /**
+     * Get Publisher for displaying data in collection-info metadata.
+     *
+     * @return array
+     */
+    public function getDefaultCoreSpecs()
+    {
+        $spec = new SpecBuilder(parent::getDefaultCoreSpecs());
+        $spec->setLine("Publisher", "getPublisher");
+        $spec->setLine("Title", "getTitle");
+        return $spec->getArray();
+    }
+>>>>>>> c1d6a075c956d23e4b9a30d2d4361d5d3fd7a1b1
 }

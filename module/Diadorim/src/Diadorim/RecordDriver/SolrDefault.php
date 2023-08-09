@@ -93,6 +93,7 @@ class SolrDefault extends \VuFind\RecordDriver\SolrDefault
       array_push($values, self::NA_MESSAGE);
     }
 
+<<<<<<< HEAD
     return $values;
   }
 
@@ -305,4 +306,25 @@ class SolrDefault extends \VuFind\RecordDriver\SolrDefault
   {
     return $this->getFieldValue("dc.rights.creativecommons");
   }
+=======
+    /**
+     * Get first field occurrence
+     *
+     * @return string
+     */
+    public function getPublisher()
+    {
+        return $this->getFieldValue("dc.publisher.name");
+    }
+
+    /**
+     * Get first field occurrence
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->getFieldValue("dc.title");
+    }
+>>>>>>> c1d6a075c956d23e4b9a30d2d4361d5d3fd7a1b1
 }
