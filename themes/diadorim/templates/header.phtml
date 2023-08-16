@@ -38,31 +38,41 @@
   
     <div class="row">
       <?php if (!isset($this->layout()->renderingError)) : ?>  
-        <div class="collapse navbar-collapse d-flex" id="header-collapse">
-          <a class="navbar-brand logo-ibict" href="<?= $this->url('home') ?>">
+        <div class="collapse navbar-collapse" id="header-collapse">
+          <a class="navbar-nav logo-ibict text-center" href="<?= $this->url('home') ?>">
             <img
               src="<?= $this->imageLink('logo-ibict.png'); ?>"
               alt="Logo IBICT"
-              width="62"
-              height="40"
+              width="103.13"
+              height="45.33"
             >
           </a>
 
-          <a class="navbar-brand logo-ibict" href="<?= $this->url('home') ?>">
+          <a class="navbar-nav logo-diadorim text-center" href="<?= $this->url('home') ?>">
             <img
               src="<?= $this->imageLink('logo-diadorim.png'); ?>"
               alt="Logo IBICT"
-              width="62"
-              height="40"
+              width="113"
+              height="44"
             >
           </a>
 
-          <ul class="nav navbar-nav mr-0">
-            <li><a class="text-decoration-none">Página Inicial</a></li>
-            <li><a class="text-decoration-none">Navegar</a></li>
-            <li><a class="text-decoration-none">Sobre</a></li>
-            <li><a class="text-decoration-none">Cadastro</a></li>
-            <li><a class="text-decoration-none">Contato</a></li>
+          <ul class="nav navbar-nav">
+            <li>
+              <a class="text-decoration-none text-center">
+                <img
+                  src="<?= $this->imageLink('home.png'); ?>"
+                  alt="Logo Home"
+                  width="24"
+                  height="24"
+                >
+                <span>Página Inicial</span>
+              </a>
+            </li>
+            <li><a class="text-decoration-none text-center">Navegar</a></li>
+            <li><a class="text-decoration-none text-center">Sobre</a></li>
+            <li><a class="text-decoration-none text-center">Cadastro</a></li>
+            <li><a class="text-decoration-none text-center">Contato</a></li>
           </ul>
           
           <ul class="nav navbar-nav navbar-right flip">
@@ -118,7 +128,7 @@
                       <span class="icon-link__label"><?= $this->transEsc("Institutional Login") ?></span>
                     </a>
                   <?php else : ?>
-                    <a href="<?= $this->url('myresearch-userlogin') ?>" class="icon-link" data-lightbox>
+                    <a href="<?= $this->url('myresearch-userlogin') ?>" class="icon-link text-center" data-lightbox>
                       <?= $this->icon('sign-in', 'icon-link__icon') ?>
                       <span class="icon-link__label"><?= $this->transEsc("Login") ?></span>
                     </a>
