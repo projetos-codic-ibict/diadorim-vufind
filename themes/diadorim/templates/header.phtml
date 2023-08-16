@@ -1,8 +1,18 @@
 <?php $account = $this->auth()->getManager(); ?>
-  <nav class="banner navbar navbar-defaul">
-    <div class="container-fluid">
+
+<nav class="banner navbar navbar-defaul">
+  <div class="container-fluid">
+    <!-- Essa div ficará visível apenas no mobile -->
+    <div class="row">
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header-collapse" aria-hidden="true">
+        <button
+          type="button"
+          class="navbar-toggle collapsed"
+          data-toggle="collapse"
+          data-target="#header-collapse"
+          aria-hidden="true"
+          
+        >
           <?= $this->icon('ui-menu') ?>
         </button>
 
@@ -15,51 +25,56 @@
           >
         </a> -->
 
-        <a class="navbar-brand">
+        <!-- <a class="navbar-brand" href="<?= $this->url('home') ?>">
           <img
             src="../images/logo-gov-br.png"
             alt="Logo gov.br"
             width="62"
             height="40"
           >
-        </a>
-
-        <ul class="nav navbar-nav navbar-right">
-          <li><a class="text-decoration-none">ACESSO À INFORMAÇÃO</a></li>
-          <li><a class="text-decoration-none">PARTICIPE</a></li>
-          <li><a class="text-decoration-none">LEGISLAÇÃO</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ÓRGÃOS DO GOVERNO
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="text-decoration-none" href="#">ÓRGÃO 1</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a class="text-decoration-none" href="#">ÓRGÃO 2</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a class="text-decoration-none" href="#">ÓRGÃO 3</a></li>
-            </ul>
-          </li>
-        </ul>
+        </a> -->
       </div>
     </div>
-  </nav>
+  
+    <div class="row">
+      <?php if (!isset($this->layout()->renderingError)) : ?>  
+        <div class="collapse navbar-collapse d-flex" id="header-collapse">
+          <a class="navbar-brand logo-ibict" href="<?= $this->url('home') ?>">
+            <img
+              src="<?= $this->imageLink('logo-ibict.png'); ?>"
+              alt="Logo IBICT"
+              width="62"
+              height="40"
+            >
+          </a>
 
-<?php if (!isset($this->layout()->renderingError)) : ?>
-  <div class="collapse navbar-collapse nav navbar-nav navbar-right" id="header-collapse">
-    <nav class="navbar">
-      <div class="container-fluid">
-        <div class="navbar-header">
+          <a class="navbar-brand logo-ibict" href="<?= $this->url('home') ?>">
+            <img
+              src="<?= $this->imageLink('logo-diadorim.png'); ?>"
+              alt="Logo IBICT"
+              width="62"
+              height="40"
+            >
+          </a>
+
+          <ul class="nav navbar-nav mr-0">
+            <li><a class="text-decoration-none">Página Inicial</a></li>
+            <li><a class="text-decoration-none">Navegar</a></li>
+            <li><a class="text-decoration-none">Sobre</a></li>
+            <li><a class="text-decoration-none">Cadastro</a></li>
+            <li><a class="text-decoration-none">Contato</a></li>
+          </ul>
+          
           <ul class="nav navbar-nav navbar-right flip">
-            <?php if ($this->feedback()->tabEnabled()) : ?>
+            <!-- <?php if ($this->feedback()->tabEnabled()) : ?>
               <li>
                 <a class="icon-link" id="feedbackLink" data-lightbox href="<?= $this->url('feedback-home') ?>">
                   <?= $this->icon('feedback', 'icon-link__icon') ?>
                   <span class="icon-link__label"><?= $this->transEsc("Feedback") ?></span>
                 </a>
               </li>
-            <?php endif; ?>
-            <?php $cart = $this->cart();
+            <?php endif; ?> -->
+            <!-- <?php $cart = $this->cart();
             if ($cart->isActive()) : ?>
               <li id="cartSummary">
                 <a id="cartItems" class="icon-link" data-lightbox title="<?= $this->transEscAttr('View Book Bag') ?>" href="<?= $this->url('cart-home') ?>">
@@ -71,7 +86,7 @@
                   </span>
                 </a>
               </li>
-            <?php endif; ?>
+            <?php endif; ?> -->
             <?php if (is_object($account) && $account->loginEnabled()) : // hide login/logout if unavailable
             ?>
               <?php if ($account->isLoggedIn()) : ?>
@@ -127,8 +142,9 @@
                 ),
               ]) ?>
             <?php endif; ?>
-
-            <?php if (isset($this->layout()->allLangs) && count($this->layout()->allLangs) > 1) : ?>
+            
+            <!-- Dropdown de idiomas comentado, pois não há no novo layout -->
+            <!-- <?php if (isset($this->layout()->allLangs) && count($this->layout()->allLangs) > 1) : ?>
               <?= $this->component('menu-button', [
                 'toggleLabel' => 'Language',
                 'wrapperClass' => 'language',
@@ -145,13 +161,13 @@
                     array_values($this->layout()->allLangs),
                 ),
               ]) ?>
-            <?php endif; ?>
+            <?php endif; ?> -->
           </ul>
         </div>
-      </div>
-    </nav>
+      <?php endif; ?>
+    </div>
   </div>
-<?php endif; ?>
+</nav>
 
 <?php if ($this->layout()->searchbox !== false) : ?>
   <div class="search container navbar">
