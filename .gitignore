@@ -26,3 +26,4 @@ local/config/vufind/*.json
 local/config/vufind/*.yaml
 local/httpd-vufind.conf
 env.bat
+*.bat
