@@ -28,6 +28,9 @@ header {
 }
 footer .container { border-bottom: 2px solid #137752; }
 .alert { padding: 8px; }
+.container-fluid {
+  padding: 0;
+}
 
 /* You can also organize these styles in separate files and @import them */
 @import "home-page";
@@ -37,11 +40,42 @@ footer .container { border-bottom: 2px solid #137752; }
   border-radius: 0;
   display: flex;
   align-items: center;
-}
-
-.navbar-collapse {
   padding-right: 36px;
   padding-left: 36px;
+}
+
+.nav{
+  > li {
+    > a {
+      height: 68px;
+      padding: 0 20px;
+
+      color: #6A6A6A;
+      font-feature-settings: 'clig' off, 'liga' off;
+      font-family: Open Sans, "sans-serif";
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 550;
+      /* font-weight: 600; */
+      line-height: 18.133px;
+
+      &:hover {
+        color: #6A6A6A;
+        background-color: transparent;
+        outline: none;
+        border-bottom: 2px solid #6A6A6A;
+      }
+    }
+  }
+}
+
+.navbar-nav {
+ margin: 0 -10px !important;
+}
+
+.active-link, .active-link:hover {
+  color: #071D41 !important;
+  border-bottom: 2px solid #071D41 !important;
 }
 
 .logo-ibict {
@@ -52,12 +86,11 @@ footer .container { border-bottom: 2px solid #137752; }
   margin-right: 32px;
 }
 
-.nav{
-  > li {
-    > a {
-      height: 68px;
-      padding: 0 20px;
-    }
+.logo-ibict, .logo-diadorim {
+  padding: 0 !important;
+
+  &:hover {
+    border-bottom: none !important;
   }
 }
 
@@ -69,6 +102,11 @@ footer .container { border-bottom: 2px solid #137752; }
     /* O valor original é 8px, mas foi colocado 6px pra compensar o espaçamento natural dos itens  */
     margin-left: 6px;
   }
+}
+
+#loginOptions {
+  margin-left: 32px;
+  width: 219px;
 }
 
 

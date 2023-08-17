@@ -38,28 +38,34 @@
   
     <div class="row">
       <?php if (!isset($this->layout()->renderingError)) : ?>  
-        <div class="collapse navbar-collapse" id="header-collapse">
-          <a class="navbar-nav logo-ibict text-center" href="<?= $this->url('home') ?>">
-            <img
-              src="<?= $this->imageLink('logo-ibict.png'); ?>"
-              alt="Logo IBICT"
-              width="103.13"
-              height="45.33"
-            >
-          </a>
+        <div class="collapse navbar-collapse text-center" id="header-collapse">
+          <ul class="nav navbar-nav">
+            <li>
+              <a class="logo-ibict text-center" href="<?= $this->url('home') ?>">
+                <img
+                  src="<?= $this->imageLink('logo-ibict.png'); ?>"
+                  alt="Logo IBICT"
+                  width="103.13"
+                  height="45.33"
+                >
+              </a>
+            </li>
 
-          <a class="navbar-nav logo-diadorim text-center" href="<?= $this->url('home') ?>">
-            <img
-              src="<?= $this->imageLink('logo-diadorim.png'); ?>"
-              alt="Logo IBICT"
-              width="113"
-              height="44"
-            >
-          </a>
+            <li>
+              <a class="logo-diadorim text-center" href="<?= $this->url('home') ?>">
+                <img
+                  src="<?= $this->imageLink('logo-diadorim.png'); ?>"
+                  alt="Logo IBICT"
+                  width="113"
+                  height="44"
+                >
+              </a>
+            </li>
+          </ul>
 
           <ul class="nav navbar-nav">
             <li>
-              <a class="text-decoration-none text-center">
+              <a class="text-decoration-none text-center active-link">
                 <img
                   src="<?= $this->imageLink('home.png'); ?>"
                   alt="Logo Home"
@@ -120,6 +126,7 @@
                     <span class="icon-link__label"><?= $this->transEsc("Log Out") ?></span>
                   </a>
                 </li>
+
               <?php else : ?>
                 <li id="loginOptions">
                   <?php if ($account->getSessionInitiator($this->serverUrl($this->url('myresearch-home')))) : ?>
@@ -128,9 +135,21 @@
                       <span class="icon-link__label"><?= $this->transEsc("Institutional Login") ?></span>
                     </a>
                   <?php else : ?>
-                    <a href="<?= $this->url('myresearch-userlogin') ?>" class="icon-link text-center" data-lightbox>
+                    <!-- <a href="<?= $this->url('myresearch-userlogin') ?>" class="icon-link text-center" data-lightbox>
                       <?= $this->icon('sign-in', 'icon-link__icon') ?>
-                      <span class="icon-link__label"><?= $this->transEsc("Login") ?></span>
+                      <img src="<?= $this->imageLink('user-circle'); ?>" alt="Login"><?= $this->transEsc("Login") ?></span>
+                    </a> -->
+
+                    <!-- Removido o ícone natural do login -->
+                    <a href="<?= $this->url('myresearch-userlogin') ?>" class="icon-link text-center" data-lightbox>
+                      
+                      <img
+                        src="<?= $this->imageLink('user-circle.png'); ?>"
+                        alt="Login"
+                        width="24"
+                        height="24"
+                      >
+                      <span> <?= $this->transEsc("Login") ?> </span>
                     </a>
                   <?php endif; ?>
                 </li>

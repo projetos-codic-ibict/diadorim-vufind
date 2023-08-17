@@ -263,7 +263,8 @@
   // Uncollapse the nav
   @media (min-width: $grid-float-breakpoint) {
     float: left;
-    margin: 0;
+    // Removendo alteração de margin
+    /* margin: 0; */
 
     > li {
       float: left;
