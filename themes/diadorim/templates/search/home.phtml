@@ -1,15 +1,102 @@
-<?php
-  // Set page title.
-  /* $this->headTitle($this->translate('Search Homee')); */
+<div class="container-fluid home">
+  <div class="row home_row">
+    <div class="col col-md-7 home_col">
+      <h1 class="home_title">
+        <span class="span1"> Diadorim </span> <br> <span class="span2">é um serviço</span>
+      </h1>
 
-  // Disable top search box -- this page has a special layout.
-  /* $this->layout()->searchbox = false; */
+      <span class="home_long-text">
+        de informações relativas às autorizações <br>
+        concedidas para o armazenamento e o <br>
+        acesso dos artigos das revistas brasileiras <br>
+        em repositórios digitais de acesso aberto.
+      </span>
 
-  // Set default value if necessary:
-  /* if (!isset($this->searchClassId)) {
-    $config = $this->config()->get('config');
-    $this->searchClassId = $config->Site->defaultSearchBackend ?? 'Solr';
-  } */
+      <div class="home_cards">
+        <div class="home_card">
+          <!-- <svg width="72" height="73" viewBox="0 0 72 73" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g filter="url(#filter0_d_77_3117)">
+            <rect x="16" y="16.5" width="40" height="40" rx="20" fill="black"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M28.8574 43.643C28.8574 43.2485 29.1772 42.9287 29.5717 42.9287H42.4288C42.8233 42.9287 43.1431 43.2485 43.1431 43.643C43.1431 44.0375 42.8233 44.3573 42.4288 44.3573H29.5717C29.1772 44.3573 28.8574 44.0375 28.8574 43.643Z" fill="white"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M31.7143 35.0718C32.1088 35.0718 32.4286 35.3916 32.4286 35.7861V40.7861C32.4286 41.1806 32.1088 41.5003 31.7143 41.5003C31.3198 41.5003 31 41.1806 31 40.7861V35.7861C31 35.3916 31.3198 35.0718 31.7143 35.0718Z" fill="white"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M34.5717 35.0718C34.9662 35.0718 35.286 35.3916 35.286 35.7861V40.7861C35.286 41.1806 34.9662 41.5003 34.5717 41.5003C34.1772 41.5003 33.8574 41.1806 33.8574 40.7861V35.7861C33.8574 35.3916 34.1772 35.0718 34.5717 35.0718Z" fill="white"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M37.4291 35.0718C37.8236 35.0718 38.1434 35.3916 38.1434 35.7861V40.7861C38.1434 41.1806 37.8236 41.5003 37.4291 41.5003C37.0346 41.5003 36.7148 41.1806 36.7148 40.7861V35.7861C36.7148 35.3916 37.0346 35.0718 37.4291 35.0718Z" fill="white"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M40.2856 35.0718C40.6801 35.0718 40.9999 35.3916 40.9999 35.7861V40.7861C40.9999 41.1806 40.6801 41.5003 40.2856 41.5003C39.8911 41.5003 39.5713 41.1806 39.5713 40.7861V35.7861C39.5713 35.3916 39.8911 35.0718 40.2856 35.0718Z" fill="white"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M35.6213 28.7516C35.853 28.6069 36.1469 28.6069 36.3785 28.7516L42.0928 32.3231C42.363 32.492 42.4887 32.8194 42.4008 33.1257C42.313 33.432 42.0329 33.6431 41.7142 33.6431H30.2856C29.967 33.6431 29.6869 33.432 29.599 33.1257C29.5112 32.8194 29.6368 32.492 29.9071 32.3231L35.6213 28.7516ZM32.7762 32.2145H39.2236L35.9999 30.1997L32.7762 32.2145Z" fill="white"/>
+            </g>
+            <defs>
+            <filter id="filter0_d_77_3117" x="0" y="0.5" width="72" height="72" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset/>
+            <feGaussianBlur stdDeviation="8"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.32 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_77_3117"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_77_3117" result="shape"/>
+            </filter>
+            </defs>
+          </svg> -->
 
-  /* $this->layout()->breadcrumbs = false; */
-?>
+          <img
+            class="home_card-image"
+            src="<?= $this->imageLink('icons/universidade.png'); ?>"
+            alt="ícone de universidade"
+            width="40"
+            height="40"
+          >
+          <div class="home_card-text">
+            <span>Universidade</span> <br>
+            <span>14050</span>
+          </div>
+        </div>
+
+        <div class="home_card">
+          <img
+            class="home_card-image"
+            src="<?= $this->imageLink('icons/universidade.png'); ?>"
+            alt="ícone de universidade"
+            width="40"
+            height="40"
+          >
+          <div class="home_card-text">
+            <span>Universidade</span> <br>
+            <span>14050</span>
+          </div>
+        </div>
+
+        <div class="home_card">
+          <img
+            class="home_card-image"
+            src="<?= $this->imageLink('icons/universidade.png'); ?>"
+            alt="ícone de universidade"
+            width="40"
+            height="40"
+          >
+          <div class="home_card-text">
+            <span>Universidade</span> <br>
+            <span>14050</span>
+          </div>
+        </div>
+
+        <div class="home_card">
+          <img
+            class="home_card-image"
+            src="<?= $this->imageLink('icons/universidade.png'); ?>"
+            alt="ícone de universidade"
+            width="40"
+            height="40"
+          >
+          <div class="home_card-text">
+            <span>Universidade</span> <br>
+            <span>14050</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col col-md-5">
+      
+    </div>
+  </div>
+</div>

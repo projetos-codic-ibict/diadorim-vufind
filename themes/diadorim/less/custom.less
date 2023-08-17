@@ -140,7 +140,7 @@ footer {
 
     span {
       font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Open Sans;
+      font-family: Open Sans, "sans-serif";
       font-size: 11px;
       font-style: normal;
       font-weight: 600;
@@ -175,5 +175,104 @@ footer {
   }
 }
 
+/* Home Page CSS */
+
+.home {
+  .home_row {
+    .home_col {
+      .home_title {
+        margin-bottom: 40px;
+
+        .span1 {
+          color: #FF7900;
+          font-feature-settings: 'clig' off, 'liga' off;
+          font-family: Open Sans, "sans-serif";
+          font-size: 80px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 84px;
+        }
+        
+        .span2 {
+          color: #071D41;
+          font-feature-settings: 'clig' off, 'liga' off;
+          font-family: Open Sans, "sans-serif";
+          font-size: 80px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 84px;
+        }
+
+      }
+
+      .home_long-text {
+        color: #000;
+        font-feature-settings: 'clig' off, 'liga' off;
+        font-family: Open Sans, "sans-serif";
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 32px;
+      }
+
+      .home_cards {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        margin-top: 96px;
+
+        .home_card {
+          width: 162px;
+          height: 75px;
+          display: flex;
+          padding: 16px;
+          justify-content: center;
+          align-items: center;
+          gap: 8px;
+          background: #FFF;
+          border-radius: 8px;
+          box-shadow: 0px 0px 74px 0px rgba(0, 0, 0, 0.16);
+          transition: transform 0.3s ease;
+
+          &:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+            border-radius: 10.37px;
+            box-shadow: 0px 0px 95.92587280273438px 0px rgba(0, 0, 0, 0.16);
+          }
+
+          .home_card-text {
+            height: 43px;
+            font-family: Open Sans, "sans-serif";
+
+            span:nth-of-type(1) {
+              color: #736C6C;
+              font-feature-settings: 'clig' off, 'liga' off;
+              
+              font-size: 12px;
+              font-style: normal;
+              font-weight: 600;
+              line-height: 24px;
+              letter-spacing: 0.5px;
+            }
+
+            span:nth-of-type(2) {
+              color: #071D41;
+              text-align: center;
+              font-feature-settings: 'clig' off, 'liga' off;
+              
+              font-size: 24px;
+              font-style: normal;
+              font-weight: 700;
+              line-height: 22px;
+              letter-spacing: 0.5px;
+            }
+          }
+        } 
+      }
+    }
+  }
+}
 
 
