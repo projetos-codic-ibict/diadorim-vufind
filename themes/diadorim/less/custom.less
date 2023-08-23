@@ -11,6 +11,7 @@
 
 /* Change specific styles below */
 body {
+  min-height: 100%;
   font-size: 14px;
   color: #333;
 }
@@ -19,8 +20,8 @@ header {
   color: @dark-green;
 }
 .container {
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding : 0px;
+  margin: 0px;;
   /* border-left: 2px solid @dark-green;
   border-right: 2px solid @dark-green; */
   background-color: #fff;
@@ -111,9 +112,16 @@ header {
   width: 219px;
 }
 
+/* #wrapper{
+	min-height: 100%;
+	position: relative;
+} */
+
 footer {
+  /* display: none; */
   position: fixed;
   bottom: 0;
+  left: 0;
   width: 100%;
   height: 246px;
   background-color: #fff;
@@ -178,7 +186,40 @@ footer {
 /* Home Page CSS */
 
 .home {
+  padding-left: 130px;
+
+  .home_background {
+    width: 1440px;
+    height: 1440px;
+    background-image: url('../images/background-1x.png');
+    background-position: cover;
+    background-repeat: no-repeat;
+    object-fit: contain;
+    position: absolute;
+    top: 54px;
+    right: 0;
+    z-index: -1;
+
+    /* @media only screen and (max-width: 600px) {
+      width: 100%;
+    }
+    @media only screen and (max-width: 960px) {
+      width: 600px;
+    }
+    @media only screen and (max-width: 1920px) {
+      width: 1440px;
+    }
+    @media only screen and (max-width: 2560px) {
+      width: 1920px;
+    } */
+  }
+
   .home_row {
+    /* O valor original é 152px, mas foi colocado esse valor para dar o desconto do
+      espaçamento naturando da tago span */
+    margin-top: 142px;
+    max-width: 100%;
+
     .home_col {
       .home_title {
         margin-bottom: 40px;
@@ -199,7 +240,6 @@ footer {
           font-family: Open Sans, "sans-serif";
           font-size: 80px;
           font-style: normal;
-          font-weight: 700;
           line-height: 84px;
         }
 
@@ -272,6 +312,31 @@ footer {
         } 
       }
     }
+  }
+
+  .home_row2 {
+    width: 100%;
+    display: flex;
+    flex-direction: colum;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 75px;
+    margin-bottom: 586px;
+
+    h3 {
+      color: #071D41;
+      text-align: center;
+      font-feature-settings: 'clig' off, 'liga' off;
+      font-family: Open Sans, 'sans-serif';
+      font-size: 48px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: 49px;
+    }
+  }
+
+  .home_row-search {
+    margin-bottom: 200px;
   }
 }
 
