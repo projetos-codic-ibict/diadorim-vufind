@@ -11,9 +11,11 @@
 
 /* Change specific styles below */
 body {
-  min-height: 100%;
+  position: relative !important;
+  min-height: 100% !important;
   font-size: 14px;
   color: #333;
+  margin: 0;
 }
 header {
   font-size: 16px;
@@ -118,7 +120,7 @@ header {
 } */
 
 footer {
-  /* display: none; */
+  display: none;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -269,7 +271,7 @@ footer {
           padding: 16px;
           justify-content: center;
           align-items: center;
-          gap: 8px;
+          /* gap: 8px; */
           background: #FFF;
           border-radius: 8px;
           box-shadow: 0px 0px 74px 0px rgba(0, 0, 0, 0.16);
@@ -282,14 +284,41 @@ footer {
             box-shadow: 0px 0px 95.92587280273438px 0px rgba(0, 0, 0, 0.16);
           }
 
+          .home-card_svg {
+            display: flex;
+            min-width: 40px;
+            height: 40px;
+            justify-content: center;
+            align-items: center;
+            
+            border-radius: 50%;
+            
+            margin-right: 8px;
+
+            &.universities {
+              background-color: #000;
+              box-shadow:  0px 0px 16px 0px rgba(0, 0, 0, 0.32);
+            }
+            &.publishers {
+              background-color: #F21B0D;
+              box-shadow: 0px 0px 16px 0px rgba(242, 27, 13, 0.32);
+            }
+            &.journals {
+              background-color: #CCAA00;
+              box-shadow: 0px 0px 16px 0px rgba(204, 170, 0, 0.32);
+            }
+            &.articles {
+              background-color: #FF7900;
+              box-shadow: 0px 0px 16px 0px rgba(255, 121, 0, 0.32);
+            }
+          }
+
           .home_card-text {
             height: 43px;
-            font-family: Open Sans, "sans-serif";
 
             span:nth-of-type(1) {
               color: #736C6C;
               font-feature-settings: 'clig' off, 'liga' off;
-              
               font-size: 12px;
               font-style: normal;
               font-weight: 600;
@@ -298,15 +327,26 @@ footer {
             }
 
             span:nth-of-type(2) {
-              color: #071D41;
               text-align: center;
               font-feature-settings: 'clig' off, 'liga' off;
-              
               font-size: 24px;
               font-style: normal;
               font-weight: 700;
               line-height: 22px;
               letter-spacing: 0.5px;
+            }
+
+            &.universities {
+              color: #071D41;
+            }
+            &.publishers {
+              color: #F21B0D;
+            }
+            &.journals {
+              color: #CCAA00;
+            }
+            &.articles {
+              color: #FF7900;
             }
           }
         } 
