@@ -47,6 +47,7 @@ header {
   padding-left: 36px;
   background: #F6F6F6;
   border-bottom: 1px solid #E2E2E2;
+  margin-bottom: 0;
 }
 
 .nav{
@@ -188,6 +189,7 @@ footer {
 /* Home Page CSS */
 
 .home {
+  /* position: relative; */
   padding-left: 130px;
 
   .home_background {
@@ -197,10 +199,11 @@ footer {
     background-position: cover;
     background-repeat: no-repeat;
     object-fit: contain;
-    position: absolute;
+    /* position: absolute; */
     top: 54px;
     right: 0;
     z-index: -1;
+    margin-top: -14px;
 
     /* @media only screen and (max-width: 600px) {
       width: 100%;
@@ -219,11 +222,11 @@ footer {
   .home_row {
     /* O valor original é 152px, mas foi colocado esse valor para dar o desconto do
       espaçamento naturando da tago span */
-    margin-top: 142px;
-    max-width: 100%;
-
-    .home_col {
-      .home_title {
+      max-width: 100%;
+      
+      .home_col {
+        .home_title {
+        margin-top: 142px;
         margin-bottom: 40px;
 
         .span1 {
