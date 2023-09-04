@@ -38,10 +38,6 @@ header {
   padding: 0;
 }
 
-.searchHomeContent {
-  width: 100%;
-}
-
 /* footer .container { border-bottom: 2px solid #137752; }
 .alert { padding: 8px; }
 .container-fluid {
@@ -129,7 +125,7 @@ header {
 }
 
 footer {
-  position: absolute;
+  /* position: absolute; */
   bottom: 0;
   left: 0;
   width: 100%;
@@ -197,6 +193,9 @@ footer {
 .col {
   padding: 0;
 }
+.row {
+  margin: 0;
+}
 
 .home {
   padding-left: 130px;
@@ -215,14 +214,14 @@ footer {
 
   .home_row {
     /* O valor original é 152px, mas foi colocado esse valor para dar o desconto do
-      espaçamento naturando da tago span */
-      max-width: 100%;
-      
-      .home_col {
-        /* Este margin negativo é para compensar o margin aplicado */
-        margin-left: -1.8%;
+    espaçamento naturando da tago span */
+    max-width: 100%;
+    
+    .home_col {
+      /* Este margin negativo é para compensar o margin aplicado */
+      margin-left: -1.8%;
 
-        .home_title {
+      .home_title {
         margin-top: 142px;
         margin-bottom: 40px;
 
@@ -235,7 +234,7 @@ footer {
           font-weight: 700;
           line-height: 84px;
         }
-        
+      
         .span2 {
           color: #071D41;
           font-feature-settings: 'clig' off, 'liga' off;
@@ -244,7 +243,6 @@ footer {
           font-style: normal;
           line-height: 84px;
         }
-
       }
 
       .home_long-text {
@@ -357,11 +355,10 @@ footer {
   .home_row2 {
     width: 100%;
     display: flex;
-    flex-direction: colum;
     gap: 16px;
     justify-content: center;
     margin-top: 75px;
-    margin-bottom: 586px;
+    margin-bottom: 86px;
 
     h3 {
       color: #071D41;
@@ -375,9 +372,52 @@ footer {
     }
   }
 
-  .home_row-search {
+  .home_search {
+    display: flex;
+    gap: 32px;
+    /* justify-content: center; */
     width: 100%;
-    margin-bottom: 200px;
+    margin: 0 0 41px 0;
+
+    .action-buttons-left, .action-buttons-right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 8px;
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 0px 0px 74px 0px rgba(0, 0, 0, 0.16);  
+
+      button {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        border: 1px solid #E8E8E8
+      }
+    }
+
+    .action-buttons-right {
+      button {
+        border: 1px solid #FF7900;
+      }
+
+      .active {
+        background: rgba(255, 121, 0, 0.20);
+      }
+    }
+
+    .searchHomeContent {
+      display: flex;
+      align-items: center;
+      background: #FFF;
+      color: #9A9A9A;
+      border-radius: 8px;
+      padding: 8px;
+      box-shadow: 0px 0px 74px 0px rgba(0, 0, 0, 0.16);
+    }
   }
 }
 
