@@ -11,7 +11,7 @@
 
 /* Change specific styles below */
 body {
-  /* position: relative !important; */
+  position: relative !important;
   min-height: 100% !important;
   font-size: 14px;
   color: #333;
@@ -29,6 +29,19 @@ header {
   background-color: #fff;
   border-radius: 0;
 }
+
+.container, footer {
+  width: 100%;
+}
+
+.container-fluid {
+  padding: 0;
+}
+
+.searchHomeContent {
+  width: 100%;
+}
+
 /* footer .container { border-bottom: 2px solid #137752; }
 .alert { padding: 8px; }
 .container-fluid {
@@ -43,8 +56,9 @@ header {
   border-radius: 0;
   display: flex;
   align-items: center;
-  padding-right: 36px;
-  padding-left: 36px;
+  /* Embora esteja no figma, removi este padding para dar mais espaço ao navbar */
+  /* padding-right: 36px;
+  padding-left: 36px; */
   background: #F6F6F6;
   border-bottom: 1px solid #E2E2E2;
   margin-bottom: 0;
@@ -55,7 +69,6 @@ header {
     > a {
       height: 68px;
       padding: 0 20px;
-
       color: #6A6A6A;
       font-feature-settings: 'clig' off, 'liga' off;
       font-family: Open Sans, "sans-serif";
@@ -112,17 +125,11 @@ header {
 
 #loginOptions {
   margin-left: 32px;
-  width: 219px;
+  width: 259px;
 }
 
-/* #wrapper{
-	min-height: 100%;
-	position: relative;
-} */
-
 footer {
-  /* display: none; */
-  /* position: absolute; */
+  position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -187,36 +194,23 @@ footer {
 }
 
 /* Home Page CSS */
+.col {
+  padding: 0;
+}
 
 .home {
-  /* position: relative; */
   padding-left: 130px;
 
   .home_background {
-    width: 1440px;
-    height: 1440px;
+    /* width: 95%; */
+    max-width: 1440px;
     background-image: url('../images/background-1x.png');
     background-position: cover;
     background-repeat: no-repeat;
     object-fit: contain;
-    /* position: absolute; */
-    top: 54px;
-    right: 0;
     z-index: -1;
-    margin-top: -14px;
-
-    /* @media only screen and (max-width: 600px) {
-      width: 100%;
-    }
-    @media only screen and (max-width: 960px) {
-      width: 600px;
-    }
-    @media only screen and (max-width: 1920px) {
-      width: 1440px;
-    }
-    @media only screen and (max-width: 2560px) {
-      width: 1920px;
-    } */
+    margin-top: -16px;
+    margin-left: 3.8%;
   }
 
   .home_row {
@@ -225,6 +219,9 @@ footer {
       max-width: 100%;
       
       .home_col {
+        /* Este margin negativo é para compensar o margin aplicado */
+        margin-left: -1.8%;
+
         .home_title {
         margin-top: 142px;
         margin-bottom: 40px;
@@ -263,7 +260,7 @@ footer {
       .home_cards {
         display: flex;
         align-items: center;
-        justify-content: center;
+        /* justify-content: center; */
         gap: 16px;
         margin-top: 96px;
 
@@ -379,6 +376,7 @@ footer {
   }
 
   .home_row-search {
+    width: 100%;
     margin-bottom: 200px;
   }
 }
