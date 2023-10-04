@@ -395,15 +395,39 @@ footer {
         background-color: #fff;
         border: 1px solid #E8E8E8
       }
+
+      button:nth-of-type(1) {
+        border-right: none;
+        &.active {
+          background: #E9E9E9;
+        }
+      }
+      button:nth-of-type(2) {
+        &.active {
+          background: #00FF80;
+        }
+      }
+      button:nth-of-type(3) {
+        border-left: none;
+        &.active {
+          background: #FFD400;
+        }
+      }
+      button:nth-of-type(4) {
+        border-left: none;
+        &.active {
+          background: #00D4FF;
+        }
+      }
     }
 
     .action-buttons-right {
-      button {
+      .list-btn, .grade-btn {
         border: 1px solid #FF7900;
-      }
-
-      .active {
-        background: rgba(255, 121, 0, 0.20);
+        
+        &.active {
+          background: rgba(255, 121, 0, 0.20) !important;
+        }
       }
     }
 
