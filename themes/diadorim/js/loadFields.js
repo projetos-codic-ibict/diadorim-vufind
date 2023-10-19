@@ -64,6 +64,7 @@ function addCardsList(records) {
   })
 
   fieldsCards.innerHTML = cards
+  removeLoader()
 }
 
 async function generateCard () {
@@ -77,7 +78,23 @@ async function generateCard () {
   }
 }
 
+function addLoader() {
+  console.log('records')
+  const search = document.querySelector('.home_fields-cards')
+  
+  search.innerHTML = `<div class="load">
+    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+  </div>`
+}
+
+function removeLoader() {
+  console.log('records2')
+  const loader = document.querySelector('.load')
+  loader.style.display = 'none'
+}
+
 document.addEventListener('DOMContentLoaded', function () {
+  addLoader()
   generateCard()
 })
 
