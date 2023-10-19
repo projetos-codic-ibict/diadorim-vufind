@@ -4,7 +4,7 @@ const axios = require("axios");
 const api = axios.create({
   baseURL: URL,
 }) */
-const URL = 'http://localhost/diadorim/api/v1'
+const URL = 'http://172.16.16.112//diadorim/api/v1'
 
 async function getFields() {
   /* console.log('getFields')
