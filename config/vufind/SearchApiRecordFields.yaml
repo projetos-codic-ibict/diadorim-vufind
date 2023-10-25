@@ -206,6 +206,7 @@ isCollection:
   type: boolean
 issns:
   vufind.method: getISSNs
+  vufind.default: true
   description: ISSNs
   type: array
   items:
@@ -283,6 +284,7 @@ publicationDates:
     type: string
 publishers:
   vufind.method: getPublishers
+  vufind.default: true
   description: Publishers
   type: array
   items:
@@ -307,6 +309,11 @@ relationshipNotes:
   type: array
   items:
     type: string
+sealColor:
+  vufind.method: getSealColor
+  vufind.default: true
+  description: Color used
+  type: string
 secondaryAuthors:
   vufind.method: getSecondaryAuthors
   description: Secondary authors
