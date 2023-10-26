@@ -282,13 +282,11 @@ publicationDates:
   type: array
   items:
     type: string
-publishers:
-  vufind.method: getPublishers
+publisher:
+  vufind.method: getPublisher
   vufind.default: true
-  description: Publishers
-  type: array
-  items:
-    type: string
+  description: Publisher
+  type: string
 rawData:
   vufind.method: "Formatter::getRawData"
   description: All data in the index fields
@@ -327,6 +325,11 @@ series:
   type: array
   items:
     type: string
+situation:
+  vufind.method: getSituation
+  description: Field Situation
+  vufind.default: true
+  type: string
 shortTitle:
   vufind.method: getShortTitle
   description: Short title (title excluding any subtitle)

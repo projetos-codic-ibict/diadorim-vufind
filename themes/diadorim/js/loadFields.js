@@ -10,7 +10,7 @@ async function getFields() {
     response = await fetch(`${URL}/search?type=AllFields`)
     response = await response.json()
     console.log('response', response.records[1].sealColor.split(':'))
-    console.log('response1', response.records[0].issns[0])
+    console.log('response1', response.records[0].publisher)
 
     return response.records
   } catch(errors) {
@@ -76,20 +76,20 @@ function addCardsList(records) {
 
       record?.issns.forEach(issn => issns += `${issn},`)
 
-      record?.publishers.forEach(publisher => publishers += `${publisher},`)
+      // record?.publishers.forEach(publisher => publishers += `${publisher},`)
 
       cards += `<div id="${record.id}" class="col col-md-4">
         <div class="field-card">
           ${seal}
 
           <div class="card-body">
-            <span>Situção: Vigente</span>
+            <span>Situção: ${record?.situation}</span>
             <span>${record.title}</span>
           </div>
 
           <div class="card-footer">
             <span>ISSN: ${issns}</span>
-            <span>Editora: ${publishers}</span>
+            <span>Editora: ${record.publisher}</span>
           </div>
         </div>
       </div>`
