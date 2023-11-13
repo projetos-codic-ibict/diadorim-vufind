@@ -1,29 +1,29 @@
-const URL = 'http://172.16.16.112/diadorim/api/v1'
-/* const URL = 'http://localhost/diadorim/api/v1' */
+ const URL = 'http://172.16.16.112/diadorim/api/v1'
+//const URL = 'http://localhost/diadorim/api/v1'
 
 // global variables for Seals
 
-let 
+let
   whiteSealsQtt = 0,
   blueSealsQtt = 0,
   yellowSealsQtt = 0,
   greenSealsQtt = 0
 
-async function getFields() {
+let currentPage = 1
+
+async function getFields(pageToView) {
   let response
-  
+  let searchURL = `search?type=AllFields&sort=relevance&page=${pageToView}&limit=9&prettyPrint=false&lng=en`
+
   try {
-    /* ?type=AllFields&&sort=relevance&page=1&limit=0 */
-    
-    response = await fetch(`${URL}/search?type=AllFields`)
+    response = await fetch(`${URL}/${searchURL}`)
     response = await response.json()
 
-    await getQttSealsByColor()
     console.log('response', response.records[1].sealColor.split(':'))
     console.log('response1', response.records[0].publisher)
 
     return response.records
-  } catch(errors) {
+  } catch (errors) {
     console.error(errors)
 
   } finally {
@@ -33,8 +33,8 @@ async function getFields() {
 async function getQttSealsByColor() {
   const facetsURL = 'search?facet[]=sealcolor_keyword&sort=relevance&limit=0'
   let response
-  
-  try {    
+
+  try {
     response = await fetch(`${URL}/${facetsURL}`)
     response = await response.json()
     const sealColor = response.facets.sealcolor_keyword
@@ -44,14 +44,18 @@ async function getQttSealsByColor() {
     yellowSealsQtt = sealColor[2].count + sealColor[4].count
     greenSealsQtt = sealColor[1].count
 
-  } catch(errors) {
+  } catch (errors) {
     console.error(errors)
 
   } finally {
   }
 }
 
-function sealsCountCard() {
+async function sealsCountCard() {
+  addSealsLoader()
+  
+  await getQttSealsByColor()
+
   let fieldsCards = document.querySelector('.home_cards')
   let institutionsCards = ''
   const sealColors = [
@@ -66,11 +70,11 @@ function sealsCountCard() {
     cardSeal = getSealCard(seal.color, false)
 
     institutionsCards += `<div class="home_card">
-      <div class="home-card_svg">${cardSeal}</div>
+      <div class="home-card_svg ${seal.color}">${cardSeal}</div>
 
       <div class="home_card-text">
         <span class="text-center">${seal.color}</span>
-        <span class="text-center">${seal.quantity}</span>
+        <span class="text-center ${seal.color}">${seal.quantity}</span>
       </div>
     </div>`
   })
@@ -117,12 +121,11 @@ function addCardsList(records) {
   removeLoader()
 }
 
-async function generateCard () {
+async function generateCard() {
   let records
   try {
-    records = await getFields()
+    records = await getFields(currentPage)
     addCardsList(records)
-    sealsCountCard()
   } catch (errors) {
     console.error(errors)
   }
@@ -130,7 +133,7 @@ async function generateCard () {
 
 function getSealCard(sealColor, sumSealsQtt) {
   let currentSeal = ''
-  
+
   switch (sealColor) {
     case 'Branca':
       currentSeal = `<div class="svg-circle white-seal">
@@ -185,10 +188,55 @@ function getSealCard(sealColor, sumSealsQtt) {
   return currentSeal
 }
 
-function addLoader() {
-  const search = document.querySelector('.home_fields-cards')
-  
-  search.innerHTML = `<div class="load">
+function watchPageChangeBtns() {
+  let previousPage = document.getElementById('previousPage')
+  let nextPage = document.getElementById('nextPage')
+
+  disablePaginationBtns()
+
+  previousPage.addEventListener('click', () => {
+    changePagination()
+    console.log('previousPage', currentPage)
+  })
+
+  nextPage.addEventListener('click', () => {
+    changePagination(true)
+    console.log('nextPage', currentPage)
+  })
+}
+
+async function changePagination(nextPage) {
+  nextPage ? currentPage += 1 : currentPage -= 1
+
+  addLoader('.home_fields-cards')
+  disablePaginationBtns()
+  await generateCard()
+}
+
+function disablePaginationBtns() {
+  previousPage.disabled = currentPage === 1
+
+  currentPage === 1 ?
+    previousPage.classList.add('btn-disabled') :
+    previousPage.classList.remove('btn-disabled')
+
+}
+
+function addLoader(selector) {
+  const divToAdd = document.querySelector(`${selector}`)
+
+  divToAdd.innerHTML = `<div class="load">
+    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+  </div>`
+}
+
+function addSealsLoader() {
+  const divToAdd = document.querySelector('.home_cards')
+
+  divToAdd.innerHTML = `<div class="seals-loader">
+    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
     <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
   </div>`
 }
@@ -199,6 +247,8 @@ function removeLoader() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  addLoader()
+  addLoader('.home_fields-cards')
   generateCard()
+  sealsCountCard()
+  watchPageChangeBtns()
 })
