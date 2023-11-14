@@ -1,14 +1,14 @@
- const URL = 'http://172.16.16.112/diadorim/api/v1'
-//const URL = 'http://localhost/diadorim/api/v1'
+const URL = 'http://172.16.16.112/diadorim/api/v1'
+// const URL = 'http://localhost/diadorim/api/v1'
 
 // global variables for Seals
 
-let
-  whiteSealsQtt = 0,
-  blueSealsQtt = 0,
-  yellowSealsQtt = 0,
-  greenSealsQtt = 0
-
+let sealsInfo = [
+  { color: 'Branca', quantity: 0, href: '' },
+  { color: 'Azul', quantity: 0, href: '' },
+  { color: 'Amarelo', quantity: 0, href: '' },
+  { color: 'Verde', quantity: 0, href: '' },
+]
 let currentPage = 1
 
 async function getFields(pageToView) {
@@ -18,9 +18,6 @@ async function getFields(pageToView) {
   try {
     response = await fetch(`${URL}/${searchURL}`)
     response = await response.json()
-
-    console.log('response', response.records[1].sealColor.split(':'))
-    console.log('response1', response.records[0].publisher)
 
     return response.records
   } catch (errors) {
@@ -38,11 +35,18 @@ async function getQttSealsByColor() {
     response = await fetch(`${URL}/${facetsURL}`)
     response = await response.json()
     const sealColor = response.facets.sealcolor_keyword
+    
+    sealsInfo[0].quantity = sealColor[3].count
+    sealsInfo[0].href = sealColor[3].href
 
-    whiteSealsQtt = sealColor[3].count
-    blueSealsQtt = sealColor[0].count
-    yellowSealsQtt = sealColor[2].count + sealColor[4].count
-    greenSealsQtt = sealColor[1].count
+    sealsInfo[1].quantity = sealColor[0].count
+    sealsInfo[1].href = sealColor[0].href
+
+    sealsInfo[2].quantity = sealColor[2].count + sealColor[4].count
+    sealsInfo[2].href = sealColor[2].href + sealColor[4].href
+
+    sealsInfo[3].quantity = sealColor[1].count
+    sealsInfo[3].href = sealColor[1].href
 
   } catch (errors) {
     console.error(errors)
@@ -58,25 +62,23 @@ async function sealsCountCard() {
 
   let fieldsCards = document.querySelector('.home_cards')
   let institutionsCards = ''
-  const sealColors = [
-    { color: 'Branca', quantity: whiteSealsQtt },
-    { color: 'Azul', quantity: blueSealsQtt },
-    { color: 'Amarelo', quantity: yellowSealsQtt },
-    { color: 'Verde', quantity: greenSealsQtt },
-  ]
+  
   let cardSeal = ''
 
-  sealColors.forEach(seal => {
+  sealsInfo.forEach(seal => {
     cardSeal = getSealCard(seal.color, false)
 
-    institutionsCards += `<div class="home_card">
-      <div class="home-card_svg ${seal.color}">${cardSeal}</div>
+    institutionsCards += `<a id="${seal.color}"
+      href="http://localhost/diadorim/Search/Results${seal.href}">
+      <div class="home_card">
+        <div class="home-card_svg ${seal.color}">${cardSeal}</div>
 
-      <div class="home_card-text">
-        <span class="text-center">${seal.color}</span>
-        <span class="text-center ${seal.color}">${seal.quantity}</span>
+        <div class="home_card-text">
+          <span class="text-center">${seal.color}</span>
+          <span class="text-center ${seal.color}">${seal.quantity}</span>
+        </div>
       </div>
-    </div>`
+    </a>`
   })
 
   fieldsCards.innerHTML = institutionsCards
@@ -99,20 +101,22 @@ function addCardsList(records) {
 
       // record?.publishers.forEach(publisher => publishers += `${publisher},`)
 
-      cards += `<div id="${record.id}" class="col col-md-4">
-        <div class="field-card">
-          ${seal}
+      cards += `<div id="${record.id}" onclick="itemList(record.id)" class="col col-md-4">
+        <a href="http://localhost/diadorim/Record/${record.id}?sid=14">
+          <div class="field-card">
+            ${seal}
 
-          <div class="card-body">
-            <span>Situção: ${record?.situation}</span>
-            <span>${record.title}</span>
-          </div>
+            <div class="card-body">
+              <span>Situção: ${record?.situation}</span>
+              <span>${record.title}</span>
+            </div>
 
-          <div class="card-footer">
-            <span>ISSN: ${issns}</span>
-            <span>Editora: ${record.publisher}</span>
+            <div class="card-footer">
+              <span>ISSN: ${issns}</span>
+              <span>Editora: ${record.publisher}</span>
+            </div>
           </div>
-        </div>
+        </a>
       </div>`
     }
   })
@@ -196,12 +200,10 @@ function watchPageChangeBtns() {
 
   previousPage.addEventListener('click', () => {
     changePagination()
-    console.log('previousPage', currentPage)
   })
 
   nextPage.addEventListener('click', () => {
     changePagination(true)
-    console.log('nextPage', currentPage)
   })
 }
 
@@ -219,6 +221,10 @@ function disablePaginationBtns() {
   currentPage === 1 ?
     previousPage.classList.add('btn-disabled') :
     previousPage.classList.remove('btn-disabled')
+
+}
+
+function itemList (id) {
 
 }
 

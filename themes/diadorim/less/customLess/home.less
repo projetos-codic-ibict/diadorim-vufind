@@ -69,116 +69,120 @@
         gap: 16px;
         margin-top: 96px;
 
-        .home_card {
-          width: 162px;
-          height: 75px;
-          display: flex;
-          padding: 16px;
-          justify-content: center;
-          align-items: center;
-          /* gap: 8px; */
-          background: #FFF;
-          border-radius: 8px;
-          box-shadow: 0px 0px 74px 0px rgba(0, 0, 0, 0.16);
-          /* transition: transform 0.2s ease-in-out; */
-          transition: transform 0.5s;
-
-          &:hover {
-            cursor: pointer;
-           /*  min-width: 210px !important;
-            height: 97.19px !important; */
-            transform: scale(1.2);
-            margin: 0 5px;
-            border-radius: 10.37px;
-            box-shadow: 0px 0px 95.92587280273438px 0px rgba(0, 0, 0, 0.16);
-          }
-
-          .home-card_svg {
+        > a {
+          text-decoration: none;
+          
+          .home_card {
+            width: 162px;
+            height: 75px;
             display: flex;
-            min-width: 40px;
-            height: 40px;
+            padding: 16px;
             justify-content: center;
             align-items: center;
-            border-radius: 50%;
-            margin-right: 8px;
+            /* gap: 8px; */
+            background: #FFF;
+            border-radius: 8px;
+            box-shadow: 0px 0px 74px 0px rgba(0, 0, 0, 0.16);
+            /* transition: transform 0.2s ease-in-out; */
+            transition: transform 0.5s;
 
-            &.Branca {
-              box-shadow:  0px 0px 16px 0px rgba(0, 0, 0, 0.12);
-            }
-            &.Azul {
-              box-shadow: 0px 0px 16px 0px rgba(0, 212, 255, 0.32);
-            }
-            &.Amarelo {
-              box-shadow: 0px 0px 16px 0px rgba(255, 212, 0, 0.40);
-            }
-            &.Verde {
-              box-shadow: 0px 0px 16px 0px rgba(0, 255, 128,0.32);
-            }
-
-           /*  &.universities {
-              background-color: #000;
-              box-shadow:  0px 0px 16px 0px rgba(0, 0, 0, 0.32);
-            }
-            &.publishers {
-              background-color: #F21B0D;
-              box-shadow: 0px 0px 16px 0px rgba(242, 27, 13, 0.32);
-            }
-            &.journals {
-              background-color: #CCAA00;
-              box-shadow: 0px 0px 16px 0px rgba(204, 170, 0, 0.32);
-            }
-            &.articles {
-              background-color: #FF7900;
-              box-shadow: 0px 0px 16px 0px rgba(255, 121, 0, 0.32);
-            } */
-          }
-
-          .home_card-text {
-            height: 43px;
-
-            span:nth-of-type(1) {
-              color: #736C6C;
-              font-size: 12px;
-              font-weight: 600;
-              line-height: 24px;
-              letter-spacing: 0.5px;
+            &:hover {
+              cursor: pointer;
+            /*  min-width: 210px !important;
+              height: 97.19px !important; */
+              transform: scale(1.2);
+              margin: 0 5px;
+              border-radius: 10.37px;
+              box-shadow: 0px 0px 95.92587280273438px 0px rgba(0, 0, 0, 0.16);
             }
 
-            span:nth-of-type(2) {
-              text-align: center;
-              font-size: 24px;
-              font-weight: 700;
-              line-height: 22px;
-              letter-spacing: 0.5px;
-          
+            .home-card_svg {
+              display: flex;
+              min-width: 40px;
+              height: 40px;
+              justify-content: center;
+              align-items: center;
+              border-radius: 50%;
+              margin-right: 8px;
+
               &.Branca {
-                color: linear-gradient(153deg, #E1E0E0 -23.58%, rgba(255,255,255,0) 45.5%),#E9E9E9;;
+                box-shadow:  0px 0px 16px 0px rgba(0, 0, 0, 0.12);
               }
               &.Azul {
-                color: #00D4FF;
+                box-shadow: 0px 0px 16px 0px rgba(0, 212, 255, 0.32);
               }
               &.Amarelo {
-                color: #463A01;
+                box-shadow: 0px 0px 16px 0px rgba(255, 212, 0, 0.40);
               }
               &.Verde {
-                color: #00552B;
+                box-shadow: 0px 0px 16px 0px rgba(0, 255, 128,0.32);
               }
+
+            /*  &.universities {
+                background-color: #000;
+                box-shadow:  0px 0px 16px 0px rgba(0, 0, 0, 0.32);
+              }
+              &.publishers {
+                background-color: #F21B0D;
+                box-shadow: 0px 0px 16px 0px rgba(242, 27, 13, 0.32);
+              }
+              &.journals {
+                background-color: #CCAA00;
+                box-shadow: 0px 0px 16px 0px rgba(204, 170, 0, 0.32);
+              }
+              &.articles {
+                background-color: #FF7900;
+                box-shadow: 0px 0px 16px 0px rgba(255, 121, 0, 0.32);
+              } */
             }
 
-            /* &.universities {
-              color: #071D41;
+            .home_card-text {
+              height: 43px;
+
+              span:nth-of-type(1) {
+                color: #736C6C;
+                font-size: 12px;
+                font-weight: 600;
+                line-height: 24px;
+                letter-spacing: 0.5px;
+              }
+
+              span:nth-of-type(2) {
+                text-align: center;
+                font-size: 24px;
+                font-weight: 700;
+                line-height: 22px;
+                letter-spacing: 0.5px;
+            
+                &.Branca {
+                  color: linear-gradient(153deg, #E1E0E0 -23.58%, rgba(255,255,255,0) 45.5%),#E9E9E9;;
+                }
+                &.Azul {
+                  color: #00D4FF;
+                }
+                &.Amarelo {
+                  color: #463A01;
+                }
+                &.Verde {
+                  color: #00552B;
+                }
+              }
+
+              /* &.universities {
+                color: #071D41;
+              }
+              &.publishers {
+                color: #F21B0D;
+              }
+              &.journals {
+                color: #CCAA00;
+              }
+              &.articles {
+                color: #FF7900;
+              } */
             }
-            &.publishers {
-              color: #F21B0D;
-            }
-            &.journals {
-              color: #CCAA00;
-            }
-            &.articles {
-              color: #FF7900;
-            } */
-          }
-        } 
+          } 
+        }
       }
     }
   }
@@ -375,67 +379,71 @@
 
     .col {
       /* margin: 0 8px 8px 0; */
-      .field-card {
-        height: 280px !important;
-        display: flex;
-        padding: 16px;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        gap: 24px;
-        flex: 1 0 0;
-        align-self: stretch;
-        border-radius: 8px;
-        border: 1px solid #EEE;
-        background: #FFF;
-
-        &:hover {
-          cursor: pointer;
-        }
-
-        .card-body, .card-footer {
+      > a {
+        text-decoration: none;
+      
+        .field-card {
+          height: 280px !important;
           display: flex;
+          padding: 16px;
           flex-direction: column;
-          /* antigo */
-          /* justify-content: center; */
-          justify-content: end;
+          justify-content: center;
           align-items: flex-start;
-          gap: 8px;
+          gap: 24px;
           flex: 1 0 0;
           align-self: stretch;
-          letter-spacing: 0.5px;
+          border-radius: 8px;
+          border: 1px solid #EEE;
+          background: #FFF;
 
-          span:nth-of-type(1) {
-            color: #6A6A6A;
-            font-size: 16px;
-            font-weight: 400;
-            line-height: 16px;
-          }
-          
-          span:nth-of-type(2) {
-            color: #000;
-            font-size: 20px;
-            font-weight: 700;
-            line-height: 28px;
-          }
-        }
-
-        .card-footer {
-          span {
-            letter-spacing: 0.5px !important;
-            font-size: 12px !important;  
+          &:hover {
+            cursor: pointer;
           }
 
-          span:nth-of-type(1) {
-            color: #071D41;
-            font-weight: 700;
-            line-height: 24px;
+          .card-body, .card-footer {
+            display: flex;
+            flex-direction: column;
+            /* antigo */
+            /* justify-content: center; */
+            justify-content: end;
+            align-items: flex-start;
+            gap: 8px;
+            flex: 1 0 0;
+            align-self: stretch;
+            letter-spacing: 0.5px;
+
+            span:nth-of-type(1) {
+              color: #6A6A6A;
+              font-size: 16px;
+              font-weight: 400;
+              line-height: 16px;
+            }
+            
+            span:nth-of-type(2) {
+              color: #000;
+              font-size: 20px;
+              font-weight: 700;
+              line-height: 28px;
+            }
           }
-          
-          span:nth-of-type(2) {
-            color: #000;
-            font-weight: 400;
-            line-height: 16px;
+
+          .card-footer {
+            span {
+              letter-spacing: 0.5px !important;
+              font-size: 12px !important;  
+            }
+
+            span:nth-of-type(1) {
+              color: #071D41;
+              font-weight: 700;
+              line-height: 24px;
+            }
+            
+            span:nth-of-type(2) {
+              color: #000;
+              font-weight: 400;
+              line-height: 16px;
+            }
           }
         }
       }
