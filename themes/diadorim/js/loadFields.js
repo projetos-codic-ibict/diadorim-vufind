@@ -1,7 +1,9 @@
-const URL = 'http://172.16.16.112/diadorim/api/v1'
-// const URL = 'http://localhost/diadorim/api/v1'
+const host = 'http://172.16.16.112'
+//const host = 'http://localhost'
 
-// global variables for Seals
+const URL = `${host}/diadorim/api/v1`
+
+/* -------------- */
 
 let sealsInfo = [
   { color: 'Branca', quantity: 0, href: '' },
@@ -69,7 +71,7 @@ async function sealsCountCard() {
     cardSeal = getSealCard(seal.color, false)
 
     institutionsCards += `<a id="${seal.color}"
-      href="http://localhost/diadorim/Search/Results${seal.href}">
+      href="${host}/diadorim/Search/Results${seal.href}">
       <div class="home_card">
         <div class="home-card_svg ${seal.color}">${cardSeal}</div>
 
@@ -102,7 +104,7 @@ function addCardsList(records) {
       // record?.publishers.forEach(publisher => publishers += `${publisher},`)
 
       cards += `<div id="${record.id}" onclick="itemList(record.id)" class="col col-md-4">
-        <a href="http://localhost/diadorim/Record/${record.id}?sid=14">
+        <a href="${host}/diadorim/Record/${record.id}?sid=14">
           <div class="field-card">
             ${seal}
 
