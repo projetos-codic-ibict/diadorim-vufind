@@ -1,9 +1,9 @@
-const host = 'http://172.16.16.112'
-//const host = 'http://localhost'
+//const host = 'http://172.16.16.112'
+const host = 'http://localhost'
 
 const URL = `${host}/diadorim/api/v1`
 
-/* -------------- */
+/* ------------------------------------------------------------------------ */
 
 let sealsInfo = [
   { color: 'Branca', quantity: 0, href: '' },
@@ -86,7 +86,7 @@ async function sealsCountCard() {
   fieldsCards.innerHTML = institutionsCards
 }
 
-function addCardsList(records) {
+function addCards(viewType, records) {
   const fieldsCards = document.querySelector('.home_fields-cards')
   let cards = ''
 
@@ -94,32 +94,13 @@ function addCardsList(records) {
     if (record) {
       let seal = ''
       let issns = ''
-      /* let publishers = '' */
       const sealSplited = record?.sealColor.split(':')
 
       seal += getSealCard(sealSplited[0].trim(), true)
 
       record?.issns.forEach(issn => issns += `${issn},`)
 
-      // record?.publishers.forEach(publisher => publishers += `${publisher},`)
-
-      cards += `<div id="${record.id}" onclick="itemList(record.id)" class="col col-md-4">
-        <a href="${host}/diadorim/Record/${record.id}?sid=14">
-          <div class="field-card">
-            ${seal}
-
-            <div class="card-body">
-              <span>Situção: ${record?.situation}</span>
-              <span>${record.title}</span>
-            </div>
-
-            <div class="card-footer">
-              <span>ISSN: ${issns}</span>
-              <span>Editora: ${record.publisher}</span>
-            </div>
-          </div>
-        </a>
-      </div>`
+      cards += buildCurrentCard(viewType, record, seal, issns)
     }
   })
 
@@ -127,17 +108,69 @@ function addCardsList(records) {
   removeLoader()
 }
 
+function buildCurrentCard(viewType, record, seal, issns) {
+  let currentCard = ''
+
+  switch (viewType) {
+    case 'list':
+      currentCard += `<div id="${record.id}" onclick="itemList(record.id)" class="list col col-sm-12">
+        <a href="${host}/diadorim/Record/${record.id}?sid=14">
+          <div class="field-card">
+            ${seal}
+    
+            <div class="card-body">
+              <div>
+                <span>Situção: ${record?.situation}</span>
+                <span>${record.title}</span>
+              </div>
+            
+              <div>
+                <span>ISSN: ${issns}</span>
+                <span>Editora: ${record.publisher}</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>`
+
+      break
+  
+    case 'grade':
+      currentCard += `<div id="${record.id}" onclick="itemList(record.id)" class="grade col col-md-6 col-lg-4">
+        <a href="${host}/diadorim/Record/${record.id}?sid=14">
+          <div class="field-card">
+            ${seal}
+    
+            <div class="card-body">
+              <span>Situção: ${record?.situation}</span>
+              <span>${record.title}</span>
+            </div>
+    
+            <div class="card-footer">
+              <span>ISSN: ${issns}</span>
+              <span>Editora: ${record.publisher}</span>
+            </div>
+          </div>
+        </a>
+      </div>`
+
+      break
+  }
+
+  return currentCard
+}
+
 async function generateCard() {
   let records
   try {
     records = await getFields(currentPage)
-    addCardsList(records)
+    addCards('list', records)
   } catch (errors) {
     console.error(errors)
   }
 }
 
-function getSealCard(sealColor, sumSealsQtt) {
+function getSealCard(sealColor) {
   let currentSeal = ''
 
   switch (sealColor) {
@@ -152,7 +185,6 @@ function getSealCard(sealColor, sumSealsQtt) {
         </svg>
       </div>`
 
-      /* if (sumSealsQtt) whiteSealsQtt += 1 */
       break
 
     case 'Azul':
@@ -163,7 +195,6 @@ function getSealCard(sealColor, sumSealsQtt) {
         </svg>
       </div>`
 
-      /* if (sumSealsQtt) blueSealsQtt += 1 */
       break
 
     case 'Amarelo':
@@ -174,7 +205,6 @@ function getSealCard(sealColor, sumSealsQtt) {
         </svg>
       </div>`
 
-      /* if (sumSealsQtt) yellowSealsQtt += 1 */
       break
 
     case 'Verde':
@@ -187,7 +217,6 @@ function getSealCard(sealColor, sumSealsQtt) {
         </svg>
       </div>`
 
-      /* if (sumSealsQtt) greenSealsQtt += 1 */
       break
   }
 
@@ -226,10 +255,6 @@ function disablePaginationBtns() {
 
 }
 
-function itemList (id) {
-
-}
-
 function addLoader(selector) {
   const divToAdd = document.querySelector(`${selector}`)
 
@@ -259,4 +284,16 @@ document.addEventListener('DOMContentLoaded', function () {
   generateCard()
   sealsCountCard()
   watchPageChangeBtns()
+  //toggleVisualization()
 })
+
+
+/* ------------------------------------ */
+
+function toggleVisualization(addClass, removeClass) {
+  let selectorToaddClass = document.querySelector(addClass)
+  let selectorToRemoveClass = document.querySelector(removeClass)
+
+  selectorToaddClass.classList.add('active')
+  selectorToRemoveClass.classList.remove('active')
+}
