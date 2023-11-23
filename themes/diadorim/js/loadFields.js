@@ -1,5 +1,5 @@
-//const host = 'http://172.16.16.112'
-const host = 'http://localhost'
+const host = 'http://172.16.16.112'
+//const host = 'http://localhost'
 
 const URL = `${host}/diadorim/api/v1`
 
@@ -12,6 +12,8 @@ let sealsInfo = [
   { color: 'Verde', quantity: 0, href: '' },
 ]
 let currentPage = 1
+let currentRecords
+let viewMode = 'grade'
 
 async function getFields(pageToView) {
   let response
@@ -20,6 +22,8 @@ async function getFields(pageToView) {
   try {
     response = await fetch(`${URL}/${searchURL}`)
     response = await response.json()
+
+    currentRecords = response.records
 
     return response.records
   } catch (errors) {
@@ -117,7 +121,7 @@ function buildCurrentCard(viewType, record, seal, issns) {
         <a href="${host}/diadorim/Record/${record.id}?sid=14">
           <div class="field-card">
             ${seal}
-    
+          
             <div class="card-body">
               <div>
                 <span>Situção: ${record?.situation}</span>
@@ -164,7 +168,7 @@ async function generateCard() {
   let records
   try {
     records = await getFields(currentPage)
-    addCards('list', records)
+    addCards(viewMode, records)
   } catch (errors) {
     console.error(errors)
   }
@@ -284,16 +288,21 @@ document.addEventListener('DOMContentLoaded', function () {
   generateCard()
   sealsCountCard()
   watchPageChangeBtns()
-  //toggleVisualization()
 })
 
 
 /* ------------------------------------ */
 
 function toggleVisualization(addClass, removeClass) {
-  let selectorToaddClass = document.querySelector(addClass)
+  let selectorToAddClass = document.querySelector(addClass)
   let selectorToRemoveClass = document.querySelector(removeClass)
 
-  selectorToaddClass.classList.add('active')
+  selectorToAddClass.classList.add('active')
   selectorToRemoveClass.classList.remove('active')
+
+  let classSplited = addClass.split('-')
+  classSplited = classSplited[0].replace('.', '')
+  
+  viewMode = classSplited
+  addCards(viewMode, currentRecords)
 }
