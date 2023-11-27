@@ -350,7 +350,7 @@ function getEmptyRecordsCard() {
   let fieldsCards = document.querySelector('.home_fields-cards')
 
   fieldsCards.innerHTML = `<h2 style="text-align: center; color: #FF7900;">
-    On this page there are no records for the  seal color.
+    On this page there are no records for the  seal color selected.
   </h12>`
 }
 
