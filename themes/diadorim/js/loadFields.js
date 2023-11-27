@@ -349,7 +349,9 @@ function filterBySeal(sealColor) {
 function getEmptyRecordsCard() {
   let fieldsCards = document.querySelector('.home_fields-cards')
 
-  fieldsCards.innerHTML = `<h1 style="text-align: center;">There are no records to selected seal color.</h1>`
+  fieldsCards.innerHTML = `<h2 style="text-align: center; color: #FF7900;">
+    On this page there are no records for the  seal color.
+  </h12>`
 }
 
 function clearSealsBtns() {
