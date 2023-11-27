@@ -8,12 +8,14 @@ const URL = `${host}/diadorim/api/v1`
 let sealsInfo = [
   { color: 'Branca', quantity: 0, href: '' },
   { color: 'Azul', quantity: 0, href: '' },
-  { color: 'Amarelo', quantity: 0, href: '' },
+  { color: 'Amarela', quantity: 0, href: '' },
   { color: 'Verde', quantity: 0, href: '' },
 ]
 let currentPage = 1
 let currentRecords
 let viewMode = 'grade'
+
+/* --------------- */
 
 async function getFields(pageToView) {
   let response
@@ -109,6 +111,7 @@ function addCards(viewType, records) {
   })
 
   fieldsCards.innerHTML = cards
+
   removeLoader()
 }
 
@@ -201,7 +204,7 @@ function getSealCard(sealColor) {
 
       break
 
-    case 'Amarelo':
+    case 'Amarela':
       currentSeal = `<div class="svg-circle yellow-seal">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M3 6C3.55228 6 4 6.44772 4 7V12H9C9.55228 12 10 12.4477 10 13C10 13.5523 9.55228 14 9 14H3C2.44772 14 2 13.5523 2 13V7C2 6.44772 2.44772 6 3 6Z" fill="#463A01"/>
@@ -243,6 +246,8 @@ function watchPageChangeBtns() {
 }
 
 async function changePagination(nextPage) {
+  clearSealsBtns()
+
   nextPage ? currentPage += 1 : currentPage -= 1
 
   addLoader('.home_fields-cards')
@@ -288,6 +293,7 @@ document.addEventListener('DOMContentLoaded', function () {
   generateCard()
   sealsCountCard()
   watchPageChangeBtns()
+  watchFilterBySealsBtns()
 })
 
 
@@ -304,5 +310,60 @@ function toggleVisualization(addClass, removeClass) {
   classSplited = classSplited[0].replace('.', '')
   
   viewMode = classSplited
+  
   addCards(viewMode, currentRecords)
+}
+
+function watchFilterBySealsBtns() {
+  const btnSeals = [
+    {id: 'whiteBtn', color: 'Branca'},
+    {id: 'greenBtn', color: 'Verde'},
+    {id: 'yellowBtn', color: 'Amarela'},
+    {id: 'blueBtn', color: 'Azul'},
+  ]
+
+  btnSeals.forEach(seal => {
+    let currentBtn = document.getElementById(seal.id)
+    
+    currentBtn.addEventListener('click', () => {
+      currentBtn.classList.add('active')
+      filterBySeal(seal.color)
+
+      btnSeals.forEach(anotherSeal => {
+        let anotherBtn = document.getElementById(anotherSeal.id)
+        const removeActiveClass = anotherSeal.id !== currentBtn.id && anotherBtn.classList.value.includes('active')
+
+        if (removeActiveClass) anotherBtn.classList.remove('active')
+      })
+    })
+  })
+}
+
+function filterBySeal(sealColor) {
+  let currentRecordsFiltered = currentRecords.filter(record => sealColor === record.sealColor.split(':')[0].trim())
+  currentRecordsFiltered.length > 0 ? 
+    addCards(viewMode, currentRecordsFiltered) :
+    getEmptyRecordsCard()
+}
+
+function getEmptyRecordsCard() {
+  let fieldsCards = document.querySelector('.home_fields-cards')
+
+  fieldsCards.innerHTML = `<h1 style="text-align: center;">There are no records to selected seal color.</h1>`
+}
+
+function clearSealsBtns() {
+  const btnSeals = [
+    {id: 'whiteBtn', color: 'Branca'},
+    {id: 'greenBtn', color: 'Verde'},
+    {id: 'yellowBtn', color: 'Amarela'},
+    {id: 'blueBtn', color: 'Azul'},
+  ]
+
+  btnSeals.forEach(seal => {
+    let btn = document.getElementById(seal.id)
+    const removeActiveClass = btn.classList.value.includes('active')
+
+    if (removeActiveClass) btn.classList.remove('active')
+  })
 }
