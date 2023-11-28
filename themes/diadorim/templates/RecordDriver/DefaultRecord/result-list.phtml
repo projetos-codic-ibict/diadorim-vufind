@@ -27,12 +27,12 @@
 } */
 
 
-  $instituicao = $this->driver->getInstitutions();
+  /* $instituicao = $this->driver->getInstitutions();
   $results = $this->driver->getSearchResult();
-  echo json_encode($results);
+  echo json_encode($results); */
 ?>
 
-<div class="media-<?= $thumbnailAlignment ?> <?= $this->escapeHtmlAttr($coverDetails['size']) ?>">
+<!-- <div class="media-<?= $thumbnailAlignment ?> <?= $this->escapeHtmlAttr($coverDetails['size']) ?>">
   <?php
     switch ($cover) {
       case "baseexemplo1":
@@ -47,7 +47,7 @@
         echo '<img src="' . $this->imageLink('home.png') . '" />';
     }
   ?>
-</div>
+</div> -->
 
 <input type="hidden" value="<?=$this->escapeHtmlAttr($this->driver->getUniqueID())?>" class="hiddenId">
 <input type="hidden" value="<?=$this->escapeHtmlAttr($this->driver->getSourceIdentifier())?>" class="hiddenSource">
