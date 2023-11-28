@@ -28,35 +28,35 @@ use VuFind\View\Helper\Root\RecordDataFormatter\SpecBuilder;
 
 class RecordDataFormatterFactory extends \VuFind\View\Helper\Root\RecordDataFormatterFactory
 {
-  /**
-   * Get Publisher for displaying data in collection-info metadata.
-   *
-   * @return array
-   */
-  public function getDefaultCoreSpecs()
-  {
-    $spec = new SpecBuilder(parent::getDefaultCoreSpecs());
-    $spec->setLine("Title", "getTitle");
-    $spec->setLine("Situation", "getSituation");
-    $spec->setLine("Publisher", "getPublisher");
-    $spec->setLine("Subordinate", "getSubordinate");
-    $spec->setLine("Legal Nature", "getLegalNature");
-    $spec->setLine("Editor", "getEditor");
-    $spec->setLine("Phone", "getPhone");
-    $spec->setLine("Email", "getEmail");
-    $spec->setLine("URL", "getUrl");
-    $spec->setLine("URL OAI", "getOai");
-    $spec->setLine("ISSN", "getIssn");
-    $spec->setLine("ISSN-L", "getIssnl");
-    $spec->setLine("Cnpq", "getCnpq");
-    $spec->setLine("Pre Print Submission", "getPrePrintSubmission");
-    $spec->setLine("Pre Print", "getPrePrint");
-    $spec->setLine("Url Author Post Print", "getAuthorPostPrint");
-    $spec->setLine("Journal Post Print", "getJournalPostPrint");
-    $spec->setLine("Seal Color", "getSealColor");
-    $spec->setLine("Time", "getTime");
-    $spec->setLine("Access", "getAccess");
-    $spec->setLine("Creative Commons", "getCreativeCommons");
-    return $spec->getArray();
-  }
+    /**
+     * Get Publisher for displaying data in collection-info metadata.
+     *
+     * @return array
+     */
+    public function getDefaultCoreSpecs()
+    {
+        $spec = new SpecBuilder(parent::getDefaultCoreSpecs());
+        $spec->setLine("Title", "getTitle");
+        $spec->setLine("Situation", "getSituation");
+        $spec->setLine("Publisher", "getPublisher");
+        $spec->setLine("Subordinate", "getSubordinate");
+        $spec->setLine("Legal Nature", "getLegalNature");
+        $spec->setLine("Editor", "getEditor");
+        $spec->setLine("Phone", "getPhone");
+        $spec->setLine("Email", "getEmail");
+        $spec->setLine("URL", "getUrl");
+        $spec->setLine("URL OAI", "getOai");
+        $spec->setLine("ISSN", "getIssn");
+        $spec->setLine("ISSN-L", "getIssnl");
+        $spec->setLine("Cnpq", "getCnpq");
+        $spec->setLine("Pre Print Submission", "getPrePrintSubmission");
+        $spec->setLine("Pre Print", "getPrePrint");
+        $spec->setLine("Url Author Post Print", "getAuthorPostPrint");
+        $spec->setLine("Journal Post Print", "getJournalPostPrint");
+        $spec->setLine("Seal Color", "getSealColor");
+        $spec->setLine("Time", "getTime");
+        $spec->setLine("Access", "getAccess");
+        $spec->setLine("Creative Commons", "getCreativeCommons");
+        return $spec->getArray();
+    }
 }

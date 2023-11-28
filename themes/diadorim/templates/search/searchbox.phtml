@@ -54,7 +54,7 @@ $showFilters = $filterDetails && ($results || $options->getRetainFilterSetting()
       <a href="<?= $this->url($searchHome, [], ['query' => $hiddenFilters]) ?>"><?= $this->transEsc("Start a new Basic Search") ?></a>
     </p>
     <?=
-    
+
     $this->context($this)->renderInContext(
         'search/filters.phtml',
         [
