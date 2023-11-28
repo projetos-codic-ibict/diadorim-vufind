@@ -4,14 +4,51 @@
   $cover = $coverDetails['html'];
   $thumbnail = false;
   $thumbnailAlignment = $this->record($this->driver)->getThumbnailAlignment('result');
-  if ($cover):
+  /* if ($cover):
     ob_start(); ?>
     <div class="media-<?=$thumbnailAlignment ?> <?=$this->escapeHtmlAttr($coverDetails['size'])?>">
       <?=$cover ?>
     </div>
     <?php $thumbnail = ob_get_contents(); ?>
-  <?php ob_end_clean(); ?>
-<?php endif; ?>
+  <?php ob_end_clean(); ?> 
+  <?php endif; ?> 
+  */
+
+/* $instituicao = $this->driver->getInstitutions(); ?>  
+  <div class="media-<?=$thumbnailAlignment ?>    <?=$this->escapeHtmlAttr($coverDetails['size'])?>"> 
+<?php switch($instituicao[0]) {    
+     case "baseexemplo1": { ?> 
+    <img src="<?php echo $this->imageLink('imagembaseexemplo1.png');?>" />   
+    <?php break;    }  
+  case "baseexemplo2": { ?>   
+    <img src="<?php echo $this->imageLink('imagembaseexemplo2.png');?>" />  
+    <?php break;    }  
+     default: { echo 'IMAGEM PADRÃO'; }
+} */
+
+
+  $instituicao = $this->driver->getInstitutions();
+  $results = $this->driver->getSearchResult();
+  echo json_encode($results);
+?>
+
+<div class="media-<?= $thumbnailAlignment ?> <?= $this->escapeHtmlAttr($coverDetails['size']) ?>">
+  <?php
+    switch ($cover) {
+      case "baseexemplo1":
+        echo '<img src="' . $this->imageLink('home.png') . '" />';
+        break;
+
+      case "baseexemplo2":
+        echo '<img src="' . $this->imageLink('home.png.png') . '" />';
+        break;
+
+      default:
+        echo '<img src="' . $this->imageLink('home.png') . '" />';
+    }
+  ?>
+</div>
+
 <input type="hidden" value="<?=$this->escapeHtmlAttr($this->driver->getUniqueID())?>" class="hiddenId">
 <input type="hidden" value="<?=$this->escapeHtmlAttr($this->driver->getSourceIdentifier())?>" class="hiddenSource">
 <div class="media">
@@ -143,7 +180,9 @@
           <br>
           <?=$doi->renderTemplate()?>
         <?php endif; ?>
-        <?php if (!is_array($urls)) $urls = [];
+        
+        <!-- Get Full text -->
+        <!-- <?php if (!is_array($urls)) $urls = [];
           if (!$this->driver->isCollection()):
             foreach ($urls as $current): ?>
               <a class="fulltext icon-link" href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>" target="new">
@@ -151,7 +190,7 @@
                 <span class="icon-link__label"><?=($current['url'] == $current['desc']) ? $this->transEsc('Get full text') : $this->escapeHtml($current['desc'])?></span>
               </a><br>
           <?php endforeach; ?>
-        <?php endif; ?>
+        <?php endif; ?> -->
       <?php endif; ?>
 
       <div class="result-formats">
