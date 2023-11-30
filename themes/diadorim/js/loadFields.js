@@ -1,10 +1,16 @@
-//const host = 'http://172.16.16.112'
-const host = 'http://localhost'
+const host = 'http://172.16.16.112'
+//const host = 'http://localhost'
 
 const URL = `${host}/diadorim/api/v1`
 
 /* ------------------------------------------------------------------------ */
 
+const globalSeals = [
+  {id: 'whiteBtn', color: 'Branca', hex: '#36363614'},
+  {id: 'greenBtn', color: 'Verde', hex: '#00ff8014'},
+  {id: 'yellowBtn', color: 'Amarela', hex: '#ffd40014'},
+  {id: 'blueBtn', color: 'Azul', hex: '#00d4ff14'},
+]
 let sealsInfo = [
   { color: 'Branca', quantity: 0, href: '' },
   { color: 'Azul', quantity: 0, href: '' },
@@ -319,14 +325,7 @@ function toggleVisualization(addClass, removeClass) {
 }
 
 function watchFilterBySealsBtns() {
-  const btnSeals = [
-    {id: 'whiteBtn', color: 'Branca'},
-    {id: 'greenBtn', color: 'Verde'},
-    {id: 'yellowBtn', color: 'Amarela'},
-    {id: 'blueBtn', color: 'Azul'},
-  ]
-
-  btnSeals.forEach(seal => {
+  globalSeals.forEach(seal => {
     let currentBtn = document.getElementById(seal.id)
     
     currentBtn.addEventListener('click', () => {      
@@ -359,14 +358,7 @@ function getEmptyRecordsCard() {
 }
 
 function clearSealsBtns() {
-  const btnSeals = [
-    {id: 'whiteBtn', color: 'Branca'},
-    {id: 'greenBtn', color: 'Verde'},
-    {id: 'yellowBtn', color: 'Amarela'},
-    {id: 'blueBtn', color: 'Azul'},
-  ]
-
-  btnSeals.forEach(seal => {
+  globalSeals.forEach(seal => {
     let btn = document.getElementById(seal.id)
     const removeActiveClass = btn.classList.value.includes('active')
 
@@ -375,12 +367,6 @@ function clearSealsBtns() {
 }
 
 function hoverCards() {
-  const sealColors = [
-    {color: 'Branca', hex: '#36363614'},
-    {color: 'Verde', hex: '#00ff8014'},
-    {color: 'Amarela', hex: '#ffd40014'},
-    {color: 'Azul', hex: '#00d4ff14'},
-  ]
   const cards = document.querySelectorAll('.field-card')
 
   cards.forEach(card => {
@@ -388,13 +374,13 @@ function hoverCards() {
     
 
     card.addEventListener('mouseover', () => {
-      sealColors.forEach(seal => {
+      globalSeals.forEach(seal => {
         if (seal.color === cardDataSealColor) card.style.backgroundColor = seal.hex
       })
     })
 
     card.addEventListener('mouseleave', () => {
-      sealColors.forEach(seal => {
+      globalSeals.forEach(seal => {
         if (seal.color === cardDataSealColor) card.style.backgroundColor = '#fff'
       })
     })
