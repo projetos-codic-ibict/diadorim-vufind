@@ -1,5 +1,5 @@
-const host = 'http://172.16.16.112'
-//const host = 'http://localhost'
+//const host = 'http://172.16.16.112'
+const host = 'http://localhost'
 
 const URL = `${host}/diadorim/api/v1`
 
@@ -93,36 +93,39 @@ async function sealsCountCard() {
 }
 
 function addCards(viewType, records) {
+  
   const fieldsCards = document.querySelector('.home_fields-cards')
   let cards = ''
-
+  
   records.forEach(record => {
     if (record) {
       let seal = ''
       let issns = ''
       const sealSplited = record?.sealColor.split(':')
-
+      
       seal += getSealCard(sealSplited[0].trim(), true)
-
+      
       record?.issns.forEach(issn => issns += `${issn},`)
-
+      
       cards += buildCurrentCard(viewType, record, seal, issns)
     }
   })
-
+  
   fieldsCards.innerHTML = cards
-
+  
   removeLoader()
+  hoverCards()
 }
 
 function buildCurrentCard(viewType, record, seal, issns) {
+  const sealColor = record.sealColor.split(':')[0].trim()
   let currentCard = ''
 
   switch (viewType) {
     case 'list':
-      currentCard += `<div id="${record.id}" onclick="itemList(record.id)" class="list col col-sm-12">
+      currentCard += `<div id="${record.id}" class="list col col-md-12" >
         <a href="${host}/diadorim/Record/${record.id}?sid=14">
-          <div class="field-card">
+          <div class="field-card" data-seal-color="${sealColor}">
             ${seal}
           
             <div class="card-body">
@@ -143,9 +146,9 @@ function buildCurrentCard(viewType, record, seal, issns) {
       break
   
     case 'grade':
-      currentCard += `<div id="${record.id}" onclick="itemList(record.id)" class="grade col col-md-6 col-lg-4">
+      currentCard += `<div id="${record.id}" class="grade col col-md-6 col-lg-4" >
         <a href="${host}/diadorim/Record/${record.id}?sid=14">
-          <div class="field-card">
+          <div class="field-card" data-seal-color="${sealColor}">
             ${seal}
     
             <div class="card-body">
@@ -253,6 +256,7 @@ async function changePagination(nextPage) {
   addLoader('.home_fields-cards')
   disablePaginationBtns()
   await generateCard()
+  hoverCards()
 }
 
 function disablePaginationBtns() {
@@ -325,7 +329,7 @@ function watchFilterBySealsBtns() {
   btnSeals.forEach(seal => {
     let currentBtn = document.getElementById(seal.id)
     
-    currentBtn.addEventListener('click', () => {
+    currentBtn.addEventListener('click', () => {      
       currentBtn.classList.add('active')
       filterBySeal(seal.color)
 
@@ -367,5 +371,32 @@ function clearSealsBtns() {
     const removeActiveClass = btn.classList.value.includes('active')
 
     if (removeActiveClass) btn.classList.remove('active')
+  })
+}
+
+function hoverCards() {
+  const sealColors = [
+    {color: 'Branca', hex: '#36363614'},
+    {color: 'Verde', hex: '#00ff8014'},
+    {color: 'Amarela', hex: '#ffd40014'},
+    {color: 'Azul', hex: '#00d4ff14'},
+  ]
+  const cards = document.querySelectorAll('.field-card')
+
+  cards.forEach(card => {
+    const cardDataSealColor = card.getAttribute('data-seal-color')
+    
+
+    card.addEventListener('mouseover', () => {
+      sealColors.forEach(seal => {
+        if (seal.color === cardDataSealColor) card.style.backgroundColor = seal.hex
+      })
+    })
+
+    card.addEventListener('mouseleave', () => {
+      sealColors.forEach(seal => {
+        if (seal.color === cardDataSealColor) card.style.backgroundColor = '#fff'
+      })
+    })
   })
 }

@@ -4,14 +4,20 @@ $coverDetails = $this->record($this->driver)->getCoverDetails('result-list', 'me
 $cover = $coverDetails['html'];
 $thumbnail = false;
 $thumbnailAlignment = $this->record($this->driver)->getThumbnailAlignment('result');
-if ($cover) :
-  ob_start(); ?>
+
+$sealColorArray = explode(':', $this->driver->getSealColor());
+$sealColor = strtolower(array_shift($sealColorArray));
+?>
+
+<?php if ($cover) : ?>
+  <?php ob_start(); ?>
   <div class="media-<?= $thumbnailAlignment ?> <?= $this->escapeHtmlAttr($coverDetails['size']) ?>">
-    <img src="<?= $this->imageLink('icons/svg/selo-' . strtolower(array_shift(explode(':', $this->driver->getSealColor()))) . '.svg'); ?>">
+    <img src="<?= $this->imageLink('./icons/svg/selo-' . $sealColor . '.svg'); ?>">
   </div>
   <?php $thumbnail = ob_get_contents(); ?>
   <?php ob_end_clean(); ?>
 <?php endif; ?>
+
 <input type="hidden" value="<?= $this->escapeHtmlAttr($this->driver->getUniqueID()) ?>" class="hiddenId">
 <input type="hidden" value="<?= $this->escapeHtmlAttr($this->driver->getSourceIdentifier()) ?>" class="hiddenSource">
 <div class="media">
@@ -148,7 +154,8 @@ if ($cover) :
           <br>
           <?= $doi->renderTemplate() ?>
         <?php endif; ?>
-        <?php if (!is_array($urls)) $urls = [];
+
+        <!-- <?php if (!is_array($urls)) $urls = [];
         if (!$this->driver->isCollection()) :
           foreach ($urls as $current) : ?>
             <a class="fulltext icon-link" href="<?= $this->escapeHtmlAttr($this->proxyUrl($current['url'])) ?>" target="new">
@@ -156,7 +163,8 @@ if ($cover) :
               <span class="icon-link__label"><?= ($current['url'] == $current['desc']) ? $this->transEsc('Get full text') : $this->escapeHtml($current['desc']) ?></span>
             </a><br>
           <?php endforeach; ?>
-        <?php endif; ?>
+        <?php endif; ?> -->
+        
       <?php endif; ?>
 
       <div class="result-formats">
