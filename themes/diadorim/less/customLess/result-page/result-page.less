@@ -4,6 +4,18 @@
 
 #collapse-search {
   margin-top: 24px;
+
+  div:nth-of-type(1) {
+    
+    div {
+      display: flex;
+    }
+    div:nth-of-type(1) {
+      & .action-buttons-left, .action-buttons-right {
+        box-shadow: none !important;
+      }
+    }
+  }
 }
 
 .results {
