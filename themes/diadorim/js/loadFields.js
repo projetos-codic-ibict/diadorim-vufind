@@ -1,5 +1,5 @@
-const host = 'http://172.16.16.112'
-//const host = 'http://localhost'
+//const host = 'http://172.16.16.112'
+const host = 'http://localhost'
 
 const URL = `${host}/diadorim/api/v1`
 
@@ -20,6 +20,7 @@ let sealsInfo = [
 let currentPage = 1
 let currentRecords
 let viewMode = 'grade'
+let currentSelectedSeal = ''
 
 /* --------------- */
 
@@ -322,6 +323,7 @@ function toggleVisualization(addClass, removeClass) {
   viewMode = classSplited
   
   addCards(viewMode, currentRecords)
+  filterBySeal(currentSelectedSeal)
 }
 
 function watchFilterBySealsBtns() {
@@ -332,7 +334,7 @@ function watchFilterBySealsBtns() {
       currentBtn.classList.add('active')
       filterBySeal(seal.color)
 
-      btnSeals.forEach(anotherSeal => {
+      globalSeals.forEach(anotherSeal => {
         let anotherBtn = document.getElementById(anotherSeal.id)
         const removeActiveClass = anotherSeal.id !== currentBtn.id && anotherBtn.classList.value.includes('active')
 
@@ -343,6 +345,7 @@ function watchFilterBySealsBtns() {
 }
 
 function filterBySeal(sealColor) {
+  currentSelectedSeal = sealColor
   let currentRecordsFiltered = currentRecords.filter(record => sealColor === record.sealColor.split(':')[0].trim())
   currentRecordsFiltered.length > 0 ? 
     addCards(viewMode, currentRecordsFiltered) :

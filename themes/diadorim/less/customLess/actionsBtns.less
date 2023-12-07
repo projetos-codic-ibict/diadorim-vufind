@@ -1,0 +1,102 @@
+.action-buttons-left, .action-buttons-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0px 0px 74px 0px rgba(0, 0, 0, 0.16);  
+
+  button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #E8E8E8;
+
+    > svg {
+      > path {
+        fill: #6A6A6A;
+      }
+    }
+  }
+
+  #whiteBtn {
+    border-right: none;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    
+    &.active {
+      background: #E9E9E9;
+
+      > svg {
+        > path {
+          fill: #363636 !important;
+        }
+      }
+    }
+  }
+  #greenBtn {
+    &.active {
+      background: #00FF80;
+      > svg {
+        > path {
+          fill: #00552B !important;
+        }
+      }
+    }
+  }
+  #yellowBtn {
+    border-left: none;
+
+    &.active {
+      background: #FFD400;
+      > svg {
+        > path {
+          fill: #463A01 !important;
+        }
+      }
+    }
+  }
+  #blueBtn {
+    border-left: none;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+   
+    &.active {
+      background: #00D4FF;
+      > svg {
+        > path {
+          fill: #E8FBFF !important;
+        }
+      }
+    }
+  }
+}
+
+.action-buttons-right {
+  .list-btn, .grade-btn {
+    border: 1px solid #FF7900;
+    > svg {
+      > path {
+        fill: #FF7900 !important;
+      }
+    }
+    &.active {
+      background: rgba(255, 121, 0, 0.20) !important;
+    }
+  }
+
+  .list-btn {
+    border-right: none;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+  
+  .grade-btn {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+}

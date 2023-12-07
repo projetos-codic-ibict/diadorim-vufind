@@ -106,6 +106,10 @@ corporateAuthors:
   type: array
   items:
     type: string
+createCommoms:
+  vufind.method: getCreativeCommons
+  description: Main corporate authors
+  type: string
 dedupIds:
   vufind.method: "Formatter::getDedupIds"
   description: IDs of all records deduplicated with the current record
