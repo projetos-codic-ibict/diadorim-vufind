@@ -12,8 +12,6 @@ $this->metadata()->generateMetatags($this->driver);
   ?>
 
   <div class="media-body">
-
-    <h1 property="name"><?= $this->escapeHtml($this->driver->getShortTitle() . ' ' . $this->driver->getSubtitle() . ' ' . $this->driver->getTitleSection()) ?></h1>
     <?php foreach ($this->driver->tryMethod('getFullTitlesAltScript', [], []) as $altTitle) : ?>
       <div class="title-alt">
         <?= $this->escapeHtml($altTitle) ?>

@@ -3,15 +3,42 @@ $formatter = $this->recordDataFormatter($this->driver);
 $coreFields = $formatter->getData($formatter->getDefaults($this->defaults ?? 'core'));
 ?>
 
-<?php if (!empty($coreFields)) : ?>
-  <table <?php if (!empty($this->tableId)) : ?>id="<?= $this->tableId ?>" <?php endif; ?>class="table table-striped">
-    <caption class="sr-only"><?= $this->transEsc($this->caption ?? 'Bibliographic Details') ?></caption>
-    
+<div class="record-card">
+  <?php if (!empty($coreFields)) : ?>
+
     <?php foreach ($coreFields as $current) : ?>
-      <tr>
-        <th><?= $this->transEsc($current['label']) ?>:</th>
-        <td><?= $current['value'] ?></td>
-      </tr>
+
+      <?php if (strtolower($this->transEsc($current['label'])) === 'titulo' || strtolower($this->transEsc($current['label'])) === 'title') : ?>
+        <div class="title">
+          <span><?= $this->transEsc($current['label']) ?>:</span>
+          <span><?= $current['value'] ?></span>
+          <span>Use este identificador para citar ou linkar para este item: <a> https://miguilim.ibict.br/handle/miguilim/3759 </a> </span>
+        </div>
+      <?php endif; ?>
+
     <?php endforeach; ?>
-  </table>
-<?php endif; ?>
+
+
+
+    <div>
+      <ul class="options">
+        <li class="text-decoration-none text-center active"><?= $this->transEsc('Dados do item') ?> </li>
+        <li class="text-decoration-none text-center"><?= $this->transEsc('Campos Dubin Core') ?></li>
+        <li class="text-decoration-none text-center"><?= $this->transEsc('Estatisticas') ?></li>
+        <li class="text-decoration-none text-center"><?= $this->transEsc('Termômetro') ?></li>
+        <li class="text-decoration-none text-center"><?= $this->transEsc('Solicitar edição da revista') ?></li>
+      </ul>
+
+      <table <?php if (!empty($this->tableId)) : ?>id="<?= $this->tableId ?>" <?php endif; ?>class="table table-striped">
+        <caption class="sr-only"><?= $this->transEsc($this->caption ?? 'Bibliographic Details') ?></caption>
+
+        <?php foreach ($coreFields as $current) : ?>
+          <tr>
+            <th><?= $this->transEsc($current['label']) ?>:</th>
+            <td><?= $current['value'] ?></td>
+          </tr>
+        <?php endforeach; ?>
+      </table>
+    </div>
+  <?php endif; ?>
+</div>
