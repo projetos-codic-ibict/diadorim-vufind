@@ -108,7 +108,11 @@ $showFilters = $filterDetails && ($results || $options->getRetainFilterSetting()
 
           <ul class="nav navbar-nav">
             <li>
-              <a id="inicialPage" class="text-decoration-none text-center active-link">
+              <a
+                id="inicialPage"
+                href="<?= $this->url('home') ?>"
+                class="text-decoration-none text-center active-link"
+              >
                 <img
                   src="<?= $this->imageLink('home.png'); ?>"
                   alt="Logo Home"
