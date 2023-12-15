@@ -1,5 +1,5 @@
-//const host = 'http://172.16.16.112'
-const host = 'http://localhost'
+const host = 'http://172.16.16.112'
+//const host = 'http://localhost'
 
 const URL = `${host}/diadorim/api/v1`
 
