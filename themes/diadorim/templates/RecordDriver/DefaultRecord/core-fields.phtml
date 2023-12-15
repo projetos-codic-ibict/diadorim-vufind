@@ -9,7 +9,7 @@ $coreFields = $formatter->getData($formatter->getDefaults($this->defaults ?? 'co
     <?php foreach ($coreFields as $current) : ?>
 
       <?php if (strtolower($this->transEsc($current['label'])) === 'titulo' || strtolower($this->transEsc($current['label'])) === 'title') : ?>
-        <div class="title">
+        <div class="record-card_header">
           <span><?= $this->transEsc($current['label']) ?>:</span>
           <span><?= $current['value'] ?></span>
           <span>Use este identificador para citar ou linkar para este item: <a> https://miguilim.ibict.br/handle/miguilim/3759 </a> </span>
@@ -20,7 +20,7 @@ $coreFields = $formatter->getData($formatter->getDefaults($this->defaults ?? 'co
 
 
 
-    <div>
+    <div class="record-card_body">
       <ul class="options">
         <li class="text-decoration-none text-center active"><?= $this->transEsc('Dados do item') ?> </li>
         <li class="text-decoration-none text-center"><?= $this->transEsc('Campos Dubin Core') ?></li>
