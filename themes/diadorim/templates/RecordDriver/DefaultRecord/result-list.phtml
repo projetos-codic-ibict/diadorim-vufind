@@ -21,8 +21,8 @@ $situation = $this->driver->getSituation();
         <img src="<?= $this->imageLink('./icons/svg/selo-' . $sealColor . '.svg'); ?>" width="40.976px" height="40.976px">
 
         <div>
-          <span> ISSN: <?php echo $issn ?> </span>
-          <span> Editora: <?php echo $publisher ?> </span>
+          <span> <?=$this->transEsc('ISSN')?>: <?php echo $issn ?> </span>
+          <span> <?=$this->transEsc('Publisher')?>: <?php echo $publisher ?> </span>
         </div>
       </div>
 
@@ -42,7 +42,7 @@ $situation = $this->driver->getSituation();
       <div class="result-card_footer">
         <span><?= $this->record($this->driver)->getTitleHtml() ?></span>
 
-        <span> Situação: <?php echo $situation ?> </span>
+        <span> <?=$this->transEsc('Situation')?>: <?php echo $situation ?> </span>
 
         <!-- <?php foreach ($this->driver->tryMethod('getTitlesAltScript', [], []) as $altTitle) : ?>
           <div class="title-alt">

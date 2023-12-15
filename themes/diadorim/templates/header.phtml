@@ -1,5 +1,49 @@
 <?php $account = $this->auth()->getManager(); ?>
 
+
+<?php
+// Initialize from current search (if available) or defaults:
+if ($results = ($this->results ?? $this->searchMemory()->getCurrentSearch())) {
+  $params = $results->getParams();
+  $this->searchClassId = $params->getSearchClassId();
+  $hiddenFilters = $params->getHiddenFilters();
+  $lastSort = $params->getSort();
+  $lastLimit = $params->getLimit();
+  $options = $results->getOptions();
+} else {
+  if (!isset($this->searchClassId)) {
+    $config = $this->config()->get('config');
+    $this->searchClassId = $config->Site->defaultSearchBackend ?? 'Solr';
+  }
+  $options = $this->searchOptions($this->searchClassId);
+  $hiddenFilters = $this->searchTabs()->getHiddenFilters($this->searchClassId, true, $this->ignoreHiddenFiltersInRequest ?? false);
+  $lastSort = $this->searchMemory()->getLastSort($this->searchClassId);
+  $lastLimit = $this->searchMemory()->getLastLimit($this->searchClassId);
+  $params = null;
+}
+
+// Load search actions and settings (if any):
+$handlers = $this->searchbox()->getHandlers(
+    $this->searchClassId,
+    $this->searchIndex ?? null
+);
+$handlerCount = count($handlers);
+$basicSearch = $this->searchbox()->combinedHandlersActive() ? 'combined-searchbox' : $options->getSearchAction();
+$searchHome = $options->getSearchHomeAction();
+$advSearch = $options->getAdvancedSearchAction();
+
+if (!isset($this->filterList) || !isset($this->checkboxFilters)) {
+  $params ??= $this->searchMemory()->getLastSearchParams($this->searchClassId);
+  $filterList = $params->getFilterList(true);
+  $checkboxFilters = $params->getCheckboxFacets();
+} else {
+  $filterList = is_array($this->filterList) ? $this->filterList : [];
+  $checkboxFilters = is_array($this->checkboxFilters) ? $this->checkboxFilters : [];
+}
+$filterDetails = $this->searchbox()->getFilterDetails($filterList, $checkboxFilters);
+$showFilters = $filterDetails && ($results || $options->getRetainFilterSetting());
+?>
+
 <nav class="banner navbar navbar-defaul">
   <div class="container-fluid">
     <!-- Essa div ficará visível apenas no mobile -->
@@ -11,7 +55,6 @@
           data-toggle="collapse"
           data-target="#header-collapse"
           aria-hidden="true"
-          
         >
           <?= $this->icon('ui-menu') ?>
         </button>
@@ -65,7 +108,7 @@
 
           <ul class="nav navbar-nav">
             <li>
-              <a class="text-decoration-none text-center active-link">
+              <a id="inicialPage" class="text-decoration-none text-center active-link">
                 <img
                   src="<?= $this->imageLink('home.png'); ?>"
                   alt="Logo Home"
@@ -75,10 +118,11 @@
                 <span>Página Inicial</span>
               </a>
             </li>
-            <li><a class="text-decoration-none text-center">Navegar</a></li>
-            <li><a class="text-decoration-none text-center">Sobre</a></li>
-            <li><a class="text-decoration-none text-center">Cadastro</a></li>
-            <li><a class="text-decoration-none text-center">Contato</a></li>
+            <li><a id="navegate" href="<?= $this->url($basicSearch) ?>" class="text-decoration-none text-center">Navegar</a></li>
+            <li><a id="about" class="text-decoration-none text-center">Sobre</a></li>
+            <li><a id="register" class="text-decoration-none text-center">Cadastro</a></li>
+            <li><a id="contact" class="text-decoration-none text-center">Contato</a></li>
+            
             <li id="loginOptions">
               <?php if ($account->getSessionInitiator($this->serverUrl($this->url('myresearch-home')))) : ?>
                 <a href="<?= $this->url('myresearch-userlogin') ?>" class="icon-link">
