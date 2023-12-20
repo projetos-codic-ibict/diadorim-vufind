@@ -20,9 +20,14 @@
     'title_wrapper',
     [
       '%%pageTitle%%' => $this->headTitle()->renderTitle(),
+      '%%siteTitle%%' => '',
+      '%%titleSeparator%%' => '',
+    ]
+    /* [
+      '%%pageTitle%%' => $this->headTitle()->renderTitle(),
       '%%siteTitle%%' => $siteConfig->title,
       '%%titleSeparator%%' => $siteConfig->titleSeparator ?? '::',
-    ]
+    ] */
   );
   // Enable escaping again for proper output:
   $this->headTitle()->setAutoEscape(true);
