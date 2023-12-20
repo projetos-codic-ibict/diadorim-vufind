@@ -3,7 +3,7 @@
 <?='<'?>?xml version="1.0"?<?='>'?>
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
   <ShortName><?=$this->escapeHtml($this->site->title)?></ShortName>
-  <Description><?=$this->transEsc('Library Catalog Search')?></Description>
+  <Description><?=$this->transEsc('Diadorim')?></Description>
   <Image height="16" width="16" type="image/png"><?=$this->serverUrl($this->imageLink('vufind-favicon.png'))?></Image>
   <Contact><?=$this->escapeHtml($this->site->email)?></Contact>
   <Url type="text/html" method="get" template="<?=$searchBase?>?lookfor={searchTerms}&amp;page={startPage?}"/>

@@ -374,7 +374,7 @@ class MailerTest extends \PHPUnit\Framework\TestCase
                 && '<from@example.com>' == $message->getFrom()->current()->toString()
                 && '<cc@example.com>' == $message->getCc()->current()->toString()
                 && 'body' == $message->getBody()
-                && 'Library Catalog Search Result' == $message->getSubject();
+                && 'Diadorim Result' == $message->getSubject();
         };
         $transport = $this->createMock(\Laminas\Mail\Transport\TransportInterface::class);
         $transport->expects($this->once())->method('send')->with($this->callback($callback));
@@ -417,7 +417,7 @@ class MailerTest extends \PHPUnit\Framework\TestCase
             return '<to@example.com>' == $message->getTo()->current()->toString()
                 && '<from@example.com>' == $message->getFrom()->current()->toString()
                 && 'body' == $message->getBody()
-                && 'Library Catalog Record: breadcrumb' == $message->getSubject();
+                && 'Diadorim Record: breadcrumb' == $message->getSubject();
         };
         $transport = $this->createMock(\Laminas\Mail\Transport\TransportInterface::class);
         $transport->expects($this->once())->method('send')->with($this->callback($callback));

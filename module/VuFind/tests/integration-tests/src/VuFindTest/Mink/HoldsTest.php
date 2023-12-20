@@ -194,10 +194,10 @@ final class HoldsTest extends \VuFindTest\Integration\MinkTestCase
         $this->fillInAccountForm($page);
         $this->clickCss($page, 'input.btn.btn-primary');
 
-        // Start establishing library catalog profile
+        // Start establishing Diadorim profile
         $this->waitForPageLoad($page);
         $element = $this->findCss($page, '.alert.alert-info a');
-        $this->assertEquals('Library Catalog Profile', $element->getText());
+        $this->assertEquals('Diadorim Profile', $element->getText());
         $element->click();
 
         // Test invalid patron login
@@ -292,10 +292,10 @@ final class HoldsTest extends \VuFindTest\Integration\MinkTestCase
         );
         $this->clickCss($page, 'input.btn.btn-primary');
 
-        // Start establishing library catalog profile
+        // Start establishing Diadorim profile
         $this->waitForPageLoad($page);
         $element = $this->findCss($page, '.alert.alert-info a');
-        $this->assertEquals('Library Catalog Profile', $element->getText());
+        $this->assertEquals('Diadorim Profile', $element->getText());
         $element->click();
         $this->submitCatalogLoginForm($page, 'catuser', 'catpass');
 
@@ -739,10 +739,10 @@ final class HoldsTest extends \VuFindTest\Integration\MinkTestCase
         );
         $this->clickCss($page, 'input.btn.btn-primary');
 
-        // Start establishing library catalog profile
+        // Start establishing Diadorim profile
         $this->waitForPageLoad($page);
         $element = $this->findCss($page, '.alert.alert-info a');
-        $this->assertEquals('Library Catalog Profile', $element->getText());
+        $this->assertEquals('Diadorim Profile', $element->getText());
         $element->click();
 
         $this->submitCatalogLoginForm($page, 'catuser', 'catpass');

@@ -106,10 +106,10 @@ class PluginFactoryTest extends \PHPUnit\Framework\TestCase
      */
     public function testBasicRead()
     {
-        // This should retrieve config.ini, which should have "Library Catalog"
+        // This should retrieve config.ini, which should have "Diadorim"
         // set as the default system title.
         $config = $this->getConfig('config');
-        $this->assertEquals('Library Catalog', $config->Site->title);
+        $this->assertEquals('Diadorim', $config->Site->title);
     }
 
     /**

@@ -368,7 +368,7 @@ class Mailer implements \VuFind\I18n\Translator\TranslatorAwareInterface
      */
     public function getDefaultLinkSubject()
     {
-        return $this->translate('Library Catalog Search Result');
+        return $this->translate('Diadorim Result');
     }
 
     /**
@@ -435,7 +435,7 @@ class Mailer implements \VuFind\I18n\Translator\TranslatorAwareInterface
      */
     public function getDefaultRecordSubject($record)
     {
-        return $this->translate('Library Catalog Record') . ': '
+        return $this->translate('Diadorim Record') . ': '
             . $record->getBreadcrumb();
     }
 
