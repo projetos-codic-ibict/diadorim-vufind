@@ -1,14 +1,14 @@
 <?php
 $formatter = $this->recordDataFormatter($this->driver);
 $coreFields = $formatter->getData($formatter->getDefaults($this->defaults ?? 'core'));
+
 ?>
 
 <div class="record-card">
   <?php if (!empty($coreFields)) : ?>
 
     <?php foreach ($coreFields as $current) : ?>
-
-      <?php if (strtolower($this->transEsc($current['label'])) === 'titulo' || strtolower($this->transEsc($current['label'])) === 'title') : ?>
+      <?php if (strtolower($this->transEsc($current['label'])) === 'título' || strtolower($this->transEsc($current['label'])) === 'title') : ?>
         <div class="record-card_header">
           <span><?= $this->transEsc($current['label']) ?>:</span>
           <span><?= $current['value'] ?></span>
@@ -25,8 +25,6 @@ $coreFields = $formatter->getData($formatter->getDefaults($this->defaults ?? 'co
         <li class="text-decoration-none text-center active"><?= $this->transEsc('Dados do item') ?> </li>
         <li class="text-decoration-none text-center"><?= $this->transEsc('Campos Dubin Core') ?></li>
         <li class="text-decoration-none text-center"><?= $this->transEsc('Estatisticas') ?></li>
-        <li class="text-decoration-none text-center"><?= $this->transEsc('Termômetro') ?></li>
-        <li class="text-decoration-none text-center"><?= $this->transEsc('Solicitar edição da revista') ?></li>
       </ul>
 
       <table <?php if (!empty($this->tableId)) : ?>id="<?= $this->tableId ?>" <?php endif; ?>class="table table-striped">
@@ -34,7 +32,7 @@ $coreFields = $formatter->getData($formatter->getDefaults($this->defaults ?? 'co
 
         <?php foreach ($coreFields as $current) : ?>
           <tr>
-            <th><?= $this->transEsc($current['label']) ?>:</th>
+            <th><?= $this->transEsc($current['label']) ?>: </th>
             <td><?= $current['value'] ?></td>
           </tr>
         <?php endforeach; ?>
