@@ -35,11 +35,9 @@ class RecordDataFormatterFactory extends \VuFind\View\Helper\Root\RecordDataForm
    */
   public function getDefaultCoreSpecs()
   {
-    /* $titleTranslation = $this->transEsc("Title"); */
 
     $spec = new SpecBuilder(parent::getDefaultCoreSpecs());
-    /* $spec->setLine($titleTranslation, "getTitle"); */
-    /* $spec->setLine("{$this->transEsc("Title")}", "getTitle"); */
+    $spec->setLine("Title", "getTitle");
     $spec->setLine("Situation", "getSituation");
     $spec->setLine("Publisher", "getPublisher");
     $spec->setLine("Subordinate", "getSubordinate");
