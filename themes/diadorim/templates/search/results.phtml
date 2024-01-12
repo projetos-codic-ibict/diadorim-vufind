@@ -119,7 +119,9 @@ if ($this->params->getOptions()->getListViewOption() !== 'full') {
         <?= $this->render('search/list-' . $this->params->getView() . '.phtml') ?>
         <?= $this->context($this)->renderInContext('search/bulk-action-buttons.phtml', ['idPrefix' => 'bottom_', 'formAttr' => 'search-cart-form']) ?>
         <?= $this->paginationControl($this->results->getPaginator(), 'Sliding', 'search/pagination.phtml', ['results' => $this->results, 'options' => $this->paginationOptions ?? []]) ?>
-        <?= $this->context($this)->renderInContext('search/controls/results-tools.phtml', ['results' => $this->results]) ?>
+
+        <!-- Removendo o result-tools -->
+        <!-- <?= $this->context($this)->renderInContext('search/controls/results-tools.phtml', ['results' => $this->results]) ?> -->
       <?php endif; ?>
     </div>
 

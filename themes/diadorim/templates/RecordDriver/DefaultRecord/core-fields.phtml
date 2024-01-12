@@ -22,7 +22,7 @@ verificaões em labels diferentes sem quebrar o layout -->
   <?php if ($lowercaseLabel === 'handle') : ?>
     <?php
     $description = 'Use este identificador para citar ou linkar para este item:';
-    $handleLink = '<a href="https://miguilim.ibict.br/handle/' . $value . '">https://miguilim.ibict.br/handle/' . $value . '</a>';
+    $handleLink = '<a target="blank" href="https://miguilim.ibict.br/handle/' . $value . '">https://miguilim.ibict.br/handle/' . $value . '</a>';
     $handleText = '<span>' . $description . ' ' . $handleLink . '</span>';
     ?>
   <?php endif; ?>
