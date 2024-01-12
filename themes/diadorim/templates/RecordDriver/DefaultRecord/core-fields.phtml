@@ -1,32 +1,43 @@
 <?php
 $formatter = $this->recordDataFormatter($this->driver);
 $coreFields = $formatter->getData($formatter->getDefaults($this->defaults ?? 'core'));
-
 ?>
+
+<!-- Adicionado essa nova forma de renderizar os spans para conseguir realiazar duas 
+verificaões em labels diferentes sem quebrar o layout -->
+<?php foreach ($coreFields as $current) : ?>
+  <?php
+  $label = $this->transEsc($current['label']);
+  $lowercaseLabel = strtolower($label);
+  $value = $current['value'];
+  ?>
+
+  <?php if ($lowercaseLabel === 'título' || $lowercaseLabel === 'title') : ?>
+    <?php
+    $labelSpan = '<span>' . $label . ':</span>';
+    $valueSpan = '<span>' . $value . '</span>';
+    ?>
+  <?php endif; ?>
+
+  <?php if ($lowercaseLabel === 'handle') : ?>
+    <?php
+    $description = 'Use este identificador para citar ou linkar para este item:';
+    $handleLink = '<a href="https://miguilim.ibict.br/handle/' . $value . '">https://miguilim.ibict.br/handle/' . $value . '</a>';
+    $handleText = '<span>' . $description . ' ' . $handleLink . '</span>';
+    ?>
+  <?php endif; ?>
+<?php endforeach; ?>
 
 <div class="record-card">
   <?php if (!empty($coreFields)) : ?>
+    <div class="record-card_header">
+      <?= $labelSpan ?>
+      <?= $valueSpan ?>
 
-    <?php foreach ($coreFields as $current) : ?>
-      <?php if (strtolower($this->transEsc($current['label'])) === 'título' || strtolower($this->transEsc($current['label'])) === 'title') : ?>
-        <div class="record-card_header">
-          <span><?= $this->transEsc($current['label']) ?>:</span>
-          <span><?= $current['value'] ?></span>
-          <span>Use este identificador para citar ou linkar para este item: <a> https://miguilim.ibict.br/handle/miguilim/3759 </a> </span>
-        </div>
-      <?php endif; ?>
-
-    <?php endforeach; ?>
-
-
+      <?= $handleText ?>
+    </div>
 
     <div class="record-card_body">
-      <ul class="options">
-        <li class="text-decoration-none text-center active"><?= $this->transEsc('Dados do item') ?> </li>
-        <li class="text-decoration-none text-center"><?= $this->transEsc('Campos Dubin Core') ?></li>
-        <li class="text-decoration-none text-center"><?= $this->transEsc('Estatisticas') ?></li>
-      </ul>
-
       <table <?php if (!empty($this->tableId)) : ?>id="<?= $this->tableId ?>" <?php endif; ?>class="table table-striped">
         <caption class="sr-only"><?= $this->transEsc($this->caption ?? 'Bibliographic Details') ?></caption>
 

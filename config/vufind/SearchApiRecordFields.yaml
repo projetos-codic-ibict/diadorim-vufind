@@ -402,3 +402,8 @@ urls:
   type: array
   items:
     $ref: '#/components/schemas/Url'
+handle:
+  vufind.method: getHandle
+  vufind.default: true
+  description: Use to handle id to get miguilim link
+  type: string
