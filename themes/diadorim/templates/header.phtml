@@ -1,4 +1,10 @@
-<?php $account = $this->auth()->getManager(); ?>
+<?php
+$account = $this->auth()->getManager();
+$languages = [
+  'pt-br' => 'Português',
+  'en' => 'English',
+];
+?>
 
 
 <?php
@@ -24,8 +30,8 @@ if ($results = ($this->results ?? $this->searchMemory()->getCurrentSearch())) {
 
 // Load search actions and settings (if any):
 $handlers = $this->searchbox()->getHandlers(
-    $this->searchClassId,
-    $this->searchIndex ?? null
+  $this->searchClassId,
+  $this->searchIndex ?? null
 );
 $handlerCount = count($handlers);
 $basicSearch = $this->searchbox()->combinedHandlersActive() ? 'combined-searchbox' : $options->getSearchAction();
@@ -49,13 +55,7 @@ $showFilters = $filterDetails && ($results || $options->getRetainFilterSetting()
     <!-- Essa div ficará visível apenas no mobile -->
     <div class="row">
       <div class="navbar-header">
-        <button
-          type="button"
-          class="navbar-toggle collapsed"
-          data-toggle="collapse"
-          data-target="#header-collapse"
-          aria-hidden="true"
-        >
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-collapse" aria-hidden="true">
           <?= $this->icon('ui-menu') ?>
         </button>
 
@@ -78,61 +78,43 @@ $showFilters = $filterDetails && ($results || $options->getRetainFilterSetting()
         </a> -->
       </div>
     </div>
-  
+
     <div class="row">
-      <?php if (!isset($this->layout()->renderingError)) : ?>  
+      <?php if (!isset($this->layout()->renderingError)) : ?>
         <div class="collapse navbar-collapse text-center" id="header-collapse">
           <ul class="nav navbar-nav">
             <li>
               <a class="logo-ibict text-center" href="<?= $this->url('home') ?>">
-                <img
-                  src="<?= $this->imageLink('logo-ibict.png'); ?>"
-                  alt="Logo IBICT"
-                  width="103.13"
-                  height="45.33"
-                >
+                <img src="<?= $this->imageLink('logo-ibict.png'); ?>" alt="Logo IBICT" width="103.13" height="45.33">
               </a>
             </li>
 
             <li>
               <a class="logo-diadorim text-center" href="<?= $this->url('home') ?>">
-                <img
-                  src="<?= $this->imageLink('logo-diadorim.png'); ?>"
-                  alt="Logo IBICT"
-                  width="113"
-                  height="44"
-                >
+                <img src="<?= $this->imageLink('logo-diadorim.png'); ?>" alt="Logo IBICT" width="113" height="44">
               </a>
             </li>
           </ul>
 
           <ul class="nav navbar-nav">
             <li>
-              <a
-                id="inicialPage"
-                href="<?= $this->url('home') ?>"
-                class="text-decoration-none text-center active-link"
-              >
-                <img
-                  src="<?= $this->imageLink('home.png'); ?>"
-                  alt="Logo Home"
-                  width="24"
-                  height="24"
-                >
-                <span>Página Inicial</span>
+              <a id="inicialPage" href="<?= $this->url('home') ?>" class="text-decoration-none text-center active-link">
+                <img src="<?= $this->imageLink('home.png'); ?>" alt="Logo Home" width="24" height="24">
+                <span><?= $this->transEsc('Home') ?></span>
               </a>
             </li>
-            <li><a id="navegate" href="<?= $this->url($basicSearch) ?>" class="text-decoration-none text-center">Navegar</a></li>
-            <li><a id="about" class="text-decoration-none text-center">Sobre</a></li>
-            <li><a id="register" class="text-decoration-none text-center">Cadastro</a></li>
-            <li><a id="contact" class="text-decoration-none text-center">Contato</a></li>
-            
+            <li><a id="navigate" href="<?= $this->url($basicSearch) ?>" class="text-decoration-none text-center"><?= $this->transEsc('Navigate') ?></a></li>
+            <li><a id="about" class="text-decoration-none text-center"><?= $this->transEsc('About') ?></a></li>
+            <li><a id="register" class="text-decoration-none text-center"><?= $this->transEsc('Sign up') ?></a></li>
+            <li><a id="contact" class="text-decoration-none text-center"><?= $this->transEsc('Contact') ?></a></li>
+
             <li id="loginOptions">
+              <!-- Removido o Login -->
               <?php if ($account->getSessionInitiator($this->serverUrl($this->url('myresearch-home')))) : ?>
-                <a href="<?= $this->url('myresearch-userlogin') ?>" class="icon-link">
+                <!-- <a href="<?= $this->url('myresearch-userlogin') ?>" class="icon-link">
                   <?= $this->icon('sign-in', 'icon-link__icon') ?>
                   <span class="icon-link__label"><?= $this->transEsc("Institutional Login") ?></span>
-                </a>
+                </a> -->
               <?php else : ?>
                 <!-- <a href="<?= $this->url('myresearch-userlogin') ?>" class="icon-link text-center" data-lightbox>
                   <?= $this->icon('sign-in', 'icon-link__icon') ?>
@@ -140,7 +122,8 @@ $showFilters = $filterDetails && ($results || $options->getRetainFilterSetting()
                 </a> -->
 
                 <!-- Removido o ícone natural do login -->
-                <a href="<?= $this->url('myresearch-userlogin') ?>" class="icon-link text-center" data-lightbox>
+                <!-- Removido o Login -->
+                <!-- <a href="<?= $this->url('myresearch-userlogin') ?>" class="icon-link text-center" data-lightbox>
                   
                   <img
                     src="<?= $this->imageLink('user-circle.png'); ?>"
@@ -149,7 +132,53 @@ $showFilters = $filterDetails && ($results || $options->getRetainFilterSetting()
                     height="24"
                   >
                   <span> <?= $this->transEsc("Login") ?> </span>
-                </a>
+                </a> -->
+
+
+              <?php endif; ?>
+            </li>
+
+            <li>
+              <!-- Removido a lista original de languages -->
+              <!-- <?php if (isset($this->layout()->allLangs) && count($this->layout()->allLangs) > 1) : ?>
+                <?= $this->component('menu-button', [
+                        'toggleLabel' => $this->transEsc('Language'),
+                        'wrapperClass' => 'language',
+                        'wrapperTag' => 'li',
+                        'menuItems' => array_map(
+                          function ($langCode, $langName) {
+                            return [
+                              'label' => $this->displayLanguageOption($langName),
+                              'url' => $this->url()->addQueryParameters(['lng' => $langCode]),
+                              'selected' => $this->layout()->userLang == $langCode,
+                            ];
+                          },
+                          array_keys($this->layout()->allLangs),
+                          array_values($this->layout()->allLangs),
+                        ),
+                      ]) ?>
+              <?php endif; ?> -->
+
+              <!-- Adicionado uma lista modificada com menos opções -->
+              <?php
+              if (count($languages) > 1) :
+              ?>
+                <?= $this->component('menu-button', [
+                  'toggleLabel' => $this->transEsc('Language'),
+                  'wrapperClass' => 'language',
+                  'wrapperTag' => 'li',
+                  'menuItems' => array_map(
+                    function ($langCode, $langName) {
+                      return [
+                        'label' => $this->displayLanguageOption($langName),
+                        'url' => $this->url()->addQueryParameters(['lng' => $langCode]),
+                        'selected' => $this->layout()->userLang == $langCode,
+                      ];
+                    },
+                    array_keys($languages),
+                    array_values($languages)
+                  ),
+                ]) ?>
               <?php endif; ?>
             </li>
           </ul>

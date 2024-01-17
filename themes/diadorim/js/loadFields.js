@@ -22,7 +22,7 @@ let currentRecords
 let viewMode = 'grade'
 let currentSelectedSeal = ''
 
-/* --------------- */
+/* --------------------------- */
 
 async function getFields(pageToView) {
   let response

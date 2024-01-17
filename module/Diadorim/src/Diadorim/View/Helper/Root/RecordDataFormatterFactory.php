@@ -35,7 +35,6 @@ class RecordDataFormatterFactory extends \VuFind\View\Helper\Root\RecordDataForm
    */
   public function getDefaultCoreSpecs()
   {
-
     $spec = new SpecBuilder(parent::getDefaultCoreSpecs());
     $spec->setLine("Title", "getTitle");
     $spec->setLine("Situation", "getSituation");
@@ -58,6 +57,7 @@ class RecordDataFormatterFactory extends \VuFind\View\Helper\Root\RecordDataForm
     $spec->setLine("Time", "getTime");
     $spec->setLine("Access", "getAccess");
     $spec->setLine("Creative Commons", "getCreativeCommons");
+    $spec->setLine("Handle", "getHandle");
     return $spec->getArray();
   }
 }
