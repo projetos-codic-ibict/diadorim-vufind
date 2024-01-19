@@ -1,11 +1,13 @@
+<?php $this->headScript()->appendFile("/../js/navbar.js"); ?>
+
 <?php
 $account = $this->auth()->getManager();
 $languages = [
   'pt-br' => 'Português',
   'en' => 'English',
 ];
-?>
 
+?>
 
 <?php
 // Initialize from current search (if available) or defaults:
@@ -103,9 +105,9 @@ $showFilters = $filterDetails && ($results || $options->getRetainFilterSetting()
                 <span><?= $this->transEsc('Home') ?></span>
               </a>
             </li>
-            <li><a id="navigate" href="<?= $this->url($basicSearch) ?>" class="text-decoration-none text-center"><?= $this->transEsc('Navigate') ?></a></li>
-            <li><a id="about" class="text-decoration-none text-center"><?= $this->transEsc('About') ?></a></li>
-            <li><a id="register" class="text-decoration-none text-center"><?= $this->transEsc('Sign up') ?></a></li>
+            <li><a id="navigate" href="<?= $this->url($basicSearch) ?>" class="text-decoration-none text-center"><?= $this->transEsc("Navigate") ?></a></li>
+            <li><a id="about" class="text-decoration-none text-center"><?= $this->transEsc("About") ?></a></li>
+            <li><a id="register" class="text-decoration-none text-center"><?= $this->transEsc("Sign up") ?></a></li>
             <li><a id="contact" class="text-decoration-none text-center"><?= $this->transEsc('Contact') ?></a></li>
 
             <li id="loginOptions">
