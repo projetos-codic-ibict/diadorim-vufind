@@ -1,5 +1,3 @@
-<?php $this->headScript()->appendFile("/../js/navbar.js"); ?>
-
 <?php
 $account = $this->auth()->getManager();
 $languages = [
@@ -108,7 +106,13 @@ $showFilters = $filterDetails && ($results || $options->getRetainFilterSetting()
             <li><a id="navigate" href="<?= $this->url($basicSearch) ?>" class="text-decoration-none text-center"><?= $this->transEsc("Navigate") ?></a></li>
             <li><a id="about" class="text-decoration-none text-center"><?= $this->transEsc("About") ?></a></li>
             <li><a id="register" class="text-decoration-none text-center"><?= $this->transEsc("Sign up") ?></a></li>
-            <li><a id="contact" class="text-decoration-none text-center"><?= $this->transEsc('Contact') ?></a></li>
+            <?php if ($this->feedback()->tabEnabled()): ?>
+              <li>
+                <a id="feedbackLink" class="text-decoration-none text-center" data-lightbox href="<?=$this->url('feedback-home') ?>" >
+                  <?=$this->transEsc("Contact")?>
+                </a>
+              </li>
+            <?php endif; ?>
 
             <li id="loginOptions">
               <!-- Removido o Login -->

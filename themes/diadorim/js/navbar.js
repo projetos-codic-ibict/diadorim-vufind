@@ -11,7 +11,7 @@ const navbarIds = [
   'navigate',
   'about',
   'register',
-  'contact',
+  'feedbackLink',
 ]
 
 function watchNavbarLinks() {

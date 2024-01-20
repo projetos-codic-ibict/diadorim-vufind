@@ -19,9 +19,9 @@ verificaões em labels diferentes sem quebrar o layout -->
     ?>
   <?php endif; ?>
 
-  <?php if ($lowercaseLabel === 'handle') : ?>
+  <?php if ($lowercaseLabel === 'handle' || $lowercaseLabel === 'manipulador') : ?>
     <?php
-    $description = 'Use este identificador para citar ou linkar para este item:';
+    $description = $this->transEsc("Use this access to view this item");
     $handleLink = '<a target="blank" href="https://miguilim.ibict.br/handle/' . $value . '">https://miguilim.ibict.br/handle/' . $value . '</a>';
     $handleText = '<span>' . $description . ' ' . $handleLink . '</span>';
     ?>
