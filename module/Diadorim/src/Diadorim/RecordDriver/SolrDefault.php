@@ -306,7 +306,6 @@ class SolrDefault extends \VuFind\RecordDriver\SolrDefault
         return $this->getFieldValue("dc.rights.creativecommons");
     }
 
-
     /**
      * Get first field occurrence
      *

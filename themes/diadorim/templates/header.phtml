@@ -30,8 +30,8 @@ if ($results = ($this->results ?? $this->searchMemory()->getCurrentSearch())) {
 
 // Load search actions and settings (if any):
 $handlers = $this->searchbox()->getHandlers(
-  $this->searchClassId,
-  $this->searchIndex ?? null
+    $this->searchClassId,
+    $this->searchIndex ?? null
 );
 $handlerCount = count($handlers);
 $basicSearch = $this->searchbox()->combinedHandlersActive() ? 'combined-searchbox' : $options->getSearchAction();
@@ -152,15 +152,15 @@ $showFilters = $filterDetails && ($results || $options->getRetainFilterSetting()
                         'wrapperClass' => 'language',
                         'wrapperTag' => 'li',
                         'menuItems' => array_map(
-                          function ($langCode, $langName) {
+                            function ($langCode, $langName) {
                             return [
                               'label' => $this->displayLanguageOption($langName),
                               'url' => $this->url()->addQueryParameters(['lng' => $langCode]),
                               'selected' => $this->layout()->userLang == $langCode,
                             ];
                           },
-                          array_keys($this->layout()->allLangs),
-                          array_values($this->layout()->allLangs),
+                            array_keys($this->layout()->allLangs),
+                            array_values($this->layout()->allLangs),
                         ),
                       ]) ?>
               <?php endif; ?> -->
@@ -174,15 +174,15 @@ $showFilters = $filterDetails && ($results || $options->getRetainFilterSetting()
                   'wrapperClass' => 'language',
                   'wrapperTag' => 'li',
                   'menuItems' => array_map(
-                    function ($langCode, $langName) {
+                      function ($langCode, $langName) {
                       return [
                         'label' => $this->displayLanguageOption($langName),
                         'url' => $this->url()->addQueryParameters(['lng' => $langCode]),
                         'selected' => $this->layout()->userLang == $langCode,
                       ];
                     },
-                    array_keys($languages),
-                    array_values($languages)
+                      array_keys($languages),
+                      array_values($languages)
                   ),
                 ]) ?>
               <?php endif; ?>

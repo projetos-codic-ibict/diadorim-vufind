@@ -15,8 +15,8 @@
   // Disabled escaping of title temporarily so that we get it unescaped first:
   $this->headTitle()->setAutoEscape(false);
   $fullTitle = $this->translate(
-    'title_wrapper',
-    [
+      'title_wrapper',
+      [
       '%%pageTitle%%' => $this->headTitle()->renderTitle(),
       '%%siteTitle%%' => '',
       '%%titleSeparator%%' => '',
@@ -33,7 +33,7 @@
 
   // Set up OpenSearch link:
   $this->headLink(
-    [
+      [
       'href' => $this->url('search-opensearch') . '?method=describe',
       'type' => 'application/opensearchdescription+xml',
       'title' => $this->transEsc('Diadorim'),
@@ -72,7 +72,7 @@
       }
     }
     $this->headScript()->prependScript(
-      'var userIsLoggedIn = ' . ($this->auth()->isLoggedIn() ? 'true' : 'false') . ';'
+        'var userIsLoggedIn = ' . ($this->auth()->isLoggedIn() ? 'true' : 'false') . ';'
     );
   }
 
@@ -94,13 +94,13 @@
   $cspNonce = $this->cspNonce();
   $searchId = json_encode($this->layout()->searchId);
   $appendScripts[] = <<<JS
-          VuFind.path = '{$root}';
-          VuFind.defaultSearchBackend = '{$dsb}';
-          VuFind.addTranslations({$translations});
-          VuFind.addIcons({$icons});
-          VuFind.setCspNonce('{$cspNonce}');
-          VuFind.setCurrentSearchId($searchId);
-          JS;
+      VuFind.path = '{$root}';
+      VuFind.defaultSearchBackend = '{$dsb}';
+      VuFind.addTranslations({$translations});
+      VuFind.addIcons({$icons});
+      VuFind.setCspNonce('{$cspNonce}');
+      VuFind.setCurrentSearchId($searchId);
+      JS;
   $this->headScript()->appendScript(implode("\n", $appendScripts));
 
   if ($this->config()->ajaxCoversEnabled()) {
@@ -123,7 +123,7 @@
   }
   ?>
   <header class="hidden-print">
-    <?php if (isset($this->layout()->srmessage)) : // message for benefit of screen-reader users 
+    <?php if (isset($this->layout()->srmessage)) : // message for benefit of screen-reader users
     ?>
       <span class="sr-only" role="heading" aria-level="1"><?= $this->layout()->srmessage ?></span>
     <?php endif; ?>

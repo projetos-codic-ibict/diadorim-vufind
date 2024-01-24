@@ -56,7 +56,7 @@ if (count($checkboxFilters) > 0) {
 <?php if (!empty($sideFacetSet) && $results->getResultTotal() > 0) : ?>
   <?php foreach ($sideFacetSet as $title => $cluster) : ?>
     <?php $collapsed = in_array($title, $collapsedFacets); ?>
-    <?php // Data-title attribute is for analytics use.  Do not remove. 
+    <?php // Data-title attribute is for analytics use.  Do not remove.
     ?>
     <div class="facet-group" id="side-panel-<?= $this->escapeHtmlAttr($title) ?>" data-title="<?= $this->escapeHtmlAttr($cluster['label']) ?>">
       <button class="title<?php if ($collapsed) : ?> collapsed<?php endif ?>" data-toggle="collapse" data-target="#side-collapse-<?= $this->escapeHtmlAttr($title) ?>">
@@ -66,8 +66,8 @@ if (count($checkboxFilters) > 0) {
       <div id="side-collapse-<?= $this->escapeHtmlAttr($title) ?>" role="listbox" aria-expanded="<?= $collapsed ? 'false' : 'true' ?>" class="collapse<?php if (!$collapsed) : ?> in<?php endif ?>" <?php if (in_array($title, $forceUncollapsedFacets)) : ?> data-force-in="1" <?php endif ?>>
         <?=
         $this->context($this)->renderInContext(
-          'Recommend/SideFacets/facet.phtml',
-          [
+            'Recommend/SideFacets/facet.phtml',
+            [
             'facet' => $title,
             'cluster' => $cluster,
             'collapsedFacets' => $collapsedFacets,
