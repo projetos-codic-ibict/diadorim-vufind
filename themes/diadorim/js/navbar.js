@@ -1,14 +1,17 @@
 document.addEventListener('DOMContentLoaded', function () {
   watchNavbarLinks()
-  verifyNavbarLinks(currentId)
 })
 
+window.onload = function () {
+  verifyCurrentNavbarLinkActive()
+}
+
 const navbarIds = [
-  'inicialPage',
-  'navegate',
+  'initialPage',
+  'navigate',
   'about',
   'register',
-  'contact',
+  'feedbackLink',
 ]
 
 function watchNavbarLinks() {
@@ -17,19 +20,30 @@ function watchNavbarLinks() {
     
     if (currentId) {
       currentId.addEventListener('click', () => {
-        verifyNavbarLinks(currentId)
+        verify(currentId)
       })
     }
   })
 }
 
-function verifyNavbarLinks(currentLink) {
- // const navegate = document.getElementById('navegate')
-  //if (window.location.pathname.includes('/diadorim/Search/Results')) navegate.classList.add('navegate')
+function verify(currentId) {
+  navbarIds.forEach(id => {
+    const item = document.getElementById(id)
 
-  /* navbarIds.forEach(id => {
-    console.log('currentId', currentLink.id === id)
-    //if (currentLink.id !== id) currentLink.classList.remove('active-link')
-    if (currentLink.id === id) currentLink.classList.add('active-link')
-  }) */
+    item.classList.remove('active-link')
+  })
+
+  currentId.classList.add('active-link')
+}
+
+function verifyCurrentNavbarLinkActive() {
+  switch (window.location.pathname) {
+    case '/diadorim/Search/Results':
+      document.getElementById('navigate').classList.add('active-link')
+      break
+  
+    case '/diadorim/':
+      document.getElementById('initialPage').classList.add('active-link')
+      break
+  }
 }

@@ -1,6 +1,7 @@
 <?php
 return [
   "extends" => "bootstrap3",
+  'js' => ['navbar.js'],
   "helpers" => [
     "factories" => [
       "VuFind\View\Helper\Root\RecordDataFormatter" => "Diadorim\View\Helper\Root\RecordDataFormatterFactory",

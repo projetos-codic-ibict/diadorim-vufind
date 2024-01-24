@@ -304,7 +304,7 @@ document.addEventListener('DOMContentLoaded', function () {
   generateCard()
   sealsCountCard()
   watchPageChangeBtns()
-  watchFilterBySealsBtns()
+  //watchFilterBySealsBtns()
 })
 
 
@@ -326,7 +326,7 @@ function toggleVisualization(addClass, removeClass) {
   filterBySeal(currentSelectedSeal)
 }
 
-function watchFilterBySealsBtns() {
+/* function watchFilterBySealsBtns() {
   globalSeals.forEach(seal => {
     let currentBtn = document.getElementById(seal.id)
     
@@ -342,7 +342,7 @@ function watchFilterBySealsBtns() {
       })
     })
   })
-}
+} */
 
 function filterBySeal(sealColor) {
   currentSelectedSeal = sealColor
