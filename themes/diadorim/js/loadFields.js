@@ -323,7 +323,7 @@ function toggleVisualization(addClass, removeClass) {
   viewMode = classSplited
   
   addCards(viewMode, currentRecords)
-  filterBySeal(currentSelectedSeal)
+  //filterBySeal(currentSelectedSeal)
 }
 
 /* function watchFilterBySealsBtns() {
@@ -344,13 +344,13 @@ function toggleVisualization(addClass, removeClass) {
   })
 } */
 
-function filterBySeal(sealColor) {
+/* function filterBySeal(sealColor) {
   currentSelectedSeal = sealColor
   let currentRecordsFiltered = currentRecords.filter(record => sealColor === record.sealColor.split(':')[0].trim())
   currentRecordsFiltered.length > 0 ? 
     addCards(viewMode, currentRecordsFiltered) :
     getEmptyRecordsCard()
-}
+} */
 
 function getEmptyRecordsCard() {
   let fieldsCards = document.querySelector('.home_fields-cards')
