@@ -300,11 +300,13 @@ function removeLoader() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  if (window.location.pathname === '/diadorim/') addLoader('.home_fields-cards')
-  generateCard()
-  sealsCountCard()
-  watchPageChangeBtns()
-  //watchFilterBySealsBtns()
+  if (window.location.pathname === '/diadorim/') {
+    addLoader('.home_fields-cards')
+    generateCard()
+    sealsCountCard()
+    watchPageChangeBtns()
+    //watchFilterBySealsBtns()
+  }
 })
 
 
