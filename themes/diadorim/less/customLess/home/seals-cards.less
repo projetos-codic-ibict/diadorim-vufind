@@ -1,0 +1,133 @@
+.seals-total-card {
+  margin-top: 0 !important;
+}
+
+.home_cards,
+.seals-total-card {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  gap: 16px;
+  margin-top: 96px;
+
+  >a {
+    text-decoration: none;
+
+    .home_card {
+      width: 162px;
+      height: 75px;
+      display: flex;
+      padding: 16px;
+      justify-content: center;
+      align-items: center;
+      background: #FFF;
+      border-radius: 8px;
+      box-shadow: 0px 0px 74px 0px rgba(0, 0, 0, 0.16);
+      transition: transform 0.5s;
+
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+        margin: 0 5px;
+        border-radius: 10.37px;
+        box-shadow: 0px 0px 95.92587280273438px 0px rgba(0, 0, 0, 0.16);
+      }
+
+      .home-card_svg {
+        display: flex;
+        min-width: 40px;
+        height: 40px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        margin-right: 8px;
+
+        &.Branca {
+          box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.12);
+        }
+
+        &.Azul {
+          box-shadow: 0px 0px 16px 0px rgba(0, 212, 255, 0.32);
+        }
+
+        &.Amarelo {
+          box-shadow: 0px 0px 16px 0px rgba(255, 212, 0, 0.40);
+        }
+
+        &.Verde {
+          box-shadow: 0px 0px 16px 0px rgba(0, 255, 128, 0.32);
+        }
+
+        &.Journals {
+          box-shadow: 0px 0px 16px 0px rgba(204, 170, 0, 0.32);
+        }
+
+        /*  &.universities {
+            background-color: #000;
+            box-shadow:  0px 0px 16px 0px rgba(0, 0, 0, 0.32);
+          }
+          &.publishers {
+            background-color: #F21B0D;
+            box-shadow: 0px 0px 16px 0px rgba(242, 27, 13, 0.32);
+          }
+          &.articles {
+            background-color: #FF7900;
+            box-shadow: 0px 0px 16px 0px rgba(255, 121, 0, 0.32);
+          } */
+      }
+
+      .home_card-text {
+        height: 43px;
+
+        span:nth-of-type(1) {
+          color: #736C6C;
+          font-size: 12px;
+          font-weight: 600;
+          line-height: 24px;
+          letter-spacing: 0.5px;
+        }
+
+        span:nth-of-type(2) {
+          text-align: center;
+          font-size: 24px;
+          font-weight: 700;
+          line-height: 22px;
+          letter-spacing: 0.5px;
+
+          &.Branca {
+            color: linear-gradient(153deg, #E1E0E0 -23.58%, rgba(255, 255, 255, 0) 45.5%), #E9E9E9;
+          }
+
+          &.Azul {
+            color: #00D4FF;
+          }
+
+          &.Amarelo {
+            color: #463A01;
+          }
+
+          &.Verde {
+            color: #00552B;
+          }
+
+          &.Journals {
+            color: #CCAA00;
+          }
+        }
+
+        /* &.universities {
+            color: #071D41;
+          }
+          &.publishers {
+            color: #F21B0D;
+          }
+          &.journals {
+            color: #CCAA00;
+          }
+          &.articles {
+            color: #FF7900;
+          } */
+      }
+    }
+  }
+}

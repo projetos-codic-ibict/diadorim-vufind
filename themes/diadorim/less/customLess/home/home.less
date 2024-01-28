@@ -1,4 +1,6 @@
-@import './home/searchBar.less';
+@import 'searchBar.less';
+@import 'seals-cards.less';
+@import 'loaders.less';
 
 .home {
   padding-left: 135px !important;
@@ -24,7 +26,7 @@
     espaçamento naturando da tago span */
     min-width: 100%;
     margin-bottom: 75px;
-    
+
     .home_col {
       margin-top: 25px;
       /* Este margin negativo é para compensar o margin aplicado */
@@ -40,7 +42,7 @@
           font-weight: 700;
           line-height: 84px;
         }
-      
+
         /* .span2 {
           color: #071D41;
           font-size: 80px;
@@ -54,125 +56,6 @@
         font-size: 24px;
         font-weight: 400;
         line-height: 32px;
-      }
-
-      .home_cards {
-        display: flex;
-        align-items: center;
-        /* justify-content: center; */
-        gap: 16px;
-        margin-top: 96px;
-
-        > a {
-          text-decoration: none;
-          
-          .home_card {
-            width: 162px;
-            height: 75px;
-            display: flex;
-            padding: 16px;
-            justify-content: center;
-            align-items: center;
-            background: #FFF;
-            border-radius: 8px;
-            box-shadow: 0px 0px 74px 0px rgba(0, 0, 0, 0.16);
-            transition: transform 0.5s;
-
-            &:hover {
-              cursor: pointer;
-              transform: scale(1.2);
-              margin: 0 5px;
-              border-radius: 10.37px;
-              box-shadow: 0px 0px 95.92587280273438px 0px rgba(0, 0, 0, 0.16);
-            }
-
-            .home-card_svg {
-              display: flex;
-              min-width: 40px;
-              height: 40px;
-              justify-content: center;
-              align-items: center;
-              border-radius: 50%;
-              margin-right: 8px;
-
-              &.Branca {
-                box-shadow:  0px 0px 16px 0px rgba(0, 0, 0, 0.12);
-              }
-              &.Azul {
-                box-shadow: 0px 0px 16px 0px rgba(0, 212, 255, 0.32);
-              }
-              &.Amarelo {
-                box-shadow: 0px 0px 16px 0px rgba(255, 212, 0, 0.40);
-              }
-              &.Verde {
-                box-shadow: 0px 0px 16px 0px rgba(0, 255, 128,0.32);
-              }
-
-            /*  &.universities {
-                background-color: #000;
-                box-shadow:  0px 0px 16px 0px rgba(0, 0, 0, 0.32);
-              }
-              &.publishers {
-                background-color: #F21B0D;
-                box-shadow: 0px 0px 16px 0px rgba(242, 27, 13, 0.32);
-              }
-              &.journals {
-                background-color: #CCAA00;
-                box-shadow: 0px 0px 16px 0px rgba(204, 170, 0, 0.32);
-              }
-              &.articles {
-                background-color: #FF7900;
-                box-shadow: 0px 0px 16px 0px rgba(255, 121, 0, 0.32);
-              } */
-            }
-
-            .home_card-text {
-              height: 43px;
-
-              span:nth-of-type(1) {
-                color: #736C6C;
-                font-size: 12px;
-                font-weight: 600;
-                line-height: 24px;
-                letter-spacing: 0.5px;
-              }
-
-              span:nth-of-type(2) {
-                text-align: center;
-                font-size: 24px;
-                font-weight: 700;
-                line-height: 22px;
-                letter-spacing: 0.5px;
-            
-                &.Branca {
-                  color: linear-gradient(153deg, #E1E0E0 -23.58%, rgba(255,255,255,0) 45.5%),#E9E9E9;;
-                }
-                &.Azul {
-                  color: #00D4FF;
-                }
-                &.Amarelo {
-                  color: #463A01;
-                }
-                &.Verde {
-                  color: #00552B;
-                }
-              }
-
-              /* &.universities {
-                color: #071D41;
-              }
-              &.publishers {
-                color: #F21B0D;
-              }
-              &.journals {
-                color: #CCAA00;
-              }
-              &.articles {
-                color: #FF7900;
-              } */
-            }
-          } 
-        }
       }
     }
   }
@@ -196,17 +79,28 @@
   .home_search {
     display: flex;
     justify-content: flex-start;
+    align-items: center;
     width: 100%;
     margin: 0 0 41px 0;
+  }
+
+  .home_fields-cards-title {
+    text-align: center;
+    color: #071D41;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 49px;
+    padding-bottom: 21px;
   }
 
   .home_fields-cards {
     margin-bottom: 79px;
 
     .grade {
-      > a {
+      >a {
         text-decoration: none;
-      
+
         .field-card {
           /* height: 280px !important; */
           height: 290px !important;
@@ -228,37 +122,39 @@
             cursor: pointer;
           }
 
-          .card-body, .card-footer {
+          .card-body,
+          .card-footer {
             display: flex;
             flex-direction: column;
-            /* antigo */
-            /* justify-content: center; */
-            justify-content: end;
-            align-items: flex-start;
+            justify-content: center;
+            align-items: center;
             gap: 8px;
             flex: 1 0 0;
             align-self: stretch;
             letter-spacing: 0.5px;
 
-            span:nth-of-type(1) {
+            /* span:nth-of-type(1) {
               color: #6A6A6A;
               font-size: 16px;
               font-weight: 400;
               line-height: 16px;
-            }
-            
-            span:nth-of-type(2) {
+            } */
+
+            span:nth-of-type(1) {
               color: #000;
-              font-size: 20px;
+              font-size: 25px;
               font-weight: 700;
               line-height: 28px;
             }
           }
 
           .card-footer {
+            justify-content: end;
+            align-items: flex-start;
+
             span {
               letter-spacing: 0.5px !important;
-              font-size: 12px !important;  
+              font-size: 12px !important;
             }
 
             span:nth-of-type(1) {
@@ -266,9 +162,16 @@
               font-weight: 700;
               line-height: 24px;
             }
-            
+
             span:nth-of-type(2) {
               color: #000;
+              font-weight: 400;
+              line-height: 16px;
+            }
+
+            span:nth-of-type(3) {
+              color: #6A6A6A;
+              font-size: 16px;
               font-weight: 400;
               line-height: 16px;
             }
@@ -278,9 +181,9 @@
     }
 
     .list {
-      > a {
+      >a {
         text-decoration: none;
-      
+
         .field-card {
           width: 100%;
           height: 80px !important;
@@ -314,16 +217,16 @@
               justify-content: center;
               align-items: flex-start;
 
-              span:nth-of-type(1) {  
+              /* span:nth-of-type(1) {  
                 color: #6A6A6A;
                 font-size: 16px;
                 font-weight: 400;
                 line-height: 16px;
-              }
-              
-              span:nth-of-type(2) {
+              } */
+
+              span:nth-of-type(1) {
                 color: #000;
-                font-size: 20px;
+                font-size: 25px;
                 font-weight: 700;
                 line-height: 28px;
               }
@@ -338,17 +241,24 @@
 
               span {
                 letter-spacing: 0.5px !important;
-                font-size: 12px !important;  
+                font-size: 12px !important;
               }
-  
+
               span:nth-of-type(1) {
                 color: #071D41;
                 font-weight: 700;
                 line-height: 24px;
               }
-              
+
               span:nth-of-type(2) {
                 color: #000;
+                font-weight: 400;
+                line-height: 16px;
+              }
+
+              span:nth-of-type(3) {
+                color: #6A6A6A;
+                font-size: 16px;
                 font-weight: 400;
                 line-height: 16px;
               }
@@ -381,18 +291,21 @@
       border-radius: 4px;
       border: 1px solid #FF7900;
 
-      &:active{
+      &:active {
         background-color: #FF7900;
 
-        > svg, path {
+        >svg,
+        path {
           fill: #fff !important;
         }
       }
 
       &.btn-disabled {
-        cursor:not-allowed;
+        cursor: not-allowed;
         border: 1px solid #E1E0E0;
-        > svg, path {
+
+        >svg,
+        path {
           fill: #E1E0E0 !important;
         }
 

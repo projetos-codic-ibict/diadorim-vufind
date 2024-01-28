@@ -1,67 +1,79 @@
 /* Ao selecionar alguma opção da faceta, aparece um componente de aviso estranho */
-.active-filters, .hidden-xs {
-	display: none !important;
+.active-filters,
+.hidden-xs {
+  display: none !important;
 }
 
-.mainbody.right, .sidebar.right {
-	padding-left: 8px;
+.mainbody.right,
+.sidebar.right {
+  padding-left: 8px;
 }
-.mainbody.left, .sidebar.left {
-	padding-right: 8px;
+
+.mainbody.left,
+.sidebar.left {
+  padding-right: 8px;
 }
 
 .facet-group {
-	background-color: #FFF;
-	
-	.title {
-		font-weight: 550;
-		font-size: 16px;
-		border-radius: 8px 8px 0 0;
-	}
+  background-color: #FFF;
 
-	& .title, .facet, .facet-load-indicator, .facet-load-failed {
-		text-decoration: none;
-		display: flex;
-		gap: 8px;
-		align-self: stretch;
+  .title {
+    font-weight: 550;
+    font-size: 16px;
+    border-radius: 8px 8px 0 0;
+  }
 
-		color: #1C3041;
-		font-feature-settings: 'clig' off, 'liga' off;
-		font-family: Open Sans;
-		font-style: normal;
-		line-height: 16px;
-		letter-spacing: 0.5px;
-		border: 1px solid #EBEBEB;
-		transition: ease-in-out 0.2s;
-	}
+  & .title,
+  .facet,
+  .facet-load-indicator,
+  .facet-load-failed {
+    text-decoration: none;
+    display: flex;
+    gap: 8px;
+    align-self: stretch;
 
-	& .collapsed {
-		border-radius: 8px;
-	}
+    color: #1C3041;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Open Sans;
+    font-style: normal;
+    line-height: 16px;
+    letter-spacing: 0.5px;
+    border: 1px solid #EBEBEB;
+    transition: ease-in-out 0.2s;
+  }
+
+  & .collapsed {
+    border-radius: 8px;
+  }
 }
 
-.facet-group .facet, .facet-load-indicator, .facet-load-failed, .more-btn {
-	border-bottom: 1px solid #EBEBEB;
-	border-left: 1px solid #EBEBEB;
-	border-right: 1px solid #EBEBEB;
+.facet-group .facet,
+.facet-load-indicator,
+.facet-load-failed,
+.more-btn {
+  border-bottom: 1px solid #EBEBEB;
+  border-left: 1px solid #EBEBEB;
+  border-right: 1px solid #EBEBEB;
 
-	font-weight: 400;
-	font-size: 15px;
+  font-weight: 400;
+  font-size: 15px;
 }
 
 .more-btn {
-	border-radius: 0 0 8px 8px;
+  border-radius: 0 0 8px 8px;
 }
 
 .facet,
 .facet-group .title,
 .facet-load-indicator,
 .facet-load-failed {
-	padding: 8px 16px;
+  padding: 8px 16px;
 }
 
-.facet-group .collapse, .facet-group .collapsing, .facet-group>.facet {
-	position: relative;
-	border-left: none;
-	border-right: none;
+.facet-group .collapse,
+.facet-group .collapsing,
+.facet-group>.facet {
+  position: relative;
+  border-left: none;
+  border-right: none;
 }

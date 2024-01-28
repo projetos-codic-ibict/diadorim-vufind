@@ -1,5 +1,5 @@
-const host = 'http://172.16.16.112'
-//const host = 'http://localhost'
+//const host = 'http://172.16.16.112'
+const host = 'http://localhost'
 
 const URL = `${host}/diadorim/api/v1`
 
@@ -17,10 +17,12 @@ let sealsInfo = [
   { color: 'Amarela', quantity: 0, href: '' },
   { color: 'Verde', quantity: 0, href: '' },
 ]
+let registersQuantity = 0
 let currentPage = 1
 let currentRecords
 let viewMode = 'grade'
 let currentSelectedSeal = ''
+
 
 /* --------------------------- */
 
@@ -63,6 +65,8 @@ async function getQttSealsByColor() {
     sealsInfo[3].quantity = sealColor[1].count
     sealsInfo[3].href = sealColor[1].href
 
+    registersQuantity = (sealColor[3].count + sealColor[0].count + sealColor[2].count + sealColor[1].count + sealColor[4].count)
+
   } catch (errors) {
     console.error(errors)
 
@@ -79,6 +83,10 @@ async function sealsCountCard() {
   let institutionsCards = ''
   
   let cardSeal = ''
+  let journalsSeal = ''
+  
+  let registersQuantityID = document.querySelector('.seals-total-card')
+  let journalCard = ''
 
   sealsInfo.forEach(seal => {
     cardSeal = getSealCard(seal.color, false)
@@ -96,7 +104,21 @@ async function sealsCountCard() {
     </a>`
   })
 
+  journalsSeal = getSealCard('Revistas')
+  journalCard += `<a
+    href="${host}/diadorim/Search/Results">
+    <div class="home_card">
+      <div class="home-card_svg journals-seal">${journalsSeal}</div>
+
+      <div class="home_card-text">
+        <span class="text-center">Revistas</span>
+        <span class="text-center Journals">${registersQuantity}</span>
+      </div>
+    </div>
+  </a>`
+
   fieldsCards.innerHTML = institutionsCards
+  registersQuantityID.innerHTML = journalCard
 }
 
 function addCards(viewType, records) {
@@ -137,13 +159,13 @@ function buildCurrentCard(viewType, record, seal, issns) {
           
             <div class="card-body">
               <div>
-                <span>Situção: ${record?.situation}</span>
                 <span>${record.title}</span>
               </div>
-            
+              
               <div>
                 <span>ISSN: ${issns}</span>
                 <span>Editora: ${record.publisher}</span>
+                <span>Situção: ${record?.situation}</span>
               </div>
             </div>
           </div>
@@ -159,13 +181,13 @@ function buildCurrentCard(viewType, record, seal, issns) {
             ${seal}
     
             <div class="card-body">
-              <span>Situção: ${record?.situation}</span>
-              <span>${record.title}</span>
+            <span>${record.title}</span>
             </div>
-    
+            
             <div class="card-footer">
-              <span>ISSN: ${issns}</span>
-              <span>Editora: ${record.publisher}</span>
+            <span>ISSN: ${issns}</span>
+            <span>Editora: ${record.publisher}</span>
+            <span>Situção: ${record?.situation}</span>
             </div>
           </div>
         </a>
@@ -235,6 +257,16 @@ function getSealCard(sealColor) {
       </div>`
 
       break
+
+    case 'Revistas':
+      currentSeal = `<div class="svg-circle journals-seal">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M11.6609 4.52748C12.0402 4.41911 12.4356 4.63875 12.5439 5.01806L15.4011 15.0181C15.5095 15.3974 15.2898 15.7927 14.9105 15.9011C14.5312 16.0095 14.1359 15.7898 14.0275 15.4105L11.1703 5.41052C11.062 5.03121 11.2816 4.63586 11.6609 4.52748Z" fill="white"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M9.00001 4.5C9.3945 4.5 9.71429 4.8198 9.71429 5.21429V15.2143C9.71429 15.6088 9.3945 15.9286 9.00001 15.9286C8.60552 15.9286 8.28572 15.6088 8.28572 15.2143V5.21429C8.28572 4.8198 8.60552 4.5 9.00001 4.5Z" fill="white"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M6.14286 5.92857C6.53735 5.92857 6.85714 6.24837 6.85714 6.64286V15.2143C6.85714 15.6088 6.53735 15.9286 6.14286 15.9286C5.74837 15.9286 5.42857 15.6088 5.42857 15.2143V6.64286C5.42857 6.24837 5.74837 5.92857 6.14286 5.92857Z" fill="white"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M3.28571 3.07143C3.6802 3.07143 4 3.39122 4 3.78571V15.2143C4 15.6088 3.6802 15.9286 3.28571 15.9286C2.89122 15.9286 2.57143 15.6088 2.57143 15.2143V3.78571C2.57143 3.39122 2.89122 3.07143 3.28571 3.07143Z" fill="white"/>
+        </svg>
+      </div>`
   }
 
   return currentSeal
