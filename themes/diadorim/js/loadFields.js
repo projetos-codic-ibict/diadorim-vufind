@@ -300,7 +300,7 @@ function removeLoader() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  addLoader('.home_fields-cards')
+  if (window.location.pathname === '/diadorim/') addLoader('.home_fields-cards')
   generateCard()
   sealsCountCard()
   watchPageChangeBtns()

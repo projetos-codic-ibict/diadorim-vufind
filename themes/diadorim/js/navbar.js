@@ -20,19 +20,20 @@ function watchNavbarLinks() {
     
     if (currentId) {
       currentId.addEventListener('click', () => {
-        verify(currentId)
+        verifyNavbarLinks(currentId)
       })
     }
   })
 }
 
-function verify(currentId) {
+function verifyNavbarLinks(currentId) {
   navbarIds.forEach(id => {
+    console.log(id)
     const item = document.getElementById(id)
-
+    console.log(item)
     item.classList.remove('active-link')
   })
-
+  
   currentId.classList.add('active-link')
 }
 
