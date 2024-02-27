@@ -163,17 +163,17 @@ forms:
     useCaptcha: true
     reportReferrer: false
     reportUserAgent: true
-    #emailFrom:
-    #  name: Your Library - Site Feedback
-    #recipient:
-    #  name: Your Library
-    #  email: feedback@myuniversity.edu
+    emailFrom:
+      name: Your Library - Site Feedback
+    recipient:
+      name: IBICT
+      email: diadorim@ibict.br
     primaryHandler: email
     onlyForLoggedUsers: false
-    #emailSubject: VuFind Feedback
+    emailSubject: Diadorim Feedback
     response: feedback_response
-    senderEmailRequired: false
-    senderNameRequired: false
+    senderEmailRequired: true
+    senderNameRequired: true
 
     #help:
     #  pre: feedback_help_pre

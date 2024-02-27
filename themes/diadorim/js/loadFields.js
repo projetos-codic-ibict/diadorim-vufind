@@ -24,7 +24,7 @@ let viewMode = 'grade'
 let currentSelectedSeal = ''
 
 
-/* --------------------------- */
+/* -------------------------------------------------------------------------------- */
 
 async function getFields(pageToView) {
   let response
@@ -107,7 +107,7 @@ async function sealsCountCard() {
   journalsSeal = getSealCard('Revistas')
   journalCard += `<a
     href="${host}/diadorim/Search/Results">
-    <div class="home_card">
+    <div class="home_card total-journals">
       <div class="home-card_svg journals-seal">${journalsSeal}</div>
 
       <div class="home_card-text">
