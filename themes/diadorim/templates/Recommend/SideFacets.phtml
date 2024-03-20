@@ -66,7 +66,7 @@ if (count($checkboxFilters) > 0) {
       <button class="title<?php if ($collapsed) : ?> collapsed<?php endif ?>" data-toggle="collapse" data-target="#side-collapse-<?= $this->escapeHtmlAttr($titleWithHyphen) ?>">
         <span class="facet-title"><?= $this->transEsc($cluster['label']) ?></span>
         <!-- Removendo o antigo icone do accordion -->
-        <?= $this->icon('collapse', 'facet-title-icon') ?>
+        <!-- <?= $this->icon('collapse', 'facet-title-icon') ?> -->
 
         <span class="show--open">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
