@@ -1,7 +1,15 @@
-const host = 'http://172.16.16.112'
-//const host = 'http://localhost'
 
-const URL = `${host}/diadorim/api/v1`
+const host = window.location.hostname
+
+let URL;
+
+if (window.location.hostname === 'oasisbr.ibict.br') {
+  URL = `https://${window.location.host}/diadorim/api/v1`;
+  
+} else {
+  URL = `http://${window.location.host}/diadorim/api/v1`;
+}
+
 
 /* ------------------------------------------------------------------------ */
 
