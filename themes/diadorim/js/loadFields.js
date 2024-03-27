@@ -36,7 +36,7 @@ let currentSelectedSeal = ''
 
 async function getFields(pageToView) {
   let response
-  let searchURL = `search?type=AllFields&sort=relevance&page=${pageToView}&limit=9&prettyPrint=false&lng=en`
+  let searchURL = `search?type=AllFields&sort=relevance&page=${pageToView}&limit=9&prettyPrint=false`
 
   try {
     response = await fetch(`${URL}/${searchURL}`)
