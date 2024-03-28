@@ -281,6 +281,16 @@ class SolrDefault extends \VuFind\RecordDriver\SolrDefault
      *
      * @return string
      */
+    public function getLastModified()
+    {
+        return $this->getFieldValue("lastModified");
+    }
+
+    /**
+     * Get first field occurrence
+     *
+     * @return string
+     */
     public function getTime()
     {
         return $this->getFieldValue("dc.rights.time");

@@ -1669,7 +1669,7 @@ class DefaultRecord extends AbstractBase
      */
     public function getSortTitle()
     {
-        return $this->fields['title_sort'] ?? parent::getSortTitle();
+        return $this->fields['dc.title_sort'] ?? parent::getSortTitle();
     }
 
     /**

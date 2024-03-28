@@ -19,7 +19,7 @@ authors:
     authors
   type: array
   items:
-    $ref: '#/components/schemas/Authors'
+    $ref: "#/components/schemas/Authors"
 awards:
   vufind.method: getAwards
   description: Award notes
@@ -300,7 +300,7 @@ recordLinks:
   description: Links to other related records
   type: array
   items:
-    $ref: '#/components/schemas/RecordLink'
+    $ref: "#/components/schemas/RecordLink"
 recordPage:
   vufind.method: "Formatter::getRecordPage"
   description: Link to the record page in the UI
@@ -315,6 +315,11 @@ sealColor:
   vufind.method: getSealColor
   vufind.default: true
   description: Color used
+  type: string
+lastModified:
+  vufind.method: getLastModified
+  vufind.default: true
+  description: last Modified
   type: string
 secondaryAuthors:
   vufind.method: getSecondaryAuthors
@@ -353,7 +358,7 @@ subjectsExtended:
   description: Subject headings with type and source information
   type: array
   items:
-    $ref: '#/components/schemas/Subject'
+    $ref: "#/components/schemas/Subject"
 subTitle:
   vufind.method: getSubTitle
   description: Subtitle
@@ -401,7 +406,7 @@ urls:
   description: URLs contained in the record
   type: array
   items:
-    $ref: '#/components/schemas/Url'
+    $ref: "#/components/schemas/Url"
 handle:
   vufind.method: getHandle
   vufind.default: true

@@ -119,7 +119,7 @@ class Params extends \VuFind\Search\Base\Params
      * @var array
      */
     protected $defaultFacetLabelSections
-        = ['Advanced', 'HomePage', 'ResultsTop', 'Results', 'ExtraFacetLabels'];
+    = ['Advanced', 'HomePage', 'ResultsTop', 'Results', 'ExtraFacetLabels'];
 
     /**
      * Config sections to search for checkbox facet labels if no override
@@ -470,9 +470,10 @@ class Params extends \VuFind\Search\Base\Params
             'publishDateSort' => ['field' => 'publishDateSort', 'order' => 'desc'],
             'author' => ['field' => 'author_sort', 'order' => 'asc'],
             'authorStr' => ['field' => 'author_sort', 'order' => 'asc'],
-            'title' => ['field' => 'title_sort', 'order' => 'asc'],
+            'title' => ['field' => 'dc.title_sort', 'order' => 'asc'],
             'relevance' => ['field' => 'score', 'order' => 'desc'],
             'callnumber' => ['field' => 'callnumber-sort', 'order' => 'asc'],
+            'lastModified' => ['field' => 'lastModified', 'order' => 'desc'],
         ];
         $tieBreaker = $this->getOptions()->getSortTieBreaker();
         if ($tieBreaker) {

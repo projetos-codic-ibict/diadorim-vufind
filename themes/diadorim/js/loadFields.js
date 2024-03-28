@@ -36,7 +36,7 @@ let currentSelectedSeal = ''
 
 async function getFields(pageToView) {
   let response
-  let searchURL = `search?type=AllFields&sort=relevance&page=${pageToView}&limit=9&prettyPrint=false`
+  let searchURL = `search?type=AllFields&sort=lastModified&page=${pageToView}&limit=9`
 
   try {
     response = await fetch(`${URL}/${searchURL}`)
@@ -161,7 +161,7 @@ function buildCurrentCard(viewType, record, seal, issns) {
   switch (viewType) {
     case 'list':
       currentCard += `<div id="${record.id}" class="list col col-md-12" >
-        <a href="${host}/diadorim/Record/${record.id}?sid=14">
+        <a href="Record/${record.id}>
           <div class="field-card" data-seal-color="${sealColor}">
             ${seal}
           
@@ -184,7 +184,7 @@ function buildCurrentCard(viewType, record, seal, issns) {
 
     case 'grade':
       currentCard += `<div id="${record.id}" class="grade col col-md-6 col-lg-4" >
-        <a href="${host}/diadorim/Record/${record.id}?sid=14">
+        <a href="Record/${record.id}">
           <div class="field-card" data-seal-color="${sealColor}">
             ${seal}
     
@@ -196,6 +196,7 @@ function buildCurrentCard(viewType, record, seal, issns) {
             <span>ISSN: ${issns}</span>
             <span>Editora: ${record.publisher}</span>
             <span>Situção: ${record?.situation}</span>
+            <span>Modificado em: ${new Date(record?.lastModified).toLocaleDateString()}</span>
             </div>
           </div>
         </a>
