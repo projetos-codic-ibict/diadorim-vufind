@@ -18,6 +18,7 @@ const globalSeals = [
   { id: 'greenBtn', color: 'Verde', hex: '#00ff8014' },
   { id: 'yellowBtn', color: 'Amarela', hex: '#ffd40014' },
   { id: 'blueBtn', color: 'Azul', hex: '#00d4ff14' },
+  { id: '', color: 'Não Informado pela instituição', hex: '#f1f1f1' },
 ]
 let sealsInfo = [
   { color: 'Branca', quantity: 0, href: '' },
@@ -28,8 +29,9 @@ let sealsInfo = [
 let registersQuantity = 0
 let currentPage = 1
 let currentRecords
-let viewMode = 'grade'
 let currentSelectedSeal = ''
+
+let viewMode = localStorage.getItem('viewMode') || 'grade'
 
 
 /* -------------------------------------------------------------------------------- */
@@ -157,50 +159,50 @@ function addCards(viewType, records) {
 function buildCurrentCard(viewType, record, seal, issns) {
   const sealColor = record.sealColor.split(':')[0].trim()
   let currentCard = ''
+  const cards = document.querySelector('.home_fields-cards')
 
   switch (viewType) {
     case 'list':
-      currentCard += `<div id="${record.id}" class="list col col-md-12" >
-        <a href="Record/${record.id}>
+      cards.classList.add('list-cards')
+      currentCard += `<a href="Record/${record.id}" class="" >
           <div class="field-card" data-seal-color="${sealColor}">
             ${seal}
           
             <div class="card-body">
               <div>
-                <span>${record.title}</span>
+                <h3>${record.title}</h3>
+                <span class="issn">ISSN: ${issns}</span>
               </div>
-              
-              <div>
-                <span>ISSN: ${issns}</span>
-                <span>Editora: ${record.publisher}</span>
-                <span>Situção: ${record?.situation}</span>
+              <div class="list-footer">
+                <span class="publisher">Editora: ${record.publisher}</span>
+                <span class="situation">Situção: ${record?.situation}</span>
+                <span class="lastModified">Modificado em: ${new Date(record?.lastModified).toLocaleDateString()}</span>
               </div>
             </div>
           </div>
-        </a>
-      </div>`
+        </a>`
 
       break
 
     case 'grade':
-      currentCard += `<div id="${record.id}" class="grade col col-md-6 col-lg-4" >
-        <a href="Record/${record.id}">
+      cards.classList.remove('list-cards')
+      currentCard += `<a href="Record/${record.id}" class="grade" >
+        
           <div class="field-card" data-seal-color="${sealColor}">
             ${seal}
     
             <div class="card-body">
-            <span>${record.title}</span>
+            <h3>${record.title}</h3>
             </div>
             
             <div class="card-footer">
-            <span>ISSN: ${issns}</span>
-            <span>Editora: ${record.publisher}</span>
-            <span>Situção: ${record?.situation}</span>
-            <span>Modificado em: ${new Date(record?.lastModified).toLocaleDateString()}</span>
+            <span class="issn">ISSN: ${issns}</span>
+            <span class="publisher">Editora: ${record.publisher}</span>
+            <span class="situation">Situção: ${record?.situation}</span>
+            <span class="lastModified">Modificado em: ${new Date(record?.lastModified).toLocaleDateString()}</span>
             </div>
           </div>
-        </a>
-      </div>`
+        </a>`
 
       break
   }
@@ -346,15 +348,18 @@ function removeLoader() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  if (window.location.pathname === '/diadorim/') {
-    addLoader('.home_fields-cards')
-    generateCard()
-    sealsCountCard()
-    watchPageChangeBtns()
-    //watchFilterBySealsBtns()
-  }
+  addLoader('.home_fields-cards')
+  generateCard()
+  sealsCountCard()
+  // watchPageChangeBtns()
+  setActiveClassForBtnToggleViewMode();
 })
 
+
+function setActiveClassForBtnToggleViewMode() {
+  const btnToggleModeView = document.getElementById(viewMode);
+  btnToggleModeView.classList.add('active');
+}
 
 /* ------------------------------------ */
 
@@ -369,6 +374,8 @@ function toggleVisualization(addClass, removeClass) {
   classSplited = classSplited[0].replace('.', '')
 
   viewMode = classSplited
+
+  localStorage.setItem('viewMode', viewMode)
 
   addCards(viewMode, currentRecords)
   //filterBySeal(currentSelectedSeal)
@@ -426,13 +433,13 @@ function hoverCards() {
 
     card.addEventListener('mouseover', () => {
       globalSeals.forEach(seal => {
-        if (seal.color === cardDataSealColor) card.style.backgroundColor = seal.hex
+        if (seal.color === cardDataSealColor) card.parentElement.style.backgroundColor = seal.hex
       })
     })
 
     card.addEventListener('mouseleave', () => {
       globalSeals.forEach(seal => {
-        if (seal.color === cardDataSealColor) card.style.backgroundColor = '#fff'
+        if (seal.color === cardDataSealColor) card.parentElement.style.backgroundColor = '#fff'
       })
     })
   })
