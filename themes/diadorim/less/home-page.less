@@ -1,7 +1,3 @@
-.searchHomeContent {
-  margin-left: -@grid-gutter-width;
-  margin-right: -@grid-gutter-width;
-}
 .search-hero {
   &:extend(.clearfix all);
 
@@ -9,23 +5,27 @@
   padding: 16rem 8rem;
   font-size: 2rem;
   color: #fff;
-  background-image: url('@{image-path}/yosemite.jpg');
+  background-image: url("@{image-path}/yosemite.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 
-  a { color: #eef; }
+  a {
+    color: #eef;
+  }
 
   .image-credit {
     position: absolute;
     bottom: 0;
     right: 0;
     padding: 1rem;
-    font-size: .8rem;
-    color: rgba(255,255,255,.5);
-    background-color: rgba(0,0,0,.5);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
 
-    a { color: #fff; }
+    a {
+      color: #fff;
+    }
   }
 }
 
@@ -33,4 +33,6 @@
   text-decoration: none;
 }
 /* Hide search bar */
-.template-dir-search.template-name-home .search.container { display: none; }
+.template-dir-search.template-name-home .search.container {
+  display: none;
+}

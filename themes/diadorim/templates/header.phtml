@@ -1,54 +1,7 @@
 <?php
 $account = $this->auth()->getManager();
-$languages = [
-  'pt-br' => 'Português',
-  'en' => 'English',
-];
-
 ?>
 
-<?php
-// Initialize from current search (if available) or defaults:
-if ($results = ($this->results ?? $this->searchMemory()->getCurrentSearch())) {
-  $params = $results->getParams();
-  $this->searchClassId = $params->getSearchClassId();
-  $hiddenFilters = $params->getHiddenFilters();
-  $lastSort = $params->getSort();
-  $lastLimit = $params->getLimit();
-  $options = $results->getOptions();
-} else {
-  if (!isset($this->searchClassId)) {
-    $config = $this->config()->get('config');
-    $this->searchClassId = $config->Site->defaultSearchBackend ?? 'Solr';
-  }
-  $options = $this->searchOptions($this->searchClassId);
-  $hiddenFilters = $this->searchTabs()->getHiddenFilters($this->searchClassId, true, $this->ignoreHiddenFiltersInRequest ?? false);
-  $lastSort = $this->searchMemory()->getLastSort($this->searchClassId);
-  $lastLimit = $this->searchMemory()->getLastLimit($this->searchClassId);
-  $params = null;
-}
-
-// Load search actions and settings (if any):
-$handlers = $this->searchbox()->getHandlers(
-    $this->searchClassId,
-    $this->searchIndex ?? null
-);
-$handlerCount = count($handlers);
-$basicSearch = $this->searchbox()->combinedHandlersActive() ? 'combined-searchbox' : $options->getSearchAction();
-$searchHome = $options->getSearchHomeAction();
-$advSearch = $options->getAdvancedSearchAction();
-
-if (!isset($this->filterList) || !isset($this->checkboxFilters)) {
-  $params ??= $this->searchMemory()->getLastSearchParams($this->searchClassId);
-  $filterList = $params->getFilterList(true);
-  $checkboxFilters = $params->getCheckboxFacets();
-} else {
-  $filterList = is_array($this->filterList) ? $this->filterList : [];
-  $checkboxFilters = is_array($this->checkboxFilters) ? $this->checkboxFilters : [];
-}
-$filterDetails = $this->searchbox()->getFilterDetails($filterList, $checkboxFilters);
-$showFilters = $filterDetails && ($results || $options->getRetainFilterSetting());
-?>
 
 <nav class="banner navbar navbar-defaul">
   <div class="container-fluid">
@@ -58,33 +11,15 @@ $showFilters = $filterDetails && ($results || $options->getRetainFilterSetting()
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-collapse" aria-hidden="true">
           <?= $this->icon('ui-menu') ?>
         </button>
-
-        <!-- <a class="navbar-brand lang-<?= $this->layout()->userLang ?>" href="<?= $this->url('home') ?>">
-          <img
-            src="../images/logo-gov-br.png"
-            alt="Logo gov.br"
-            width="62"
-            height="40"
-          >
-        </a> -->
-
-        <!-- <a class="navbar-brand" href="<?= $this->url('home') ?>">
-          <img
-            src="../images/logo-gov-br.png"
-            alt="Logo gov.br"
-            width="62"
-            height="40"
-          >
-        </a> -->
       </div>
     </div>
 
-    <div class="row">
+    <div class="container">
       <?php if (!isset($this->layout()->renderingError)) : ?>
         <div class="collapse navbar-collapse text-center" id="header-collapse">
           <ul class="nav navbar-nav">
             <li>
-              <a class="logo-ibict text-center" href="<?= $this->url('home') ?>">
+              <a class="logo-ibict text-center" href="https://ibict.br" target="_blank">
                 <img src="<?= $this->imageLink('logo-ibict.png'); ?>" alt="Logo IBICT" width="103.13" height="45.33">
               </a>
             </li>
@@ -103,91 +38,11 @@ $showFilters = $filterDetails && ($results || $options->getRetainFilterSetting()
                 <span><?= $this->transEsc('Home') ?></span>
               </a>
             </li>
-            <li><a id="navigate" href="<?= $this->url($basicSearch) ?>" class="text-decoration-none text-center"><?= $this->transEsc("Navigate") ?></a></li>
-            <li><a id="about" class="text-decoration-none text-center"><?= $this->transEsc("About") ?></a></li>
-            <li><a id="register" class="text-decoration-none text-center"><?= $this->transEsc("Sign up") ?></a></li>
+            <li><a id="navigate" href="Search/Results" class="text-decoration-none text-center"><?= $this->transEsc("Navigate") ?></a></li>
             <li>
-              <a id="feedbackLink" class="text-decoration-none text-center" data-lightbox href="<?=$this->url('feedback-home') ?>" >
-                <?=$this->transEsc("Contact")?>
+              <a id="feedbackLink" class="text-decoration-none text-center" data-lightbox href="<?= $this->url('feedback-home') ?>">
+                <?= $this->transEsc("Contact") ?>
               </a>
-            </li>
-
-            <!-- Removendo a verificação de habilitação do feedback/contato -->
-            <!-- <?php if ($this->feedback()->tabEnabled()): ?>
-            <?php endif; ?> -->
-
-            <li id="loginOptions">
-              <!-- Removido o Login -->
-              <?php if ($account->getSessionInitiator($this->serverUrl($this->url('myresearch-home')))) : ?>
-                <!-- <a href="<?= $this->url('myresearch-userlogin') ?>" class="icon-link">
-                  <?= $this->icon('sign-in', 'icon-link__icon') ?>
-                  <span class="icon-link__label"><?= $this->transEsc("Institutional Login") ?></span>
-                </a> -->
-              <?php else : ?>
-                <!-- <a href="<?= $this->url('myresearch-userlogin') ?>" class="icon-link text-center" data-lightbox>
-                  <?= $this->icon('sign-in', 'icon-link__icon') ?>
-                  <img src="<?= $this->imageLink('user-circle'); ?>" alt="Login"><?= $this->transEsc("Login") ?></span>
-                </a> -->
-
-                <!-- Removido o ícone natural do login -->
-                <!-- Removido o Login -->
-                <!-- <a href="<?= $this->url('myresearch-userlogin') ?>" class="icon-link text-center" data-lightbox>
-                  
-                  <img
-                    src="<?= $this->imageLink('user-circle.png'); ?>"
-                    alt="Login"
-                    width="24"
-                    height="24"
-                  >
-                  <span> <?= $this->transEsc("Login") ?> </span>
-                </a> -->
-
-
-              <?php endif; ?>
-            </li>
-
-            <li>
-              <!-- Removido a lista original de languages -->
-              <!-- <?php if (isset($this->layout()->allLangs) && count($this->layout()->allLangs) > 1) : ?>
-                <?= $this->component('menu-button', [
-                        'toggleLabel' => $this->transEsc('Language'),
-                        'wrapperClass' => 'language',
-                        'wrapperTag' => 'li',
-                        'menuItems' => array_map(
-                            function ($langCode, $langName) {
-                            return [
-                              'label' => $this->displayLanguageOption($langName),
-                              'url' => $this->url()->addQueryParameters(['lng' => $langCode]),
-                              'selected' => $this->layout()->userLang == $langCode,
-                            ];
-                          },
-                            array_keys($this->layout()->allLangs),
-                            array_values($this->layout()->allLangs),
-                        ),
-                      ]) ?>
-              <?php endif; ?> -->
-
-              <!-- Adicionado uma lista modificada com menos opções -->
-              <?php
-              if (count($languages) > 1) :
-              ?>
-                <?= $this->component('menu-button', [
-                  'toggleLabel' => $this->transEsc('Language'),
-                  'wrapperClass' => 'language',
-                  'wrapperTag' => 'li',
-                  'menuItems' => array_map(
-                      function ($langCode, $langName) {
-                      return [
-                        'label' => $this->displayLanguageOption($langName),
-                        'url' => $this->url()->addQueryParameters(['lng' => $langCode]),
-                        'selected' => $this->layout()->userLang == $langCode,
-                      ];
-                    },
-                      array_keys($languages),
-                      array_values($languages)
-                  ),
-                ]) ?>
-              <?php endif; ?>
             </li>
           </ul>
         </div>

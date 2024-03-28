@@ -7,8 +7,8 @@ $this->headTitle($headTitle);
 
 // Set up search box:
 $this->layout()->searchbox = $this->context($this)->renderInContext(
-    'search/searchbox.phtml',
-    [
+  'search/searchbox.phtml',
+  [
     'lookfor' => $lookfor,
     'searchIndex' => $this->params->getSearchHandler(),
     'searchType' => $this->params->getSearchType(),
@@ -55,7 +55,7 @@ if ($this->params->getOptions()->getListViewOption() !== 'full') {
 <div class="main-container">
   <div class="main-content">
 
-   <?= $this->render('components/search/results/advancedSearch.phtml')?>
+    <?= $this->render('components/search/results/advancedSearch.phtml') ?>
 
     <div class="<?= $this->layoutClass('mainbody') ?>">
       <?php if (($recordTotal = $this->results->getResultTotal()) > 0) : // only display these at very top if we have results
@@ -68,7 +68,7 @@ if ($this->params->getOptions()->getListViewOption() !== 'full') {
 
       <!-- Busca Avançada -->
 
-      <!-- <div class="search-header hidden-print">
+      <div class="search-header hidden-print">
         <?php // Data-record-total attribute is for analytics use.  Do not remove.
         ?>
         <div class="search-stats" data-record-total="<?= $this->escapeHtmlAttr($recordTotal) ?>">
@@ -89,7 +89,7 @@ if ($this->params->getOptions()->getListViewOption() !== 'full') {
             <?= $this->render('search/controls/view.phtml') ?>
           </div>
         <?php endif; ?>
-      </div> -->
+      </div>
       <?php /* End Listing Options */ ?>
 
       <?php if ($recordTotal < 1) : ?>

@@ -5,7 +5,7 @@ let URL;
 
 if (window.location.hostname === 'oasisbr.ibict.br') {
   URL = `https://${window.location.host}/diadorim/api/v1`;
-  
+
 } else {
   URL = `http://${window.location.host}/diadorim/api/v1`;
 }
@@ -14,10 +14,10 @@ if (window.location.hostname === 'oasisbr.ibict.br') {
 /* ------------------------------------------------------------------------ */
 
 const globalSeals = [
-  {id: 'whiteBtn', color: 'Branca', hex: '#36363614'},
-  {id: 'greenBtn', color: 'Verde', hex: '#00ff8014'},
-  {id: 'yellowBtn', color: 'Amarela', hex: '#ffd40014'},
-  {id: 'blueBtn', color: 'Azul', hex: '#00d4ff14'},
+  { id: 'whiteBtn', color: 'Branca', hex: '#36363614' },
+  { id: 'greenBtn', color: 'Verde', hex: '#00ff8014' },
+  { id: 'yellowBtn', color: 'Amarela', hex: '#ffd40014' },
+  { id: 'blueBtn', color: 'Azul', hex: '#00d4ff14' },
 ]
 let sealsInfo = [
   { color: 'Branca', quantity: 0, href: '' },
@@ -60,7 +60,7 @@ async function getQttSealsByColor() {
     response = await fetch(`${URL}/${facetsURL}`)
     response = await response.json()
     const sealColor = response.facets.sealcolor_keyword
-    
+
     sealsInfo[0].quantity = sealColor[3].count
     sealsInfo[0].href = sealColor[3].href
 
@@ -84,15 +84,15 @@ async function getQttSealsByColor() {
 
 async function sealsCountCard() {
   addSealsLoader()
-  
+
   await getQttSealsByColor()
 
   let fieldsCards = document.querySelector('.home_cards')
   let institutionsCards = ''
-  
+
   let cardSeal = ''
   let journalsSeal = ''
-  
+
   let registersQuantityID = document.querySelector('.seals-total-card')
   let journalCard = ''
 
@@ -130,26 +130,26 @@ async function sealsCountCard() {
 }
 
 function addCards(viewType, records) {
-  
+
   const fieldsCards = document.querySelector('.home_fields-cards')
   let cards = ''
-  
+
   records.forEach(record => {
     if (record) {
       let seal = ''
       let issns = ''
       const sealSplited = record?.sealColor.split(':')
-      
+
       seal += getSealCard(sealSplited[0].trim(), true)
-      
+
       record?.issns.forEach(issn => issns += `${issn},`)
-      
+
       cards += buildCurrentCard(viewType, record, seal, issns)
     }
   })
-  
+
   fieldsCards.innerHTML = cards
-  
+
   removeLoader()
   hoverCards()
 }
@@ -181,7 +181,7 @@ function buildCurrentCard(viewType, record, seal, issns) {
       </div>`
 
       break
-  
+
     case 'grade':
       currentCard += `<div id="${record.id}" class="grade col col-md-6 col-lg-4" >
         <a href="${host}/diadorim/Record/${record.id}?sid=14">
@@ -275,6 +275,11 @@ function getSealCard(sealColor) {
           <path fill-rule="evenodd" clip-rule="evenodd" d="M3.28571 3.07143C3.6802 3.07143 4 3.39122 4 3.78571V15.2143C4 15.6088 3.6802 15.9286 3.28571 15.9286C2.89122 15.9286 2.57143 15.6088 2.57143 15.2143V3.78571C2.57143 3.39122 2.89122 3.07143 3.28571 3.07143Z" fill="white"/>
         </svg>
       </div>`
+      break;
+    default:
+      currentSeal = `<div class="svg-circle journals-seal">
+        <span class="blank-seal-color" title="${sealColor}"></span>
+      </div>`
   }
 
   return currentSeal
@@ -361,9 +366,9 @@ function toggleVisualization(addClass, removeClass) {
 
   let classSplited = addClass.split('-')
   classSplited = classSplited[0].replace('.', '')
-  
+
   viewMode = classSplited
-  
+
   addCards(viewMode, currentRecords)
   //filterBySeal(currentSelectedSeal)
 }
@@ -416,7 +421,7 @@ function hoverCards() {
 
   cards.forEach(card => {
     const cardDataSealColor = card.getAttribute('data-seal-color')
-    
+
 
     card.addEventListener('mouseover', () => {
       globalSeals.forEach(seal => {

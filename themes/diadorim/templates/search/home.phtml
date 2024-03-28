@@ -1,23 +1,23 @@
 <?php
-  // Set page title.
-  $this->headTitle($this->translate('Diadorim'));
+// Set page title.
+$this->headTitle($this->translate('Diadorim'));
 
-  // Disable top search box -- this page has a special layout.
-  $this->layout()->searchbox = false;
+// Disable top search box -- this page has a special layout.
+$this->layout()->searchbox = false;
 
-  // Set default value if necessary:
-  if (!isset($this->searchClassId)) {
-    $config = $this->config()->get('config');
-    $this->searchClassId = $config->Site->defaultSearchBackend ?? 'Solr';
-  }
+// Set default value if necessary:
+if (!isset($this->searchClassId)) {
+  $config = $this->config()->get('config');
+  $this->searchClassId = $config->Site->defaultSearchBackend ?? 'Solr';
+}
 
-  $this->layout()->breadcrumbs = false;
+$this->layout()->breadcrumbs = false;
 ?>
 
 <div class="container home">
-  <?=$this->render('components/search/home/landing.phtml')?>
+  <?= $this->render('components/search/home/landing.phtml') ?>
 
-  <div class="home_padding-right">
-    <?=$this->render('components/search/home/listFields.phtml')?>
+  <div>
+    <?= $this->render('components/search/home/listFields.phtml') ?>
   </div>
 </div>
