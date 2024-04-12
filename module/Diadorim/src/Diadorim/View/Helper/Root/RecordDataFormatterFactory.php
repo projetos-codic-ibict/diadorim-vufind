@@ -45,6 +45,7 @@ class RecordDataFormatterFactory extends \VuFind\View\Helper\Root\RecordDataForm
         $spec->setLine("Phone", "getPhone");
         $spec->setLine("Email", "getEmail");
         $spec->setLine("URL", "getUrl");
+        $spec->setTemplateLine('URL', true, 'url.phtml');
         $spec->setLine("URL OAI", "getOai");
         $spec->setLine("ISSN", "getIssn");
         $spec->setLine("ISSN-L", "getIssnl");
@@ -59,6 +60,7 @@ class RecordDataFormatterFactory extends \VuFind\View\Helper\Root\RecordDataForm
         $spec->setLine("Creative Commons", "getCreativeCommons");
         $spec->setLine("Handle", "getHandle");
         $spec->setLine("Last modified", "getLastModified");
+        //$spec->setTemplateLine('Last modified', true, 'date.phtml');
         return $spec->getArray();
     }
 }
