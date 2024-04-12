@@ -60,6 +60,7 @@ class RecordDataFormatterFactory extends \VuFind\View\Helper\Root\RecordDataForm
         $spec->setLine("Creative Commons", "getCreativeCommons");
         $spec->setLine("Handle", "getHandle");
         $spec->setLine("Last modified", "getLastModified");
+        //$spec->setTemplateLine('Last modified', true, 'date.phtml');
         return $spec->getArray();
     }
 }

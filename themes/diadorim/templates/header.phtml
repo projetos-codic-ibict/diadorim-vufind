@@ -8,16 +8,18 @@ $account = $this->auth()->getManager();
     <!-- Essa div ficará visível apenas no mobile -->
     <div class="row">
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-collapse" aria-hidden="true">
-          <?= $this->icon('ui-menu') ?>
-        </button>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-collapse" aria-hidden="true">
+  <?= $this->icon('ui-menu') ?>
+</button>
+
       </div>
     </div>
 
     <div class="container">
       <?php if (!isset($this->layout()->renderingError)) : ?>
         <div class="collapse navbar-collapse text-center" id="header-collapse">
-          <ul class="nav navbar-nav">
+          <div>
+          <ul class="nav navbar-nav image">
             <li>
               <a class="logo-ibict text-center" href="https://ibict.br" target="_blank">
                 <img src="<?= $this->imageLink('logo-ibict.png'); ?>" alt="Logo IBICT" width="103.13" height="45.33">
@@ -30,8 +32,9 @@ $account = $this->auth()->getManager();
               </a>
             </li>
           </ul>
-
-          <ul class="nav navbar-nav">
+          </div>
+          <div>
+          <ul class="nav navbar-nav text">
             <li>
               <a id="initialPage" href="<?= $this->url('home') ?>" class="text-decoration-none text-center">
                 <img src="<?= $this->imageLink('home.png'); ?>" alt="Logo Home" width="24" height="24">
@@ -45,6 +48,7 @@ $account = $this->auth()->getManager();
               </a>
             </li>
           </ul>
+          </div>
         </div>
       <?php endif; ?>
     </div>
