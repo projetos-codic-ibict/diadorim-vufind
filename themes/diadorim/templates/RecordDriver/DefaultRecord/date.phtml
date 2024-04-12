@@ -1,0 +1,7 @@
+<?php
+$lastModified = $this->driver->getLastModified();
+?>
+
+<span>
+  <?=  $this->escapeHtml($this->dateTime()->convertToDisplayDateAndTime(DATE_RFC3339_EXTENDED, $lastModified)) ?>
+</span>
