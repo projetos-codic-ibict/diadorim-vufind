@@ -155,7 +155,33 @@ body {
   background-color: red;
 }
 
+.nav-all {
+  display: flex;
+  align-items: center;
+
+  .navbar-toggle {
+    position: relative;
+    float: none;
+    padding: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+  }
+}
+
 @media screen and (max-width: 768px) {
+  .nav-all {
+    flex-direction: column;
+    padding: 8px 0;
+
+    div {
+      width: 100%;
+    }
+  }
   nav .container-fluid {
     width: 100%;
     margin: 0;
