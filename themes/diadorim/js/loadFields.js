@@ -68,7 +68,7 @@ async function getQttSealsByColor() {
 
     for (const seal of sealColor) {
       for (const info of sealsInfo) {
-        if (seal.value.startsWith(info.color)) {
+        if (seal.value.startsWith(info.color) && seal.count > info.quantity) {
           info.quantity = seal.count
           info.href = seal.href
         }
