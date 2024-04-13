@@ -13,6 +13,7 @@
 
 namespace Diadorim\View\Helper\Root;
 
+use VuFind\View\Helper\Root\RecordDataFormatter;
 use VuFind\View\Helper\Root\RecordDataFormatter\SpecBuilder;
 
 /**
@@ -35,7 +36,7 @@ class RecordDataFormatterFactory extends \VuFind\View\Helper\Root\RecordDataForm
      */
     public function getDefaultCoreSpecs()
     {
-        $spec = new SpecBuilder(parent::getDefaultCoreSpecs());
+        $spec = new RecordDataFormatter\SpecBuilder();
         $spec->setLine("Title", "getTitle");
         $spec->setLine("Situation", "getSituation");
         $spec->setLine("Publisher", "getPublisher");

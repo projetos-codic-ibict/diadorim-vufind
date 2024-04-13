@@ -139,7 +139,7 @@ function addCards(viewType, records) {
       seal += getSealCard(sealSplited[0].trim(), true)
 
       record?.issns.forEach(issn => issns += `${issn},`)
-
+      issns = issns.slice(0, -1); //remove última virgula
       cards += buildCurrentCard(viewType, record, seal, issns)
     }
   })
@@ -165,11 +165,11 @@ function buildCurrentCard(viewType, record, seal, issns) {
             <div class="card-body">
               <div>
                 <h3>${record.title}</h3>
-                <span class="issn">ISSN: ${issns}</span>
+                <span class="issn"><label>ISSN</label>: ${issns}</span>
               </div>
               <div class="list-footer">
-                <span class="publisher">Editora: ${record.publisher}</span>
-                <span class="situation">Situção: ${record?.situation}</span>
+                <span class="publisher"><label>Editora</label>: ${record.publisher}</span>
+                <span class="situation"><label>Situção</label>: ${record?.situation}</span>
                 <span class="lastModified">Modificado em: ${new Date(record?.lastModified).toLocaleDateString()}</span>
               </div>
             </div>
@@ -190,10 +190,10 @@ function buildCurrentCard(viewType, record, seal, issns) {
             </div>
             
             <div class="card-footer">
-            <span class="issn">ISSN: ${issns}</span>
-            <span class="publisher">Editora: ${record.publisher}</span>
-            <span class="situation">Situção: ${record?.situation}</span>
-            <span class="lastModified">Modificado em: ${new Date(record?.lastModified).toLocaleDateString()}</span>
+              <span class="issn"><label>ISSN</label>: ${issns}</span>
+              <span class="publisher"><label>Editora</label>: ${record.publisher}</span>
+              <span class="situation"><label>Situção</label>: ${record?.situation}</span>
+              <span class="lastModified">Modificado em: ${new Date(record?.lastModified).toLocaleDateString()}</span>
             </div>
           </div>
         </a>`

@@ -14,16 +14,19 @@ verificaões em labels diferentes sem quebrar o layout -->
 
   <?php if ($lowercaseLabel === 'título' || $lowercaseLabel === 'title') : ?>
     <?php
-    $labelSpan = '<span>' . $label . ':</span>';
-    $valueSpan = '<span>' . $value . '</span>';
+    $title = $value;
     ?>
   <?php endif; ?>
 
-  <?php if ($lowercaseLabel === 'handle' || $lowercaseLabel === 'manipulador') : ?>
+  <?php if ($lowercaseLabel === 'selo de armazenamento e acesso' || $lowercaseLabel === 'Seal Color') : ?>
     <?php
-    $description = $this->transEsc("Use this access to view this item");
+    $sealColor = strtolower(explode(":", $value)[0]);
+    ?>
+  <?php endif; ?>
+
+  <?php if ($lowercaseLabel === 'handle' || $lowercaseLabel === 'identificador') : ?>
+    <?php
     $handleLink = '<a target="blank" href="https://miguilim.ibict.br/handle/' . $value . '">https://miguilim.ibict.br/handle/' . $value . '</a>';
-    $handleText = '<span>' . $description . ' ' . $handleLink . '</span>';
     ?>
   <?php endif; ?>
 <?php endforeach; ?>
@@ -31,10 +34,28 @@ verificaões em labels diferentes sem quebrar o layout -->
 <div class="record-card">
   <?php if (!empty($coreFields)) : ?>
     <div class="record-card_header">
-      <?= $labelSpan ?>
-      <?= $valueSpan ?>
-
-      <?= $handleText ?>
+      <div class="record-header">
+        <div>
+          <span class="title">
+            <?= $this->transEsc('Title') ?>:
+          </span>
+          <h1>
+            <?= $title ?>
+          </h1>
+        </div>
+        <div>
+          <?php if (isset($sealColor)) : ?>
+            <?php if (strlen($sealColor) < 20) : ?>
+              <img alt="selo <?= $sealColor ?>" src="<?= $this->imageLink('./icons/svg/selo-' . $sealColor . '.svg'); ?>" width="40.976px" height="40.976px">
+            <?php else : ?>
+              <span class="blank-seal-color" title="<?= $sealColor ?>"></span>
+            <?php endif; ?>
+          <?php endif; ?>
+        </div>
+      </div>
+      <span>
+        Para ver mais informações do item acesse: <?= $handleLink ?>
+      </span>
     </div>
 
     <div class="record-card_body">
