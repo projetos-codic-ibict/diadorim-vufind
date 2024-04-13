@@ -27,7 +27,8 @@ $handlers = $this->searchbox()->getHandlers(
 $handlerCount = count($handlers);
 $basicSearch = $this->searchbox()->combinedHandlersActive() ? 'combined-searchbox' : $options->getSearchAction();
 $searchHome = $options->getSearchHomeAction();
-$advSearch = $options->getAdvancedSearchAction();
+// $advSearch = $options->getAdvancedSearchAction();
+$advSearch = false;  // desabilitando a busca avançada
 
 if (!isset($this->filterList) || !isset($this->checkboxFilters)) {
   $params ??= $this->searchMemory()->getLastSearchParams($this->searchClassId);
