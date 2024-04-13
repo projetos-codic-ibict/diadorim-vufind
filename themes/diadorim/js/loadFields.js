@@ -62,26 +62,20 @@ async function getQttSealsByColor() {
     response = await fetch(`${URL}/${facetsURL}`)
     response = await response.json()
     registersQuantity = response.resultCount
-
     const sealColor = response.facets.sealcolor_keyword
 
-    sealsInfo[0].quantity = sealColor[3].count
-    sealsInfo[0].href = sealColor[3].href
+    console.log(sealColor)
 
-    sealsInfo[1].quantity = sealColor[0].count
-    sealsInfo[1].href = sealColor[0].href
-
-    sealsInfo[2].quantity = sealColor[2].count + sealColor[4].count
-    sealsInfo[2].href = sealColor[2].href + sealColor[4].href
-
-    sealsInfo[3].quantity = sealColor[1].count
-    sealsInfo[3].href = sealColor[1].href
-
-
+    for (const seal of sealColor) {
+      for (const info of sealsInfo) {
+        if (seal.value.startsWith(info.color)) {
+          info.quantity = seal.count
+          info.href = seal.href
+        }
+      }
+    }
   } catch (errors) {
     console.error(errors)
-
-  } finally {
   }
 }
 
@@ -103,7 +97,7 @@ async function sealsCountCard() {
     cardSeal = getSealCard(seal.color, false)
 
     institutionsCards += `<a id="${seal.color}"
-      href="${host}/diadorim/Search/Results${seal.href}">
+      href="Search/Results${seal.href}">
       <div class="home_card">
         <div class="home-card_svg ${seal.color}">${cardSeal}</div>
 
