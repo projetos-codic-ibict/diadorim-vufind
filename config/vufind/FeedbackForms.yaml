@@ -154,7 +154,6 @@
 #-----------------------------------------------------------------------------------
 
 forms:
-
   # Main Feedback form
 
   FeedbackSite:
@@ -164,13 +163,13 @@ forms:
     reportReferrer: false
     reportUserAgent: true
     emailFrom:
-      name: Your Library - Site Feedback
-    recipient:
-      name: IBICT
-      email: diadorim@ibict.br
+      name: Diadorim - Contato
+    # recipient:
+    #   name: IBICT
+    #   email: diadorim@ibict.br
     primaryHandler: email
     onlyForLoggedUsers: false
-    emailSubject: Diadorim Feedback
+    emailSubject: Contato
     response: feedback_response
     senderEmailRequired: true
     senderNameRequired: true
@@ -250,7 +249,7 @@ forms:
         label: Last interest date
         required: false
         min: now
-        max: 'now + 1 year'
+        max: "now + 1 year"
 
       - name: boolean
         type: radio
