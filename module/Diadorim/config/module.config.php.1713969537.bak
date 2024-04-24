@@ -30,23 +30,4 @@ return array (
       'sobre' => 'Diadorim\\Controller\\SobreController',
     ),
   ),
-  'router' => 
-  array (
-    'routes' => 
-    array (
-      'sobre-home' => 
-      array (
-        'type' => 'Laminas\\Router\\Http\\Literal',
-        'options' => 
-        array (
-          'route' => '/Sobre/Home',
-          'defaults' => 
-          array (
-            'controller' => 'Sobre',
-            'action' => 'Home',
-          ),
-        ),
-      ),
-    ),
-  ),
 );
