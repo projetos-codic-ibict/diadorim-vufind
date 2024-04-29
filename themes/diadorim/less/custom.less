@@ -79,17 +79,17 @@ body {
   color: #000;
 }
 
-.pagination > li > a,
-.pagination > li > span {
+.pagination>li>a,
+.pagination>li>span {
   color: #1c3041;
 }
 
-.pagination > .active > a,
-.pagination > .active > span,
-.pagination > .active > a:hover,
-.pagination > .active > span:hover,
-.pagination > .active > a:focus,
-.pagination > .active > span:focus {
+.pagination>.active>a,
+.pagination>.active>span,
+.pagination>.active>a:hover,
+.pagination>.active>span:hover,
+.pagination>.active>a:focus,
+.pagination>.active>span:focus {
   background-color: #1c3041;
   border-color: #1c3041;
 }
@@ -104,7 +104,7 @@ body {
   align-items: center;
   justify-content: center;
 
-  > span {
+  >span {
     /* O valor original é 8px, mas foi colocado 6px pra compensar o espaçamento natural dos itens  */
     margin-left: 6px;
   }
@@ -147,44 +147,19 @@ body {
 }
 
 
+@background:  #00D4FF, #FF7900, #00FF80, #071D41, #CCAA00, #363636, #F21B0D, #E9E9E9;
+@text:  #363636, #363636, #323232, #EEEEEE, #FFFFFF, #E9E9E9, #FFFFFF, #323232;
 
-div#side-panel-dc--publisher--name--facet .facet .badge {
-  background: #00D4FF;
-  color: #363636;
-}
-
-div#side-panel-dc--publisher--name--facet .facet:nth-last-child(2){
-  color: #00D4FF;
-}
-
-div#side-panel-cnpq--facet .facet .badge {
-  background: #FF7900;
-  color: #363636;
-}
-div#side-panel-cnpq--facet .facet:nth-last-child(2) {
-    color:#FF7900 ;
+each(@background, {
+  .sidebar .facet-group:nth-child(@{index} of .facet-group) .badge  {
+    background-color: @value;
+    color: extract(@text, @index);
   }
+});
 
-div#side-panel-dc--rights--sealcolor--facet .facet .badge {
-  background: #071D41;
-  color: #EEEEEE;
-}
 
-div#side-panel-dc--rights--access--facet .facet .badge {
-  background: #00FF80;
-  color: #00552B;
-}
 
-div#side-collapse-dc--rights--creativecommons--facet .facet .badge {
-  background: #E9E9E9;
-  color: #363636;
-}
-div#side-collapse-dc--rights--creativecommons--facet .facet:nth-last-child(2){
-  color: #363636;
   
-}
-
-
 @media screen and (max-width: 768px) {
   .marcas {
     flex-wrap: wrap;
@@ -225,6 +200,7 @@ div#side-collapse-dc--rights--creativecommons--facet .facet:nth-last-child(2){
       width: 100%;
     }
   }
+
   nav .container-fluid {
     width: 100%;
     margin: 0;
