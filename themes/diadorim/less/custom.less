@@ -146,20 +146,104 @@ body {
   margin: 3rem auto;
 }
 
+// Facetas 
 
-@background:  #00D4FF, #FF7900, #00FF80, #071D41, #CCAA00, #363636, #F21B0D, #E9E9E9;
-@text:  #363636, #363636, #323232, #EEEEEE, #FFFFFF, #E9E9E9, #FFFFFF, #323232;
+@background: #00D4FF, #FF7900, #00FF80, #071D41, #CCAA00, #363636, #F21B0D, #E9E9E9;
+@text: #363636, #363636, #323232, #EEEEEE, #FFFFFF, #E9E9E9, #FFFFFF, #323232;
 
 each(@background, {
-  .sidebar .facet-group:nth-child(@{index} of .facet-group) .badge  {
+  .sidebar .facet-group:nth-child(@{index} of .facet-group) .badge {
     background-color: @value;
     color: extract(@text, @index);
   }
 });
 
+// Página Sobre 
 
+.about {
+  display: flex;
+  padding: 40px 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  background: #fff;
+  font-size: 16px;
+}
 
-  
+.wrapper {
+  position: fixed; //absolute
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; // 1
+  background-size: 120%; //cover
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-image: url("/diadorim/themes/diadorim/images/bg-diadorim.png");
+  background-attachment: scroll;
+}
+
+.about-title h1 {
+  color: #ff7900;
+}
+
+.text-about {
+  font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23px;
+  letter: 0.5px;
+  color: #363636
+}
+
+.about-links {
+  width: 100%;
+}
+
+.about-links ul {
+  margin: 0;
+  padding: 0;
+}
+
+.about-links ul li a {
+  color: #071D41;
+  text-decoration: underline;
+  width: 100%;
+  border-bottom: 1px solid #eee;
+  padding: 24px 0px;
+}
+
+.about-links li {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.topo {
+  text-align: center;
+  position: fixed;
+  right: 50px;
+  top: 70%;
+  transform: translate(0, 100%);
+}
+
+.btn-topo {
+  border-radius: 50%;
+  border: 3px solid #eee;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.container-about img,
+p {
+  padding: 20px 20px 20px 0px;
+  margin-top: 20px;
+}
+
 @media screen and (max-width: 768px) {
   .marcas {
     flex-wrap: wrap;
@@ -230,7 +314,12 @@ each(@background, {
   .home_title {
     font-size: 5rem !important;
   }
+  .wrapper{
+    display: none;
+  }
 }
+
+  
 
 @media screen and (max-width: 576px) {
   .container {
