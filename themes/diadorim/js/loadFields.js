@@ -55,14 +55,14 @@ async function getFields(pageToView) {
 }
 
 async function getQttSealsByColor() {
-  const facetsURL = 'search?facet[]=sealcolor_keyword&sort=relevance&limit=0'
+  const facetsURL = 'search?facet[]=dc.rights.sealcolor.facet&sort=relevance&limit=0'
   let response
 
   try {
     response = await fetch(`${URL}/${facetsURL}`)
     response = await response.json()
     registersQuantity = response.resultCount
-    const sealColor = response.facets.sealcolor_keyword
+    const sealColor = response.facets['dc.rights.sealcolor.facet']
 
     console.log(sealColor)
 
@@ -111,7 +111,7 @@ async function sealsCountCard() {
 
   journalsSeal = getSealCard('Revistas')
   journalCard += `<a
-    href="${host}/diadorim/Search/Results">
+    href="Search/Results">
     <div class="home_card total-journals">
       <div class="home-card_svg journals-seal">${journalsSeal}</div>
       <div class="home_card-text">

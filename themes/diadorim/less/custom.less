@@ -79,17 +79,17 @@ body {
   color: #000;
 }
 
-.pagination>li>a,
-.pagination>li>span {
+.pagination > li > a,
+.pagination > li > span {
   color: #1c3041;
 }
 
-.pagination>.active>a,
-.pagination>.active>span,
-.pagination>.active>a:hover,
-.pagination>.active>span:hover,
-.pagination>.active>a:focus,
-.pagination>.active>span:focus {
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
   background-color: #1c3041;
   border-color: #1c3041;
 }
@@ -104,7 +104,7 @@ body {
   align-items: center;
   justify-content: center;
 
-  >span {
+  > span {
     /* O valor original é 8px, mas foi colocado 6px pra compensar o espaçamento natural dos itens  */
     margin-left: 6px;
   }
@@ -146,9 +146,9 @@ body {
   margin: 3rem auto;
 }
 
-
-@background:  #00D4FF, #FF7900, #00FF80, #071D41, #CCAA00, #363636, #F21B0D, #E9E9E9;
-@text:  #363636, #363636, #323232, #EEEEEE, #FFFFFF, #E9E9E9, #FFFFFF, #323232;
+@background: #00d4ff, #ff7900, #00ff80, #071d41, #ccaa00, #363636, #f21b0d,
+  #e9e9e9;
+@text: #363636, #363636, #323232, #eeeeee, #ffffff, #e9e9e9, #ffffff, #323232;
 
 each(@background, {
   .sidebar .facet-group:nth-child(@{index} of .facet-group) .badge  {
@@ -157,9 +157,35 @@ each(@background, {
   }
 });
 
+#searchForm {
+  width: 100%;
+}
 
+.active-filters .filters {
+  display: flex;
+  flex-direction: column;
+}
 
-  
+.active-filters .filters .filter-value {
+  display: inline-block;
+  margin: 5px;
+  padding: 2px 8px;
+  font-weight: 400;
+  white-space: wrap;
+  text-decoration: none;
+  background-color: #071d41;
+  color: #eeeeee;
+}
+
+.active-filters .filters .title-value-pair {
+  display: flex;
+  align-items: center;
+}
+
+.active-filters .filters .filters-title {
+  color: #6a6a6a;
+}
+
 @media screen and (max-width: 768px) {
   .marcas {
     flex-wrap: wrap;
@@ -185,8 +211,8 @@ each(@background, {
     display: block;
   }
 
-  .container>.navbar-header,
-  .container>.navbar-collapse {
+  .container > .navbar-header,
+  .container > .navbar-collapse {
     margin-right: -15px;
     margin-left: -15px;
   }
