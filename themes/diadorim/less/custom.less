@@ -186,7 +186,9 @@ each(@background, {
 .active-filters .filters .filters-title {
   color: #6a6a6a;
 }
+
 // Página Sobre
+
 .about {
   display: flex;
   padding: 40px 24px;
@@ -198,22 +200,16 @@ each(@background, {
 }
 
 .wrapper {
-  position: fixed; //absolute
+  position: absolute; //fixid
   left: 0;
   width: 100%;
   height: 100%;
   z-index: -1; // 1
-  background-size: 120%; //cover
+  background-size: 130%; //cover
   background-position: top center;
   background-repeat: no-repeat;
   background-image: url("/diadorim/themes/diadorim/images/bg-diadorim.png");
-  background-attachment: scroll;
 }
-
-.about-title h1 {
-  color: #ff7900;
-}
-
 .text-about {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -224,11 +220,6 @@ each(@background, {
 .about-links {
   width: 100%;
 }
-
-// .about-links ul {
-//   margin: 0;
-//   padding: 0;
-// }
 
 .about-links ul li a {
   color: #071d41;
@@ -255,7 +246,6 @@ each(@background, {
 
 p#icon-selo{
   display: flex;
-  flex-direction: column;
   padding: 10px;
   margin: 10px;
 }
@@ -283,6 +273,17 @@ p#icon-selo{
 .container-about p {
   padding: 20px 20px 20px 0px;
   margin-top: 20px;
+}
+
+@media screen and (max-width: 1024px){
+
+  .about{
+    z-index: 1;
+  }
+
+  .wrapper{
+    background-size: 130%;
+  }
 }
 
 @media screen and (max-width: 768px) {
