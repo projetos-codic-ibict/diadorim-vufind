@@ -3,11 +3,10 @@ const host = window.location.hostname
 
 let URL;
 
-if (window.location.hostname === 'oasisbr.ibict.br') {
-  URL = `https://${window.location.host}/diadorim/api/v1`;
-
+if (window.location.hostname === 'diadorim.ibict.br') {
+  URL = `https://${window.location.host}/${window.location.pathname.split('/')[1]}/api/v1`;
 } else {
-  URL = `http://${window.location.host}/diadorim/api/v1`;
+  URL = `http://${window.location.host}/${window.location.pathname.split('/')[1]}/api/v1`;
 }
 
 
