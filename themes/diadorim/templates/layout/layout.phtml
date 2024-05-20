@@ -16,16 +16,16 @@
   $this->headTitle()->setAutoEscape(false);
   $fullTitle = $this->translate(
     'title_wrapper',
+    // [
+    //   '%%pageTitle%%' => $this->headTitle()->renderTitle(),
+    //   '%%siteTitle%%' => '',
+    //   '%%titleSeparator%%' => '',
+    // ]
     [
-      '%%pageTitle%%' => $this->headTitle()->renderTitle(),
-      '%%siteTitle%%' => '',
-      '%%titleSeparator%%' => '',
-    ]
-    /* [
-      '%%pageTitle%%' => $this->headTitle()->renderTitle(),
       '%%siteTitle%%' => $siteConfig->title,
-      '%%titleSeparator%%' => $siteConfig->titleSeparator ?? '::',
-    ] */
+      '%%titleSeparator%%' => $this->headTitle()->renderTitle() ? $siteConfig->titleSeparator ?? '-' : '',
+      '%%pageTitle%%' => $this->headTitle()->renderTitle(),
+    ]
   );
   // Enable escaping again for proper output:
   $this->headTitle()->setAutoEscape(true);

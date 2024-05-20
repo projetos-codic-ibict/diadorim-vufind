@@ -3,7 +3,7 @@ const host = window.location.hostname
 
 let URL;
 
-if (window.location.hostname === 'diadorim.ibict.br') {
+if (window.location.hostname.includes('ibict.br')) {
   URL = `https://${window.location.host}/${window.location.pathname.split('/')[1]}/api/v1`;
 } else {
   URL = `http://${window.location.host}/${window.location.pathname.split('/')[1]}/api/v1`;
