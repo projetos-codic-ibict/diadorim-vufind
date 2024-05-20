@@ -23,7 +23,7 @@
     // ]
     [
       '%%siteTitle%%' => $siteConfig->title,
-      '%%titleSeparator%%' => $siteConfig->titleSeparator ?? '-',
+      '%%titleSeparator%%' => $this->headTitle()->renderTitle() ? $siteConfig->titleSeparator ?? '-' : '',
       '%%pageTitle%%' => $this->headTitle()->renderTitle(),
     ]
   );
