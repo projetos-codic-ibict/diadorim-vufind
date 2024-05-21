@@ -15,6 +15,7 @@ verificaões em labels diferentes sem quebrar o layout -->
   <?php if ($lowercaseLabel === 'título' || $lowercaseLabel === 'title') : ?>
     <?php
     $title = $value;
+    $this->headTitle($title);
     ?>
   <?php endif; ?>
 

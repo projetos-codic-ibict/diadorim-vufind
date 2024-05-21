@@ -40,6 +40,9 @@ function verifyCurrentNavbarLinkActive() {
     case 'Search':
       document.getElementById('navigate').classList.add('active-link')
       break
+    case 'Record':
+      document.getElementById('navigate').classList.add('active-link')
+      break
     case 'Sobre':
       document.getElementById('about').classList.add('active-link')
       break
