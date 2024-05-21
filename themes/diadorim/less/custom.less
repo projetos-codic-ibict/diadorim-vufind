@@ -79,17 +79,17 @@ body {
   color: #000;
 }
 
-.pagination>li>a,
-.pagination>li>span {
+.pagination > li > a,
+.pagination > li > span {
   color: #1c3041;
 }
 
-.pagination>.active>a,
-.pagination>.active>span,
-.pagination>.active>a:hover,
-.pagination>.active>span:hover,
-.pagination>.active>a:focus,
-.pagination>.active>span:focus {
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
   background-color: #1c3041;
   border-color: #1c3041;
 }
@@ -104,7 +104,7 @@ body {
   align-items: center;
   justify-content: center;
 
-  >span {
+  > span {
     /* O valor original é 8px, mas foi colocado 6px pra compensar o espaçamento natural dos itens  */
     margin-left: 6px;
   }
@@ -200,17 +200,16 @@ each(@background, {
 }
 
 .wrapper {
-  position: absolute;
+  position: absolute; //fixid
   left: 0;
   width: 100%;
-  height: 90%;
-  z-index: -1;
-  background-size: 130%;
+  height: 100%;
+  z-index: -1; // 1
+  background-size: 130%; //cover
   background-position: top center;
   background-repeat: no-repeat;
   background-image: url("/diadorim/themes/diadorim/images/bg-diadorim.png");
 }
-
 .text-about {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -236,16 +235,16 @@ each(@background, {
   line-height: 32px;
 }
 
-.container-about h2 {
+.container-about h2{
   color: #ff7900;
 }
 
-.cores {
+.cores{
   display: flex;
   align-items: center;
 }
 
-p#icon-selo {
+p#icon-selo{
   display: flex;
   padding: 10px;
   margin: 10px;
@@ -276,32 +275,16 @@ p#icon-selo {
   margin-top: 20px;
 }
 
+@media screen and (max-width: 1024px){
 
-@media screen and (min-width: 1400px) {
-  .wrapper {
+  .about{
+    z-index: 1;
+  }
+
+  .wrapper{
     background-size: 130%;
   }
-
-  .container {
-    width: 992px;
-  }
-
 }
-
-@media screen and (max-width: 1280px) {
-  .wrapper{
-    background-size: 145%;
-  }
-  .container{
-    width: 880px;
-  }
-}
-@media screen and (max-width: 1024px){
-  .wrapper {
-    display: none;
-  }
-}
-
 
 @media screen and (max-width: 768px) {
   .marcas {
@@ -328,8 +311,8 @@ p#icon-selo {
     display: block;
   }
 
-  .container>.navbar-header,
-  .container>.navbar-collapse {
+  .container > .navbar-header,
+  .container > .navbar-collapse {
     margin-right: -15px;
     margin-left: -15px;
   }
@@ -372,6 +355,9 @@ p#icon-selo {
 
   .home_title {
     font-size: 5rem !important;
+  }
+  .wrapper {
+    display: none;
   }
 }
 
