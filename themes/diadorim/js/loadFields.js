@@ -264,12 +264,7 @@ function getSealCard(sealColor) {
 
     case 'Revistas':
       currentSeal = `<div class="svg-circle journals-seal">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19" fill="none">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M11.6609 4.52748C12.0402 4.41911 12.4356 4.63875 12.5439 5.01806L15.4011 15.0181C15.5095 15.3974 15.2898 15.7927 14.9105 15.9011C14.5312 16.0095 14.1359 15.7898 14.0275 15.4105L11.1703 5.41052C11.062 5.03121 11.2816 4.63586 11.6609 4.52748Z" fill="white"/>
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M9.00001 4.5C9.3945 4.5 9.71429 4.8198 9.71429 5.21429V15.2143C9.71429 15.6088 9.3945 15.9286 9.00001 15.9286C8.60552 15.9286 8.28572 15.6088 8.28572 15.2143V5.21429C8.28572 4.8198 8.60552 4.5 9.00001 4.5Z" fill="white"/>
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M6.14286 5.92857C6.53735 5.92857 6.85714 6.24837 6.85714 6.64286V15.2143C6.85714 15.6088 6.53735 15.9286 6.14286 15.9286C5.74837 15.9286 5.42857 15.6088 5.42857 15.2143V6.64286C5.42857 6.24837 5.74837 5.92857 6.14286 5.92857Z" fill="white"/>
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M3.28571 3.07143C3.6802 3.07143 4 3.39122 4 3.78571V15.2143C4 15.6088 3.6802 15.9286 3.28571 15.9286C2.89122 15.9286 2.57143 15.6088 2.57143 15.2143V3.78571C2.57143 3.39122 2.89122 3.07143 3.28571 3.07143Z" fill="white"/>
-        </svg>
+      <img class="img-about" src="/diadorim/themes/diadorim/images/icons/diadorim-favicon.ico">
       </div>`
       break;
     default:
@@ -288,13 +283,16 @@ function watchPageChangeBtns() {
   disablePaginationBtns()
 
   previousPage.addEventListener('click', () => {
-    changePagination()
+    console.log("O anterior foi clicado")
+    changePagination(false)
   })
 
   nextPage.addEventListener('click', () => {
+    console.log("Proximo")
     changePagination(true)
   })
 }
+
 
 async function changePagination(nextPage) {
   clearSealsBtns()
@@ -344,7 +342,7 @@ document.addEventListener('DOMContentLoaded', function () {
   addLoader('.home_fields-cards')
   generateCard()
   sealsCountCard()
-  // watchPageChangeBtns()
+  watchPageChangeBtns()
   setActiveClassForBtnToggleViewMode();
 })
 
@@ -382,7 +380,10 @@ function toggleVisualization(addClass, removeClass) {
       currentBtn.classList.add('active')
       filterBySeal(seal.color)
 
-      globalSeals.forEach(anotherSeal => {
+      globalSeals.forEach( <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M4 12C4 11.4477 4.44772 11 5 11H19C19.5523 11 20 11.4477 20 12C20 12.5523 19.5523 13 19 13H5C4.44772 13 4 12.5523 4 12Z" fill="#FF7900" />
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7071 4.29289C13.0976 4.68342 13.0976 5.31658 12.7071 5.70711L6.41421 12L12.7071 18.2929C13.0976 18.6834 13.0976 19.3166 12.7071 19.7071C12.3166 20.0976 11.6834 20.0976 11.2929 19.7071L4.29289 12.7071C3.90237 12.3166 3.90237 11.6834 4.29289 11.2929L11.2929 4.29289C11.6834 3.90237 12.3166 3.90237 12.7071 4.29289Z" fill="#FF7900" />
+    </svg>anotherSeal => {
         let anotherBtn = document.getElementById(anotherSeal.id)
         const removeActiveClass = anotherSeal.id !== currentBtn.id && anotherBtn.classList.value.includes('active')
 
@@ -408,14 +409,29 @@ function getEmptyRecordsCard() {
   </h12>`
 }
 
-function clearSealsBtns() {
+/*function clearSealsBtns() {
   globalSeals.forEach(seal => {
     let btn = document.getElementById(seal.id)
     const removeActiveClass = btn.classList.value.includes('active')
 
     if (removeActiveClass) btn.classList.remove('active')
   })
+}*/
+
+function clearSealsBtns() {
+  globalSeals.forEach(seal => {
+    let btn = document.getElementById(seal.id);
+
+    if (btn) {
+      const removeActiveClass = btn.classList.contains('active');
+
+      if (removeActiveClass) {
+        btn.classList.remove('active');
+      }
+    } 
+  });
 }
+
 
 function hoverCards() {
   const cards = document.querySelectorAll('.field-card')
