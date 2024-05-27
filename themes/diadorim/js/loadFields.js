@@ -263,8 +263,8 @@ function getSealCard(sealColor) {
       break
 
     case 'Revistas':
-      currentSeal = `<div class="svg-circle journals-seal">
-      <img class="img-about" src="/diadorim/themes/diadorim/images/icons/diadorim-favicon.ico">
+      currentSeal = `<div class="journals-seal">
+      <img src="themes/diadorim/images/icons/diadorim-favicon.ico">
       </div>`
       break;
     default:
@@ -428,7 +428,7 @@ function clearSealsBtns() {
       if (removeActiveClass) {
         btn.classList.remove('active');
       }
-    } 
+    }
   });
 }
 

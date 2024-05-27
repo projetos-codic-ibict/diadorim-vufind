@@ -2,7 +2,6 @@
 /* Include bootstrap theme's less base */
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
 
-
 @import "./customLess/scroll-bar.less";
 @import "./customLess/header.less";
 @import "./customLess/footer.less";
@@ -80,17 +79,17 @@ body {
   color: #000;
 }
 
-.pagination>li>a,
-.pagination>li>span {
+.pagination > li > a,
+.pagination > li > span {
   color: #1c3041;
 }
 
-.pagination>.active>a,
-.pagination>.active>span,
-.pagination>.active>a:hover,
-.pagination>.active>span:hover,
-.pagination>.active>a:focus,
-.pagination>.active>span:focus {
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
   background-color: #1c3041;
   border-color: #1c3041;
 }
@@ -105,7 +104,7 @@ body {
   align-items: center;
   justify-content: center;
 
-  >span {
+  > span {
     /* O valor original é 8px, mas foi colocado 6px pra compensar o espaçamento natural dos itens  */
     margin-left: 6px;
   }
@@ -142,6 +141,7 @@ body {
   display: flex;
   align-items: center;
   position: relative;
+  margin-left: 24px;
 }
 
 .d-rays-container {
@@ -164,18 +164,36 @@ body {
   transform-origin: 0 0;
 }
 
-.ray1 { transform: rotate(43deg) translate(40px); }
-.ray2 { transform: rotate(72deg) translate(40px); }
-.ray3 { transform: rotate(102deg) translate(40px); }
-.ray4 { transform: rotate(136deg) translate(40px); }
-.ray5 { transform: rotate(169deg) translate(40px); }
-.ray6 { transform: rotate(210deg) translate(40px); }
-.ray7 { transform: rotate(244deg) translate(40px); }
-.ray8 { transform: rotate(270deg) translate(40px); }
-.ray9 { transform: rotate(300deg) translate(40px); }
+.ray1 {
+  transform: rotate(43deg) translate(40px);
+}
+.ray2 {
+  transform: rotate(72deg) translate(40px);
+}
+.ray3 {
+  transform: rotate(102deg) translate(40px);
+}
+.ray4 {
+  transform: rotate(136deg) translate(40px);
+}
+.ray5 {
+  transform: rotate(169deg) translate(40px);
+}
+.ray6 {
+  transform: rotate(210deg) translate(40px);
+}
+.ray7 {
+  transform: rotate(244deg) translate(40px);
+}
+.ray8 {
+  transform: rotate(270deg) translate(40px);
+}
+.ray9 {
+  transform: rotate(300deg) translate(40px);
+}
 
-.home_cards{
-  margin-bottom: 10%;
+.home_cards {
+  margin-bottom: 32px;
 }
 
 .marcas {
@@ -241,11 +259,11 @@ each(@background, {
 }
 
 .wrapper {
-  position: absolute; 
+  position: absolute;
   left: 0;
   width: 100%;
   height: 90%;
-  z-index: -1; 
+  z-index: -1;
   background-size: 130%;
   background-position: top center;
   background-repeat: no-repeat;
@@ -262,7 +280,7 @@ each(@background, {
 .about-links {
   width: 100%;
 }
-.about-links ul{
+.about-links ul {
   padding-left: 0;
 }
 
@@ -271,7 +289,7 @@ each(@background, {
   width: 100%;
   border-bottom: 1px solid #eee;
 }
-.about-links ul li:houver{
+.about-links ul li:houver {
   color: #071d41;
   text-decoration: underline;
 }
@@ -284,7 +302,7 @@ each(@background, {
   gap: 8px;
 }
 
-.about-links li:first-child{
+.about-links li:first-child {
   margin-top: 32px;
 }
 
@@ -329,21 +347,25 @@ p#icon-selo {
   margin-top: 20px;
 }
 
-.definicao{
+.definicao {
   margin-top: 10%;
 }
 
-.selos{
-  margin-top: 3%;
+.selos {
+  margin-top: 16px;
 }
 
-.definicao-icons{
+.definicao-icons {
   display: flex;
   gap: 8px;
+  align-items: center;
+  p {
+    margin: 0;
+  }
 }
 
 @media screen and (min-width: 1400px) {
-  .about{
+  .about {
     width: 90%;
   }
   .wrapper {
@@ -352,14 +374,13 @@ p#icon-selo {
 }
 
 @media screen and (max-width: 1280px) {
-  .about{
+  .about {
     width: 80%;
   }
-  .wrapper{
+  .wrapper {
     background-size: 145%;
   }
 }
-
 
 @media screen and (max-width: 768px) {
   .marcas {
@@ -386,8 +407,8 @@ p#icon-selo {
     display: block;
   }
 
-  .container>.navbar-header,
-  .container>.navbar-collapse {
+  .container > .navbar-header,
+  .container > .navbar-collapse {
     margin-right: -15px;
     margin-left: -15px;
   }
@@ -431,7 +452,7 @@ p#icon-selo {
   .home_title {
     font-size: 5rem !important;
   }
-  .about{
+  .about {
     width: 100%;
   }
 
@@ -457,7 +478,7 @@ p#icon-selo {
 
   .home_title {
     font-size: 4rem !important;
-    margin-bottom: 90px !important;
+    // margin-bottom: 90px !important;
   }
 
   .home .home_background {
