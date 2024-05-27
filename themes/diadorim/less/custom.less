@@ -138,6 +138,45 @@ body {
     gap: 1rem;
   }
 }
+.raios {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.d-rays-container {
+  position: relative;
+  display: inline-block;
+}
+
+.d-rays {
+  position: relative; /* Adjusted to relative to contain rays */
+  z-index: 10; /* Ensures the 'D' is on top of the rays */
+}
+
+.ray {
+  width: 10px;
+  height: 2px;
+  background-color: darkorange;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: 0 0;
+}
+
+.ray1 { transform: rotate(43deg) translate(40px); }
+.ray2 { transform: rotate(72deg) translate(40px); }
+.ray3 { transform: rotate(102deg) translate(40px); }
+.ray4 { transform: rotate(136deg) translate(40px); }
+.ray5 { transform: rotate(169deg) translate(40px); }
+.ray6 { transform: rotate(210deg) translate(40px); }
+.ray7 { transform: rotate(244deg) translate(40px); }
+.ray8 { transform: rotate(270deg) translate(40px); }
+.ray9 { transform: rotate(300deg) translate(40px); }
+
+.home_cards{
+  margin-bottom: 10%;
+}
 
 .marcas {
   display: flex;
@@ -288,6 +327,10 @@ p#icon-selo {
 .container-about p {
   padding: 20px 20px 20px 0px;
   margin-top: 20px;
+}
+
+.definicao{
+  margin-top: 10%;
 }
 
 .selos{
