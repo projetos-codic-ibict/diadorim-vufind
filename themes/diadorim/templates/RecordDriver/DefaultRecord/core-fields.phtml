@@ -1,6 +1,8 @@
 <?php
 $formatter = $this->recordDataFormatter($this->driver);
 $coreFields = $formatter->getData($formatter->getDefaults($this->defaults ?? 'core'));
+$config = $this->config()->get('config');
+$handleBaseUrl = $config->Miguilim->handleBaseUrl ?? 'https://miguilim.ibict.br/handle/';
 ?>
 
 <!-- Adicionado essa nova forma de renderizar os spans para conseguir realiazar duas 
@@ -27,7 +29,7 @@ verificaões em labels diferentes sem quebrar o layout -->
 
   <?php if ($lowercaseLabel === 'handle' || $lowercaseLabel === 'identificador') : ?>
     <?php
-    $handleLink = '<a target="blank" href="https://miguilim.ibict.br/handle/' . $value . '">https://miguilim.ibict.br/handle/' . $value . '</a>';
+    $handleLink = '<a target="blank" href="' . $handleBaseUrl . $value . '">' . $handleBaseUrl  . $value . '</a>';
     ?>
   <?php endif; ?>
 <?php endforeach; ?>
