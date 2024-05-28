@@ -264,7 +264,7 @@ function getSealCard(sealColor) {
 
     case 'Revistas':
       currentSeal = `<div class="journals-seal">
-      <img src="themes/diadorim/images/icons/diadorim-favicon.ico">
+      <img src="themes/diadorim/images/icons/diadorim-favicon.ico" alt=Icone do Diadorim">
       </div>`
       break;
     default:
