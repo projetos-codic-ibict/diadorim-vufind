@@ -122,6 +122,10 @@ if ($this->params->getOptions()->getListViewOption() !== 'full') {
 
         <!-- Removendo o result-tools -->
         <!-- <?= $this->context($this)->renderInContext('search/controls/results-tools.phtml', ['results' => $this->results]) ?> -->
+
+        <a href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&type=csv' ?>" data-lightbox>
+          <i class="fa fa-external-link" aria-hidden="true"></i> Exportar CSV
+        </a>
       <?php endif; ?>
     </div>
 
