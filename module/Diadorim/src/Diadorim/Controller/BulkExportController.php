@@ -31,7 +31,7 @@ class BulkExportController extends \VuFind\Controller\AbstractBase
 
 		// Get the query options
 		$exportConfig = $this->getConf($this->bulkExportConf);
-		$useForeignAbstract = $exportConfig->Query->showForeignAbstractOption;
+		// $useForeignAbstract = $exportConfig->Query->showForeignAbstractOption;
 		$showOptionalFields = $exportConfig->Query->showOptionalFields;
 		$defaultFields = $exportConfig->Query->defaultFields;
 		$selectFields = $exportConfig->Query->selectFields;
@@ -44,7 +44,7 @@ class BulkExportController extends \VuFind\Controller\AbstractBase
 			'form' => $form,
 			'total' => $totalRecords,
 			'type' => $type,
-			'foreignAbstract' => $useForeignAbstract,
+			// 'foreignAbstract' => $useForeignAbstract,
 			'optionalFields' => $showOptionalFields,
 			'defFields' => $defaultFields,
 			'selFields' => $selectFields,
@@ -85,23 +85,23 @@ class BulkExportController extends \VuFind\Controller\AbstractBase
 			}
 
 			// Include abstract fields
-			$useForeignAbstract = $exportConfig->Query->showForeignAbstractOption;
-			$primaryAbstract = $form->get('primaryAbstract')->getValue();
+			// $useForeignAbstract = $exportConfig->Query->showForeignAbstractOption;
+			// $primaryAbstract = $form->get('primaryAbstract')->getValue();
 			$hasAbstract = 'false';
 
-			if ($primaryAbstract == 'yes') {
-				array_push($fullFieldList, $exportConfig->Query->primaryLangAbstract);
-				$hasAbstract = 'true';
-			}
+			// if ($primaryAbstract == 'yes') {
+			// 	array_push($fullFieldList, $exportConfig->Query->primaryLangAbstract);
+			// 	$hasAbstract = 'true';
+			// }
 
-			if ($useForeignAbstract) {
-				$foreignAbstract = $form->get('foreignAbstract')->getValue();
+			// if ($useForeignAbstract) {
+			// 	$foreignAbstract = $form->get('foreignAbstract')->getValue();
 
-				if ($foreignAbstract == 'yes') {
-					array_push($fullFieldList, $exportConfig->Query->foreignLangAbstract);
-					$hasAbstract = 'true';
-				}
-			}
+			// 	if ($foreignAbstract == 'yes') {
+			// 		array_push($fullFieldList, $exportConfig->Query->foreignLangAbstract);
+			// 		$hasAbstract = 'true';
+			// 	}
+			// }
 
 			// Define file encoding
 			$encoding = $exportConfig->Encoding->defaultEncoding;
@@ -218,6 +218,7 @@ class BulkExportController extends \VuFind\Controller\AbstractBase
 		$this->injectSpellingParams($params);
 		$this->injectConditionalFilter($params);
 		$this->injectUserCustomParams($params);
+		$this->getHieddenFilters($params);
 
 		//Build query params string
 		$builder = $this->getQueryBuilder();
@@ -227,6 +228,8 @@ class BulkExportController extends \VuFind\Controller\AbstractBase
 
 		return $paramString;
 	}
+
+	
 
 	protected function getQueryBuilder()
 	{
@@ -392,5 +395,37 @@ class BulkExportController extends \VuFind\Controller\AbstractBase
 	{
 		$config = $this->serviceLocator->get(\VuFind\Config\PluginManager::class);
 		return $config->get($file);
+	}
+
+	protected function getHieddenFilters(ParamBag $params)
+	{
+		$searchConfig = $this->getConf($this->searchConf);
+		// $search = $this->config->get($this->searchConfig);
+		$hf = [];
+
+		// Hidden filters
+		if (isset($searchConfig->HiddenFilters)) {
+			foreach ($searchConfig->HiddenFilters as $field => $value) {
+				$hf[] = sprintf('%s:"%s"', $field, $value);
+			}
+		}
+
+		// Raw hidden filters
+		if (isset($searchConfig->RawHiddenFilters)) {
+			foreach ($searchConfig->RawHiddenFilters as $filter) {
+				$hf[] = $filter;
+			}
+		}
+
+		$hf;
+
+		$fq = $params->get('fq');
+
+		if (!is_array($fq)) {
+			$fq = [];
+		}
+
+		$new_fq = array_merge($fq, $hf);
+		$params->set('fq', $new_fq);
 	}
 }

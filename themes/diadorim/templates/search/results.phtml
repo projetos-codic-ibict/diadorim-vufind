@@ -68,7 +68,7 @@ if ($this->params->getOptions()->getListViewOption() !== 'full') {
 
       <!-- Busca Avançada -->
 
-      <div class="search-header hidden-print">
+      <div class="search-header hidden-print" style="display:flex; justify-content:center; align-items: center;">
         <?php // Data-record-total attribute is for analytics use.  Do not remove.
         ?>
         <div class="search-stats" data-record-total="<?= $this->escapeHtmlAttr($recordTotal) ?>">
@@ -80,8 +80,14 @@ if ($this->params->getOptions()->getListViewOption() !== 'full') {
           <?php else : ?>
             <h2><?= $this->transEsc('nohit_heading') ?></h2>
           <?php endif; ?>
+
+          <a href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&type=csv' ?>" data-lightbox >
+            <i style="font-size:20px; padding-left: 13px; color: #ff7900;" class="fa fa-file-excel-o" aria-hidden="true"></i> Exportar
+          </a>
         </div>
 
+
+        
         <?php if ($recordTotal > 0) : ?>
           <div class="search-controls">
             <?= $this->render('search/controls/limit.phtml') ?>
@@ -90,6 +96,7 @@ if ($this->params->getOptions()->getListViewOption() !== 'full') {
           </div>
         <?php endif; ?>
       </div>
+      
       <?php /* End Listing Options */ ?>
 
       <?php if ($recordTotal < 1) : ?>
@@ -123,9 +130,6 @@ if ($this->params->getOptions()->getListViewOption() !== 'full') {
         <!-- Removendo o result-tools -->
         <!-- <?= $this->context($this)->renderInContext('search/controls/results-tools.phtml', ['results' => $this->results]) ?> -->
 
-        <a href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&type=csv' ?>" data-lightbox>
-          <i class="fa fa-external-link" aria-hidden="true"></i> Exportar CSV
-        </a>
       <?php endif; ?>
     </div>
 

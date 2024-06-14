@@ -29,25 +29,25 @@ class BulkExportConfirm extends Form
             ],
         ]);
 
-        $this->add([
-            'type' => Element\Checkbox::class,
-            'name' => 'primaryAbstract',
-            'options' => [
-                'use_hidden_element' => true,
-                'checked_value' => 'yes',
-                'unchecked_value' => 'no',
-            ],
-        ]);
+        // $this->add([
+        //     'type' => Element\Checkbox::class,
+        //     'name' => 'primaryAbstract',
+        //     'options' => [
+        //         'use_hidden_element' => true,
+        //         'checked_value' => 'yes',
+        //         'unchecked_value' => 'no',
+        //     ],
+        // ]);
 
-        $this->add([
-            'type' => Element\Checkbox::class,
-            'name' => 'foreignAbstract',
-            'options' => [
-                'use_hidden_element' => true,
-                'checked_value' => 'yes',
-                'unchecked_value' => 'no',
-            ],
-        ]);
+        // $this->add([
+        //     'type' => Element\Checkbox::class,
+        //     'name' => 'foreignAbstract',
+        //     'options' => [
+        //         'use_hidden_element' => true,
+        //         'checked_value' => 'yes',
+        //         'unchecked_value' => 'no',
+        //     ],
+        // ]);
 
         $this->add([
             'type' => Element\Select::class,
@@ -87,10 +87,10 @@ class BulkExportConfirm extends Form
             'required' => false,
         ];
 
-        $foreignAbstractInput = [
-            'name' => 'foreignAbstract',
-            'required' => false,
-        ];
+        // $foreignAbstractInput = [
+        //     'name' => 'foreignAbstract',
+        //     'required' => false,
+        // ];
 
         $osInput = [
             'name' => 'os',
@@ -102,7 +102,7 @@ class BulkExportConfirm extends Form
 
         $inputFilter = new InputFilter();
         $inputFilter->add($fieldsInput);
-        $inputFilter->add($foreignAbstractInput);
+        // $inputFilter->add($foreignAbstractInput);
         $inputFilter->add($osInput);
         $inputFilter->add($captchaInput);
         $inputFilter->add($sendInput);
