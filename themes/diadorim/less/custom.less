@@ -155,8 +155,8 @@ body {
 }
 
 .ray {
-  width: 10px;
-  height: 2px;
+  width: 15px;
+  height: 3%;
   background-color: darkorange;
   position: absolute;
   top: 50%;
@@ -397,6 +397,10 @@ p#icon-selo {
   .wrapper {
     background-size: 135%;
   }
+  .search-header.hidden-print{
+    display: flex;
+    align-items: center;
+  }
 }
 
 @media screen and (max-width: 1280px) {
@@ -406,6 +410,13 @@ p#icon-selo {
   .wrapper {
     background-size: 145%;
   }
+}
+
+@media (max-width: 980px) {
+  .export-link .export-text {
+      display: none;
+  }
+  
 }
 
 @media screen and (max-width: 768px) {
@@ -447,6 +458,11 @@ p#icon-selo {
     div {
       width: 100%;
     }
+
+    .ray{
+      width: 10px;
+      height: 2px;
+    }
   }
 
   nav .container-fluid {
@@ -484,6 +500,16 @@ p#icon-selo {
 
   .wrapper {
     display: none;
+  }
+  .search-header{
+    flex-direction: column;
+  }
+  
+}
+
+@media screen and (min-width:768px) {
+  .search-header{
+    display: block;
   }
 }
 
