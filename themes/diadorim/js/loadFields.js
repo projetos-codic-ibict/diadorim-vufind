@@ -453,3 +453,15 @@ function hoverCards() {
     })
   })
 }
+
+// button Download dos selos
+
+document.getElementById('download-btn').addEventListener('click', function() {
+  const images = document.querySelectorAll('#selo-section .selos-img');
+  images.forEach((img, index) => {
+      const link = document.createElement('a');
+      link.href = img.src;
+      link.download = `selo${index + 1}.svg`;
+      link.click();
+  });
+});
