@@ -92,19 +92,6 @@ return array (
           ),
         ),
       ),
-      'logomarcas-home' => 
-      array (
-        'type' => 'Laminas\\Router\\Http\\Literal',
-        'options' => 
-        array (
-          'route' => '/Logomarcas/Home',
-          'defaults' => 
-          array (
-            'controller' => 'Logomarcas',
-            'action' => 'Home',
-          ),
-        ),
-      ),
     ),
   ),
 );

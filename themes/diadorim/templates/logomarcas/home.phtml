@@ -1,0 +1,56 @@
+<?php $this->headTitle($this->translate('Logomarcas')); ?>
+<?php $this->layout()->searchbox = false; ?>
+
+<div class="logos">
+    <h2 class="title-logo">Download dos selos e marca </h2>
+    <p class="text-about">Baixe os selos e marca do Diadorim</p>
+
+    <section id="selo-section">
+
+        <div class="searchHomeContent selos principal">
+            <div class="definicao-icons">
+                <img class="selos-img"  id="selo1"  src="../themes/diadorim/images/icons/svg/DIADORIM_COMPLETO.svg" alt="definição do selo branca">
+                <h5 class="title-logo"> logotipo oficial do Diadorim pode ser utilizado por todas as revistas devidamente cadastradas no Diretório</h5>
+            </div>
+        </div>
+
+        <div class="searchHomeContent selos secundario">
+            <h5 class="title-logo">A critério de cada revista, pode também ser utilizado o logotipo em que consta o selo que foi atribuído à revista no Diretório</h5>
+            <div class="definicao-icons">
+                <img class="selos-img"   src="../themes/diadorim/images/icons/svg/DIADORIM_BRANCO.svg" alt="diadorim completo">
+                <p class="paragrafo"> Branco: Apresenta restrições para o armazenamento e acesso das versões preprint e pós-print dos documentos em repositórios institucionais/digitais</p>
+            </div>
+            <div class="definicao-icons">
+                <img class="selos-img" src="../themes/diadorim/images/icons/svg/DIADORIM_AZUL.svg" alt="diadorim completo">
+                <p> Azul: Permite o armazenamento e acesso das versões pós-print dos documentos em repositórios institucionais/digitais</p>
+            </div>
+            <div class="definicao-icons">
+                <img class="selos-img" src="../themes/diadorim/images/icons/svg/DIADORIM_AMARELO.svg" alt="diadorim completo">
+                <p> Amarelo: Permite o armazenamento e acesso das versões preprint dos documentos em repositórios institucionais/digitais</p>
+            </div>
+            <div class="definicao-icons">
+                <img class="selos-img" src="../themes/diadorim/images/icons/svg/DIADORIM_VERDE.svg" alt="diadorim completo">
+                <p> Verde: Permite o armazenamento e acesso das versões preprint e pós-print dos documentos em repositórios institucionais/digitais</p>
+            </div>
+    </section>
+
+</div>
+<div class="modal-logo">
+    <button class="btn-logo" data-dismiss="modal" >Cancelar</button>
+    <button class="btn-logo"id="download-btn" >Download</button>
+</div>
+
+</div>
+
+
+<script>
+document.getElementById('download-btn').addEventListener('click', function() {
+    const images = document.querySelectorAll('#selo-section .selos-img');
+    images.forEach((img, index) => {
+        const link = document.createElement('a');
+        link.href = img.src;
+        link.download = `selo${index + 1}.svg`;
+        link.click();
+    });
+});
+</script>
