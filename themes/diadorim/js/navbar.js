@@ -10,6 +10,7 @@ const navbarIds = [
   'initialPage',
   'navigate',
   'about',
+  'logosSection',
   'register',
   'feedbackLink',
 ]
@@ -39,12 +40,15 @@ function verifyCurrentNavbarLinkActive() {
   switch (window.location.pathname.split('/')[2]) {
     case 'Search':
       document.getElementById('navigate').classList.add('active-link')
-      break
+    break
     case 'Record':
       document.getElementById('navigate').classList.add('active-link')
       break
     case 'Sobre':
-      document.getElementById('about').classList.add('active-link')
+      document.getElementById('about').classList.add('active-link') 
+      break
+      case 'Logomarcas':
+      document.getElementById('logosSection').classList.add('active-link')
       break
     default:
       document.getElementById('initialPage').classList.add('active-link')
