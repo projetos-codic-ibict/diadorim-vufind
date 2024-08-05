@@ -1,4 +1,3 @@
-
 const host = window.location.hostname
 
 let URL;
@@ -455,13 +454,53 @@ function hoverCards() {
 }
 
 // button Download dos selos
-
-// document.getElementById('download-btn').addEventListener('click', function() {
-//   const images = document.querySelectorAll('#selo-section .selos-img');
-//   images.forEach((img, index) => {
-//       const link = document.createElement('a');
-//       link.href = img.src;
-//       link.download = `selo${index + 1}.svg`;
-//       link.click();
+// document.addEventListener('DOMContentLoaded', function() {
+//   document.getElementById('download-btn').addEventListener('click', function() {
+//       console.log('Botão de download clicado!');
+//       const logos = document.querySelectorAll('.logo-image');
+//       logos.forEach(logo => {
+//           const link = document.createElement('a');
+//           link.href = logo.src;
+//           link.download = logo.src.split('/').pop();
+//           document.body.appendChild(link);
+//           link.click();
+//           document.body.removeChild(link);
+//       });
 //   });
 // });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  let cancelDownload = false;
+
+  function downloadLogos(logos, index = 0) {
+      if (cancelDownload || index >= logos.length) {
+          console.log('Download cancelado ou concluído!');
+          return;
+      }
+
+      const logo = logos[index];
+      const link = document.createElement('a');
+      link.href = logo.src;
+      link.download = logo.src.split('/').pop();
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      setTimeout(() => {
+          downloadLogos(logos, index + 1);
+      }, 500); 
+  }
+
+  document.getElementById('download-btn').addEventListener('click', function() {
+      console.log('Botão de download clicado!');
+      cancelDownload = false;
+      const logos = document.querySelectorAll('.logo-image');
+      downloadLogos(logos);
+  });
+
+  document.getElementById('cancel-btn').addEventListener('click', function() {
+      console.log('Botão de cancelar clicado!');
+      cancelDownload = true;
+  });
+});
