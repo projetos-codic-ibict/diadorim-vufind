@@ -408,7 +408,33 @@ p#icon-selo {
   background-color: darkorange;
 }
 
+//exportação RIS
 
+.open>.dropdown-menu{
+  display: grid;
+}
+
+button#dropdownMenuButton{
+  border: 1px solid #ff7900;
+  // width: 20%;
+  color: #ff7900;
+  border-radius: 4px;
+  background: #fff;
+  margin-left: 1rem;
+}
+button#dropdownMenuButton:hover{
+  background: #ff7900;
+  color: #fff;
+}
+
+.search-header.hidden-print {
+  display: flex;
+  align-items: center;
+}
+
+.search-stats {
+  display: flex;
+}
 // Logomarcas 
 .title-logo {
   color: #071d41;
@@ -512,11 +538,6 @@ p.logo-description {
   .wrapper {
     background-size: 135%;
   }
-
-  .search-header.hidden-print {
-    display: flex;
-    align-items: center;
-  }
 }
 
 
@@ -537,6 +558,12 @@ a.btn-pdf {
   .wrapper {
     background-size: 145%;
   }
+  .search-stats {
+      display: inline;
+    }
+  button#dropdownMenuButton{
+    margin-left: 0;
+  } 
 
 }
 
@@ -640,9 +667,9 @@ a.btn-pdf {
     display: none;
   }
 
-  .search-header {
-    flex-direction: column;
-  }
+  // .search-header {
+  //   flex-direction: column;
+  // }
 
   .description {
     flex-direction: column;
