@@ -27,12 +27,14 @@
     "autocomplete.js": "vufind-org/autocomplete.js#v2.1.5",
     "axios": "^1.5.1",
     "feather-icons": "^4.29.1",
+    "file-saver": "^2.0.5",
     "grunt": "^1.0.4",
     "grunt-contrib-less": "^2.0.0",
     "grunt-less-to-sass": "duvillierA/grunt-less-to-sass#0.0.11",
     "grunt-sass": "^3.1.0",
     "jit-grunt": "^0.10.0",
     "jspdf": "^2.5.1",
+    "jszip": "^3.10.1",
     "node-sass": "^7.0.1"
   },
   "devDependencies": {

@@ -469,38 +469,47 @@ function hoverCards() {
 //   });
 // });
 
+// import JSZip from 'jszip';
+// import { saveAs } from 'file-saver'; 
 
 document.addEventListener('DOMContentLoaded', function() {
-  let cancelDownload = false;
-
-  function downloadLogos(logos, index = 0) {
-      if (cancelDownload || index >= logos.length) {
-          console.log('Download cancelado ou concluído!');
-          return;
-      }
-
-      const logo = logos[index];
-      const link = document.createElement('a');
-      link.href = logo.src;
-      link.download = logo.src.split('/').pop();
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-
-      setTimeout(() => {
-          downloadLogos(logos, index + 1);
-      }, 500); 
-  }
-
   document.getElementById('download-btn').addEventListener('click', function() {
+    
       console.log('Botão de download clicado!');
-      cancelDownload = false;
       const logos = document.querySelectorAll('.logo-image');
-      downloadLogos(logos);
-  });
+      const zip = new JSZip();
+      const imgFolder = zip.folder("images");
 
-  document.getElementById('cancel-btn').addEventListener('click', function() {
-      console.log('Botão de cancelar clicado!');
-      cancelDownload = true;
+      let promises = [];
+      
+      logos.forEach((logo, index) => {
+          const imgUrl = logo.src;
+          const filename = imgUrl.split('/').pop();
+          
+          promises.push(fetch(imgUrl)
+              .then(response => {
+                  if (!response.ok) {
+                      throw new Error(`Erro ao buscar imagem: ${imgUrl}`);
+                  }
+                  return response.blob();
+              })
+              .then(blob => {
+                  imgFolder.file(filename, blob);
+              })
+              .catch(error => {
+                  console.error(error);
+              })
+          );
+      });
+
+      Promise.all(promises).then(() => {
+          zip.generateAsync({ type: 'blob' }).then(content => {
+              saveAs(content, 'logos.zip');
+          }).catch(error => {
+              console.error('Erro ao gerar o arquivo zip:', error);
+          });
+      }).catch(error => {
+          console.error('Erro ao buscar todas as imagens:', error);
+      });
   });
 });
