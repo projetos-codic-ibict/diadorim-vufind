@@ -469,47 +469,182 @@ function hoverCards() {
 //   });
 // });
 
-// import JSZip from 'jszip';
-// import { saveAs } from 'file-saver'; 
+//Download dos selos com arquivo zip
 
-document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('download-btn').addEventListener('click', function() {
-    
-      console.log('Botão de download clicado!');
-      const logos = document.querySelectorAll('.logo-image');
-      const zip = new JSZip();
-      const imgFolder = zip.folder("images");
+document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById('download-btn').addEventListener('click', function () {
 
-      let promises = [];
-      
-      logos.forEach((logo, index) => {
-          const imgUrl = logo.src;
-          const filename = imgUrl.split('/').pop();
-          
-          promises.push(fetch(imgUrl)
-              .then(response => {
-                  if (!response.ok) {
-                      throw new Error(`Erro ao buscar imagem: ${imgUrl}`);
-                  }
-                  return response.blob();
-              })
-              .then(blob => {
-                  imgFolder.file(filename, blob);
-              })
-              .catch(error => {
-                  console.error(error);
-              })
-          );
-      });
+    console.log('Botão de download clicado!');
+    const logos = document.querySelectorAll('.logo-image');
+    const zip = new zip();
+    const imgFolder = zip.folder("images");
 
-      Promise.all(promises).then(() => {
-          zip.generateAsync({ type: 'blob' }).then(content => {
-              saveAs(content, 'logos.zip');
-          }).catch(error => {
-              console.error('Erro ao gerar o arquivo zip:', error);
-          });
+    let promises = [];
+
+    logos.forEach((logo, index) => {
+      const imgUrl = logo.src;
+      const filename = imgUrl.split('/').pop();
+
+      promises.push(fetch(imgUrl)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`Erro ao buscar imagem: ${imgUrl}`);
+          }
+          return response.blob();
+        })
+        .then(blob => {
+          imgFolder.file(filename, blob);
+        })
+        .catch(error => {
+          console.error(error);
+        })
+      );
+    });
+
+    Promise.all(promises).then(() => {
+      zip.generateAsync({ type: 'blob' }).then(content => {
+        saveAs(content, 'logos.zip');
       }).catch(error => {
-          console.error('Erro ao buscar todas as imagens:', error);
+        console.error('Erro ao gerar o arquivo zip:', error);
       });
+    }).catch(error => {
+      console.error('Erro ao buscar todas as imagens:', error);
+    });
   });
 });
+
+// Função que gerar o resumo das revistas em pdf
+
+// Adiciona o evento ao botão
+document.getElementById('pdfButton').addEventListener('click', gerarPDF);
+
+function getIdFromURL() {
+  const currentUrl = window.location.href;
+  const idMatch = currentUrl.match(/Record\/(\d+-[a-fA-F0-9-]+)/);
+
+  if (idMatch && idMatch[1]) {
+    return idMatch[1];
+  } else {
+    alert('ID não encontrado na URL');
+    return null;
+  }
+}
+
+async function gerarPDF() {
+  const revistaId = getIdFromURL();
+
+  if (!revistaId) {
+    return;
+  }
+
+  let response;
+  let searchURL = `search?type=AllFields&sort=lastModified&id=${revistaId}`;
+
+  try {
+    response = await fetch(`${URL}/${searchURL}`);
+    response = await response.json();
+
+    console.log(response);
+
+    if (response.records.length === 0) {
+      alert('Nenhuma revista encontrada com esse ID.');
+      return;
+    }
+
+    // Encontra a revista correta com base no ID
+    const revistaSelecionada = response.records.find(record => record.id === revistaId);
+
+    if (!revistaSelecionada) {
+      alert('Revista com o ID fornecido não foi encontrada.');
+      return;
+    }
+
+    gerarPDfComDados(revistaSelecionada);
+  } catch (error) {
+    console.error(error);
+    alert('Ocorreu um erro ao buscar a revista');
+  }
+}
+
+function gerarPDfComDados(record) {
+  if (window.jspdf && window.jspdf.jsPDF) {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Extraindo os dados corretamente de 'record'
+    const titulo = record['title'] || 'Título não disponível';
+    console.log("Título:", titulo);
+
+    // Captura a publicação corretamente
+    const publicacao = record['publisher'] || 'Editora não disponível';
+    console.log("Publisher:", publicacao);
+
+    const issn = record['issns'] && record['issns'].length > 0 ? record['issns'][0] : 'ISSN não disponível';
+    console.log("ISSN:", issn);
+
+    const urlObj = record['urls'] && record['urls'].length > 0 ? record['urls'][0] : null;
+    const link = urlObj ? urlObj.url : 'URL indisponível';
+    const descricaoLink = urlObj ? urlObj.desc : 'Descrição indisponível';
+    console.log("Link:", link);
+    console.log("Descrição do Link:", descricaoLink);
+
+    const selo = record['sealColor'] || 'Selo indisponível';
+    const dataModificacoes = record['lastModified'] || 'Não disponível ' ;
+    const editor = record['series'] || 'Editor não disponível';
+
+   const preprint = record['preprint'] || 'Informação indisponível';
+   const authorPostprint = record['authorPostprint'] || 'Informação indisponível';
+   const journalPostprint = record['journalPostprint'] || 'Informação indisponível';
+   const tipoAcesso = record['accessType'] || 'Informação indisponível';
+   const licencaCC = record['creativeCommons'] || 'Informação indisponível';
+   const email = record['email'] || 'Email indisponível';
+   const telefone = record['phone'] || 'Telefone indisponível';
+ 
+    let y = 20;
+    const lineHeight = 10;
+    const pageHeight = doc.internal.pageSize.height;
+    const margin = 10;
+    
+    // Criação do texto completo com tamanho maior para publicação
+    const text = ` O (a) ${titulo} é uma publicação oficial do (a) ${publicacao}, registrada sob o número de ISSN ${issn}, e tem como editor (a) responsável ${editor}.
+    
+    Sua página oficial é: ${link}
+
+    O (a) ${titulo} aplica a seguinte política em relação ao depósito e acesso de seus artigos em repositórios digitais/institucionais:
+
+    Versão preprint: ${preprint}
+    Versão pós-print do autor: ${authorPostprint}
+    Versão pós-print da revista: ${journalPostprint}
+
+    Por conta destas permissões, foi atribuído o seguinte selo à (ao) ${titulo}: ${selo}
+
+    O (a) ${titulo} permite o seguinte tipo de acesso aos documentos publicados: ${tipoAcesso}
+
+    Estes documentos são licenciados sob a seguinte Licença Creative Commons: ${licencaCC}
+
+    Todos os dados aqui apresentados foram informados pela equipe editorial e validados pela equipe do Diretório de políticas editoriais das revistas científicas brasileiras (Diadorim).
+
+    A última data e horário de atualização destes dados foi: ${dataModificacoes}
+
+    Para dúvidas ou mais informações, entre em contato com a equipe editorial por meio dos seguintes canais:
+    E-mail: ${email}
+    Telefone: ${telefone}
+`;
+    const splitText = doc.splitTextToSize(text, 180); 
+    
+    
+    splitText.forEach(line => {
+      if (y + lineHeight > pageHeight - margin) {
+        doc.addPage();
+        y = margin;
+      }
+      doc.text(line, 10, y);
+      y += lineHeight;
+    });
+
+    const tituloFormatado = titulo.replace(/[^a-zA-Z0-9 ]/g, "").replace(/\s+/g, '_');
+    doc.save(`${tituloFormatado}.pdf`);
+  } else {
+    alert("Erro no carregamento do jsPDF");
+  }
+}

@@ -1,4 +1,10 @@
 <?php
+    echo $this->headScript()->appendFile("loadFields.js");
+    echo $this->headScript()->appendFile('/lib/jspdf.umd.min.js');
+
+?>
+
+<?php
 $formatter = $this->recordDataFormatter($this->driver);
 $coreFields = $formatter->getData($formatter->getDefaults($this->defaults ?? 'core'));
 $config = $this->config()->get('config');
@@ -59,19 +65,22 @@ verificaões em labels diferentes sem quebrar o layout -->
       <span>
         Para ver mais informações do item acesse: <?= $handleLink ?>
       </span>
-    </div>
 
-    <div class="record-card_body">
-      <table <?php if (!empty($this->tableId)) : ?>id="<?= $this->tableId ?>" <?php endif; ?>class="table table-striped">
-        <caption class="sr-only"><?= $this->transEsc($this->caption ?? 'Bibliographic Details') ?></caption>
+      <div>
+      </div>
+        <button id="pdfButton"  onclick="gerarPDF()" class="btn-pdf">Imprimir em PDF</button>
 
-        <?php foreach ($coreFields as $current) : ?>
-          <tr>
-            <th><?= $this->transEsc($current['label']) ?>: </th>
-            <td><?= $current['value'] ?></td>
-          </tr>
-        <?php endforeach; ?>
-      </table>
+      <div class="record-card_body">
+        <table <?php if (!empty($this->tableId)) : ?>id="<?= $this->tableId ?>" <?php endif; ?>class="table table-striped">
+          <caption class="sr-only"><?= $this->transEsc($this->caption ?? 'Bibliographic Details') ?></caption>
+
+          <?php foreach ($coreFields as $current) : ?>
+            <tr>
+              <th><?= $this->transEsc($current['label']) ?>: </th>
+              <td><?= $current['value'] ?></td>
+            </tr>
+          <?php endforeach; ?>
+        </table>
+      </div>
+    <?php endif; ?>
     </div>
-  <?php endif; ?>
-</div>
