@@ -515,7 +515,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Função que gerar o resumo das revistas em pdf
 
-// Adiciona o evento ao botão
 document.getElementById('pdfButton').addEventListener('click', gerarPDF);
 
 function getIdFromURL() {
@@ -525,10 +524,13 @@ function getIdFromURL() {
   if (idMatch && idMatch[1]) {
     return idMatch[1];
   } else {
-    alert('ID não encontrado na URL');
+    console.log('ID não encontrado na URL');
     return null;
   }
 }
+
+
+
 
 async function gerarPDF() {
   const revistaId = getIdFromURL();
@@ -536,33 +538,49 @@ async function gerarPDF() {
   if (!revistaId) {
     return;
   }
+  let revistaSelecionada = null;
+  let page = 1;
+  const pageSize = 20;
+  let response 
+  let searchURL 
 
-  let response;
-  let searchURL = `search?type=AllFields&sort=lastModified&id=${revistaId}`;
-
+  // adicionei o while para  busca todas as páginas até encontrar a revista desejada
   try {
-    response = await fetch(`${URL}/${searchURL}`);
-    response = await response.json();
+    while (!revistaSelecionada) {
+      let searchURL = `search?type=AllFields&sort=lastModified&id=${revistaId}&page=${page}&pageSize=${pageSize}`;
+      let response = await fetch(`${URL}/${searchURL}`);
+      let data = await response.json();
 
-    console.log(response);
+      if (data.records.length === 0) {
+        console.log('Nenhuma revista encontrada com esse ID.');
+        return;
+      }
 
-    if (response.records.length === 0) {
-      alert('Nenhuma revista encontrada com esse ID.');
-      return;
+      
+      revistaSelecionada = data.records.find(record => record.id === revistaId);
+
+      if (revistaSelecionada) {
+        break; 
+      }
+
+      
+      if (data.records.length < pageSize) {
+        break;
+      }
+
+      page++; 
     }
 
-    // Encontra a revista correta com base no ID
-    const revistaSelecionada = response.records.find(record => record.id === revistaId);
-
     if (!revistaSelecionada) {
-      alert('Revista com o ID fornecido não foi encontrada.');
+      console.log('Revista com o ID fornecido não foi encontrada.');
       return;
     }
 
     gerarPDfComDados(revistaSelecionada);
+
   } catch (error) {
     console.error(error);
-    alert('Ocorreu um erro ao buscar a revista');
+    console.log('Ocorreu um erro ao buscar a revista');
   }
 }
 
@@ -571,42 +589,34 @@ function gerarPDfComDados(record) {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
 
-    // Extraindo os dados corretamente de 'record'
+    
+    // Captura os campos 
     const titulo = record['title'] || 'Título não disponível';
-    console.log("Título:", titulo);
-
-    // Captura a publicação corretamente
     const publicacao = record['publisher'] || 'Editora não disponível';
-    console.log("Publisher:", publicacao);
-
     const issn = record['issns'] && record['issns'].length > 0 ? record['issns'][0] : 'ISSN não disponível';
-    console.log("ISSN:", issn);
-
     const urlObj = record['urls'] && record['urls'].length > 0 ? record['urls'][0] : null;
     const link = urlObj ? urlObj.url : 'URL indisponível';
     const descricaoLink = urlObj ? urlObj.desc : 'Descrição indisponível';
-    console.log("Link:", link);
-    console.log("Descrição do Link:", descricaoLink);
-
     const selo = record['sealColor'] || 'Selo indisponível';
-    const dataModificacoes = record['lastModified'] || 'Não disponível ' ;
+    const dataModificacoes = record['lastModified'] || 'Não disponível ';
     const editor = record['series'] || 'Editor não disponível';
+    const preprint = record['preprint'] || 'Informação indisponível';
+    const authorPostprint = record['authorPostprint'] || 'Informação indisponível';
+    const journalPostprint = record['journalPostprint'] || 'Informação indisponível';
+    const tipoAcesso = record['accessType'] || 'Informação indisponível';
+    const licencaCC = record['creativeCommons'] || 'Informação indisponível';
+    const email = record['email'] || 'Email indisponível';
+    const telefone = record['phone'] || 'Telefone indisponível';
 
-   const preprint = record['preprint'] || 'Informação indisponível';
-   const authorPostprint = record['authorPostprint'] || 'Informação indisponível';
-   const journalPostprint = record['journalPostprint'] || 'Informação indisponível';
-   const tipoAcesso = record['accessType'] || 'Informação indisponível';
-   const licencaCC = record['creativeCommons'] || 'Informação indisponível';
-   const email = record['email'] || 'Email indisponível';
-   const telefone = record['phone'] || 'Telefone indisponível';
- 
+    // configurações do tamanho da página 
     let y = 20;
     const lineHeight = 10;
     const pageHeight = doc.internal.pageSize.height;
     const margin = 10;
-    
-    // Criação do texto completo com tamanho maior para publicação
-    const text = ` O (a) ${titulo} é uma publicação oficial do (a) ${publicacao}, registrada sob o número de ISSN ${issn}, e tem como editor (a) responsável ${editor}.
+
+    const text = `  Política Editorial do(a) ${titulo}
+
+    O (a) ${titulo} é uma publicação oficial do (a) ${publicacao}, registrada sob o número de ISSN ${issn}, e tem como editor (a) responsável ${editor}.
     
     Sua página oficial é: ${link}
 
@@ -631,8 +641,8 @@ function gerarPDfComDados(record) {
     Telefone: ${telefone}
 `;
     const splitText = doc.splitTextToSize(text, 180); 
-    
-    
+
+    //caso o conteúdo seja maior que a página cria-se outra página
     splitText.forEach(line => {
       if (y + lineHeight > pageHeight - margin) {
         doc.addPage();
@@ -641,10 +651,55 @@ function gerarPDfComDados(record) {
       doc.text(line, 10, y);
       y += lineHeight;
     });
-
+    // salva o nome do arquivo pdf com o mesmo nome da revista
     const tituloFormatado = titulo.replace(/[^a-zA-Z0-9 ]/g, "").replace(/\s+/g, '_');
     doc.save(`${tituloFormatado}.pdf`);
   } else {
-    alert("Erro no carregamento do jsPDF");
+    console.log("Erro no carregamento do jsPDF");
   }
 }
+
+
+async function getTotalRevistas() {
+  const searchURL = `search?type=AllFields&sort=lastModified&page=1&limit=1`; // Solicita apenas 1 revista para obter o total
+  try {
+    let response = await fetch(`${URL}/${searchURL}`);
+    let data = await response.json();
+    
+    return data.resultCount || 0; // Supondo que 'resultCount' seja o campo que contém o total de revistas
+  } catch (errors) {
+    console.error(errors);
+    return 0; // Retorna 0 em caso de erro
+  }
+}
+
+async function getAllRevistas(limit = 100) {
+  let totalRevistas = await getTotalRevistas();
+  let allRecords = [];
+  let page = 1;
+  let totalRecordsFetched = 0;
+
+  while (totalRecordsFetched < totalRevistas) {
+    const searchURL = `search?type=AllFields&sort=lastModified&page=${page}&limit=${limit}`;
+    
+    try {
+      let response = await fetch(`${URL}/${searchURL}`);
+      let data = await response.json();
+
+      if (data.records.length > 0) {
+        allRecords = allRecords.concat(data.records);
+        totalRecordsFetched += data.records.length;
+        page++;
+      } else {
+        break; // Sai do loop se não houver mais registros
+      }
+      
+    } catch (errors) {
+      console.error(errors);
+      break; // Sai do loop em caso de erro
+    }
+  }
+
+  return allRecords;
+}
+
