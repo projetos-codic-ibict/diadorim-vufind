@@ -529,60 +529,47 @@ function getIdFromURL() {
   }
 }
 
-
-
-
+//search?type=AllFields&sort=lastModified&id=${revistaId}
 async function gerarPDF() {
   const revistaId = getIdFromURL();
 
   if (!revistaId) {
+    console.log('ID da revista não encontrado na URL.');
     return;
   }
-  let revistaSelecionada = null;
-  let page = 1;
-  const pageSize = 20;
-  let response 
-  let searchURL 
-
-  // adicionei o while para  busca todas as páginas até encontrar a revista desejada
+  console.log("id", revistaId);
   try {
-    while (!revistaSelecionada) {
-      let searchURL = `search?type=AllFields&sort=lastModified&id=${revistaId}&page=${page}&pageSize=${pageSize}`;
-      let response = await fetch(`${URL}/${searchURL}`);
-      let data = await response.json();
+    // record?id=${revistaId}&field[]=title&&field[]=authors
+    let RecordURL = `record?type=AllFields&sort=lastModified&id=${revistaId}`
+    // let RecordURL = `record?id=${revistaId}&field[]=title&&field[]=authors`;    
+    let response = await fetch(`${URL}/${RecordURL}`);
+    let data = await response.json();
 
-      if (data.records.length === 0) {
-        console.log('Nenhuma revista encontrada com esse ID.');
-        return;
-      }
-
-      
-      revistaSelecionada = data.records.find(record => record.id === revistaId);
-
-      if (revistaSelecionada) {
-        break; 
-      }
-
-      
-      if (data.records.length < pageSize) {
-        break;
-      }
-
-      page++; 
-    }
-
-    if (!revistaSelecionada) {
-      console.log('Revista com o ID fornecido não foi encontrada.');
+    if (!response.ok) {
+      console.error(`Erro na requisição: ${response.statusText}`);
       return;
     }
 
-    gerarPDfComDados(revistaSelecionada);
+    
+    console.log("O que está vindo da api",data)
+    
+    if (data && Object.keys(data).length > 0) {
+      // Se houver dados, vamos processá-los, mesmo que `records` esteja vazio ou não exista
+      const revistaSelecionada = data.records ? data.records.find(record => record.id === revistaId) : data;
 
+      if (!revistaSelecionada) {
+        console.log('Nenhuma revista específica encontrada com esse ID, mas há outros dados disponíveis.');
+      }
+
+      gerarPDfComDados(revistaSelecionada || data); 
+    } else {
+      console.log('Nenhum dado retornado da API.');
+    }
   } catch (error) {
-    console.error(error);
-    console.log('Ocorreu um erro ao buscar a revista');
+    console.error('Ocorreu um erro ao buscar a revista:', error);
   }
 }
+
 
 function gerarPDfComDados(record) {
   if (window.jspdf && window.jspdf.jsPDF) {
@@ -596,17 +583,17 @@ function gerarPDfComDados(record) {
     const issn = record['issns'] && record['issns'].length > 0 ? record['issns'][0] : 'ISSN não disponível';
     const urlObj = record['urls'] && record['urls'].length > 0 ? record['urls'][0] : null;
     const link = urlObj ? urlObj.url : 'URL indisponível';
-    const descricaoLink = urlObj ? urlObj.desc : 'Descrição indisponível';
+    // const descricaoLink = urlObj ? urlObj.desc : 'Descrição indisponível';
     const selo = record['sealColor'] || 'Selo indisponível';
     const dataModificacoes = record['lastModified'] || 'Não disponível ';
-    const editor = record['series'] || 'Editor não disponível';
-    const preprint = record['preprint'] || 'Informação indisponível';
-    const authorPostprint = record['authorPostprint'] || 'Informação indisponível';
-    const journalPostprint = record['journalPostprint'] || 'Informação indisponível';
-    const tipoAcesso = record['accessType'] || 'Informação indisponível';
-    const licencaCC = record['creativeCommons'] || 'Informação indisponível';
-    const email = record['email'] || 'Email indisponível';
-    const telefone = record['phone'] || 'Telefone indisponível';
+    const editor = record['dc.contributor.editor'] || 'Editor não disponível';
+    const preprint = record['dc.rights.preprint'] || 'Informação indisponível';
+    const authorPostprint = record['dc.rights.authorpostprint'] || 'Informação indisponível';
+    const journalPostprint = record['dc.rights.journalpostprint'] || 'Informação indisponível';
+    const tipoAcesso = record['dc.rights.access'] || 'Informação indisponível';
+    const licencaCC = record['dc.rights.creativecommons'] || 'Informação indisponível';
+    const email = record['dc.identifier.email'] || 'Email indisponível';
+    const telefone = record['dc.description.phone'] || 'Telefone indisponível';
 
     // configurações do tamanho da página 
     let y = 20;
@@ -659,47 +646,4 @@ function gerarPDfComDados(record) {
   }
 }
 
-
-async function getTotalRevistas() {
-  const searchURL = `search?type=AllFields&sort=lastModified&page=1&limit=1`; // Solicita apenas 1 revista para obter o total
-  try {
-    let response = await fetch(`${URL}/${searchURL}`);
-    let data = await response.json();
-    
-    return data.resultCount || 0; // Supondo que 'resultCount' seja o campo que contém o total de revistas
-  } catch (errors) {
-    console.error(errors);
-    return 0; // Retorna 0 em caso de erro
-  }
-}
-
-async function getAllRevistas(limit = 100) {
-  let totalRevistas = await getTotalRevistas();
-  let allRecords = [];
-  let page = 1;
-  let totalRecordsFetched = 0;
-
-  while (totalRecordsFetched < totalRevistas) {
-    const searchURL = `search?type=AllFields&sort=lastModified&page=${page}&limit=${limit}`;
-    
-    try {
-      let response = await fetch(`${URL}/${searchURL}`);
-      let data = await response.json();
-
-      if (data.records.length > 0) {
-        allRecords = allRecords.concat(data.records);
-        totalRecordsFetched += data.records.length;
-        page++;
-      } else {
-        break; // Sai do loop se não houver mais registros
-      }
-      
-    } catch (errors) {
-      console.error(errors);
-      break; // Sai do loop em caso de erro
-    }
-  }
-
-  return allRecords;
-}
 

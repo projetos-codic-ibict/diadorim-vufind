@@ -412,3 +412,43 @@ handle:
   vufind.default: true
   description: Use to handle id to get miguilim link
   type: string
+dc.contributor.editor:
+  vufind.method: getEditor
+  vufind.default: true
+  description: Responsible editor
+  type: string
+dc.rights.preprint:
+  vufind.method: getPrePrint
+  vufind.default: true
+  description: preprint submission
+  type: string
+dc.rights.authorpostprint:
+  vufind.method: getAuthorPostPrint
+  vufind.default: true
+  description: access to the preprint version
+  type: string
+dc.rights.journalpostprint:
+  vufind.method: getJournalPostPrint
+  vufind.default: true
+  description: access to the author's post-print version
+  type: string
+dc.rights.access:
+  vufind.method: getAccess
+  vufind.default: true
+  description: Access type
+  type: string
+dc.rights.creativecommons:
+  vufind.method: getCreativeCommons
+  vufind.default: true
+  description: Creative Commons License
+  type: string
+dc.identifier.email:
+  vufind.method: getEmail
+  vufind.default: true
+  description: email
+  type: string
+dc.description.phone:
+  vufind.method: getPhone
+  vufind.default: true
+  description: phone
+  type: string
