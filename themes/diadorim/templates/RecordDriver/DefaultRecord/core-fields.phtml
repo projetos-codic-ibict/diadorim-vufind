@@ -1,6 +1,6 @@
 <?php
-    echo $this->headScript()->appendFile("loadFields.js");
-    echo $this->headScript()->appendFile('/lib/jspdf.umd.min.js');
+echo $this->headScript()->appendFile("loadFields.js");
+echo $this->headScript()->appendFile('/lib/jspdf.umd.min.js');
 
 ?>
 
@@ -66,9 +66,7 @@ verificaões em labels diferentes sem quebrar o layout -->
         Para ver mais informações do item acesse: <?= $handleLink ?>
       </span>
 
-      <div>
-      </div>
-        <button id="pdfButton"  onclick="gerarPDF()" class="btn-pdf">Imprimir em PDF</button>
+      <!-- <button id="pdfButton"  onclick="gerarPDF()" class="btn-pdf">Imprimir em PDF</button> -->
 
       <div class="record-card_body">
         <table <?php if (!empty($this->tableId)) : ?>id="<?= $this->tableId ?>" <?php endif; ?>class="table table-striped">
