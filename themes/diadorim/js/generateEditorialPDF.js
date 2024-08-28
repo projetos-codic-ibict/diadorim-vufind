@@ -143,7 +143,7 @@ function gerarPDfComDados(record) {
       const imgData = canvas1.toDataURL('image/png');
       const imgWidth = 210;
       const imgHeight = (canvas1.height * imgWidth) / canvas1.width;
-      let yPosition = 60;
+      let yPosition = 40;
 
       doc.addImage(imgInicio, 'PNG', margin, margin, 60, 30);
 
