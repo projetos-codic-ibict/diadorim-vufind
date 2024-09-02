@@ -41,7 +41,7 @@ async function gerarPDF(revistaId) {
   }
   console.log("id", revistaId);
   try {
-    let RecordURL = `record?id=${revistaId}&field[]=title&field[]=publisher&field[]=issns&field[]=urls&field[]=sealColor&field[]=lastModified&field[]=dc.contributor.editor&field[]=dc.rights.preprint&field[]=dc.rights.authorpostprint&field[]=dc.rights.journalpostprint&field[]=dc.rights.acess&field[]=dc.rights.creativecommons&field[]=dc.identifier.email&field[]=dc.description.phone`;
+    let RecordURL = `record?id=${revistaId}&field[]=title&field[]=publisher&field[]=issns&field[]=urls&field[]=sealColor&field[]=lastModified&field[]=dc.contributor.editor&field[]=dc.rights.preprint&field[]=dc.rights.authorpostprint&field[]=dc.rights.journalpostprint&field[]=dc.rights.access&field[]=dc.rights.creativecommons&field[]=dc.identifier.email&field[]=dc.description.phone`;
 
     let response = await fetch(`${URL}/${RecordURL}`);
 
@@ -93,6 +93,7 @@ function gerarPDfComDados(record) {
     const authorPostprint = record['dc.rights.authorpostprint'] || 'Informação indisponível';
     const journalPostprint = record['dc.rights.journalpostprint'] || 'Informação indisponível';
     const tipoAcesso = record['dc.rights.access'] || 'Informação indisponível';
+    console.log("tipo de acesso: ",tipoAcesso)
     const licencaCC = record['dc.rights.creativecommons'] || 'Informação indisponível';
     const email = record['dc.identifier.email'] || 'Email indisponível';
     const telefone = record['dc.description.phone'] || 'Telefone indisponível';
@@ -130,7 +131,6 @@ function gerarPDfComDados(record) {
       <p><strong>Versão pós-print da revista:</strong> ${journalPostprint}</p>  
       <p>Por conta destas permissões, foi atribuído o seguinte selo à (ao) ${titulo}: ${selo}</p>
       <p>O (a) ${titulo} permite o seguinte tipo de acesso aos documentos publicados: ${tipoAcesso}</p>
-      <p>Estes documentos são licenciados sob a seguinte Licença Creative Commons: ${licencaCC}</p>
     `;
 
     contentElement1.style.width = `${pageWidth}mm`;
@@ -202,6 +202,7 @@ function gerarPDfComDados(record) {
           }
         </style>
         <div class=container>
+        <p>Estes documentos são licenciados sob a seguinte Licença Creative Commons: ${licencaCC}</p>
         <p>Todos os dados aqui apresentados foram informados pela equipe editorial e validados pela equipe do Diretório de políticas editoriais das revistas científicas brasileiras (Diadorim).</p>
         <p><i>A última data e horário de atualização destes dados foi: ${dataModificacoes}</i></p>
         <hr class="centralizado" />
