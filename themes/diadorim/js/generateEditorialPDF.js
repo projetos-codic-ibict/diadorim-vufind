@@ -41,7 +41,7 @@ async function gerarPDF(revistaId) {
   }
   console.log("id", revistaId);
   try {
-    let RecordURL = `record?id=${revistaId}&field[]=title&field[]=publisher&field[]=issns&field[]=urls&field[]=sealColor&field[]=lastModified&field[]=dc.contributor.editor&field[]=dc.rights.preprint&field[]=dc.rights.authorpostprint&field[]=dc.journalpostprint&field[]=dc.rights.acess&field[]=dc.rights.creativecommons&field[]=dc.identifier.email&field[]=dc.description.phone`;
+    let RecordURL = `record?id=${revistaId}&field[]=title&field[]=publisher&field[]=issns&field[]=urls&field[]=sealColor&field[]=lastModified&field[]=dc.contributor.editor&field[]=dc.rights.preprint&field[]=dc.rights.authorpostprint&field[]=dc.rights.journalpostprint&field[]=dc.rights.acess&field[]=dc.rights.creativecommons&field[]=dc.identifier.email&field[]=dc.description.phone`;
 
     let response = await fetch(`${URL}/${RecordURL}`);
 
@@ -104,20 +104,21 @@ function gerarPDfComDados(record) {
     contentElement1.innerHTML = `
       <style>
         h1 {
-          font-size: 14pt;
+          font-size: 16pt;
           font-weight: 700;
           padding-top:15px;
           padding-bottom:15px;
         }
         p {
-          font-size: 12pt;
-          line-height: 2;
+          font-size: 14pt;
+          line-height: 1.6;
           text-align: justify;
-          font-family: Open Sans;
-          color: #363636;
+          font-family: 'Open Sans', sans-serif;
+          color: #333333;
         }
         a {
-          text-decoration: none;
+          text-decoration: underline;
+          color: #333333;
         }
       </style>
       <h1>Política Editorial do(a) ${titulo}</h1>
@@ -155,36 +156,61 @@ function gerarPDfComDados(record) {
       const contentElement2 = document.createElement('div');
       contentElement2.innerHTML = `
         <style>
-          p {
-          font-size: 12pt;
-          line-height: 2;
-          text-align: justify !important;
-          font-family: Open Sans;
-          color: #363636;
-          padding:0;
-          }
+        .container{
+          width:90%;
+          box-sizing: border-box;
+          margin:0;
+          padding: 10px;
+          page-break-inside: avoid; /* Evita quebras de página no meio do contêiner */
+        }
+        .container p {
+          font-size: 14pt;
+          line-height: 1.6;
+          text-align: justify;
+          font-family: 'Open Sans', sans-serif;
+          color: #333333;
+        }
 
-          hr {
+        hr {
           border: none;
           border-top: 1px solid #E1E0E0;
           margin-top: 10px;
           margin-bottom: 20px;
-          margin-rigth: 55px;
+          width:100%;
+          box-sizing: border-box;
+          text-align:center;
+
+          }
+
+          .container p strong{
+            display: block;
+            margin-top:20px;
 
           }
 
           .centralizado {
-          text-align: center;
-          margin-right: 55px;
+            text-align: center;
+            margin: 0 auto;
+
+          }
+          .container p i{
+            padding-bottom: 25px;
+            color: #6A6A6A;
+          }
+          p + p {
+          margin-top:20px
           }
         </style>
-        <p class="centralizado">Todos os dados aqui apresentados foram informados pela equipe editorial e validados pela equipe do Diretório de políticas editoriais das revistas científicas brasileiras (Diadorim).</p></br>
-        <p  class="centralizado"><i>A última data e horário de atualização destes dados foi: ${dataModificacoes}</i></p></br>
+        <div class=container>
+        <p>Todos os dados aqui apresentados foram informados pela equipe editorial e validados pela equipe do Diretório de políticas editoriais das revistas científicas brasileiras (Diadorim).</p>
+        <p><i>A última data e horário de atualização destes dados foi: ${dataModificacoes}</i></p>
         <hr class="centralizado" />
-        <p class="centralizado"><strong>Para dúvidas ou mais informações, entre em contato com a equipe editorial por meio dos seguintes canais:</strong></p></br>
+        <p><strong>Para dúvidas ou mais informações, entre em contato com a equipe editorial por meio dos seguintes canais:</strong></p>
         <p>E-mail: ${email}</p>
         <p>Telefone: ${telefone}</p>
+        </div>
       `;
+
 
       contentElement2.style.width = `${pageWidth}mm`;
       contentElement2.style.padding = `${margin}mm`;
@@ -193,12 +219,14 @@ function gerarPDfComDados(record) {
 
       document.body.appendChild(contentElement2);
 
+      
+
       html2canvas(contentElement2).then((canvas2) => {
         const imgData2 = canvas2.toDataURL('image/png');
         const imgWidth = 210;
         const imgHeight2 = (canvas2.height * pageWidth) / canvas2.width;
         let yPosition = 60;
-
+        
 
         doc.addImage(imgData2, 'PNG', margin, margin, imgWidth, imgHeight2);
         yPosition += imgHeight;
