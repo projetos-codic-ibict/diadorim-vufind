@@ -325,4 +325,17 @@ class SolrDefault extends \VuFind\RecordDriver\SolrDefault
     {
         return $this->getFieldValue("handle");
     }
+
+     /**
+     * Get first field occurrence
+     *
+     * @return string
+     */
+
+     public function getReference()
+     {
+        return $this-> getFieldValue("dc.description.bibliographicreference");
+     }
+
+    
 }

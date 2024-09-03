@@ -62,6 +62,7 @@ class RecordDataFormatterFactory extends \VuFind\View\Helper\Root\RecordDataForm
         $spec->setLine("Handle", "getHandle");
         //$spec->setLine("Last modified", "getLastModified");
         $spec->setTemplateLine('Last modified', true, 'date.phtml');
+        $spec->setLine("Referência Bibliográfica", "getReference");
         return $spec->getArray();
     }
 }
