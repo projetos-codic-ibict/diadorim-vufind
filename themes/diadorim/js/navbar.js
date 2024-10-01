@@ -1,15 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
-  watchNavbarLinks()
-})
+  watchNavbarLinks();
+  setupDropdown();
+});
 
 window.onload = () => {
-  verifyCurrentNavbarLinkActive()
+  verifyCurrentNavbarLinkActive();
 }
 
 const navbarIds = [
   'initialPage',
   'navigate',
-  'about',
+  'aboutDropdown',
+  'aboutDiadorim',
+  'criterios',
   'logosSection',
   'register',
   'feedbackLink',
@@ -30,14 +33,21 @@ function watchNavbarLinks() {
 function verifyNavbarLinks(currentId) {
   navbarIds.forEach(id => {
     const item = document.getElementById(id)
-    item.classList.remove('active-link')
+
+    if (item) {
+      item.classList.remove('active-link')
+    }
   })
 
-  currentId.classList.add('active-link')
+  if (currentId) {
+    currentId.classList.add('active-link')
+  }
 }
 
 function verifyCurrentNavbarLinkActive() {
-  switch (window.location.pathname.split('/')[2]) {
+  const path = window.location.pathname.split('/')[2]
+
+  switch (path) {
   case 'Search':
     document.getElementById('navigate').classList.add('active-link')
     break
@@ -45,13 +55,39 @@ function verifyCurrentNavbarLinkActive() {
     document.getElementById('navigate').classList.add('active-link')
     break
   case 'Sobre':
-    document.getElementById('about').classList.add('active-link') 
+    document.getElementById('aboutDropdown').classList.add('active-link')
     break
   case 'Logomarcas':
     document.getElementById('logosSection').classList.add('active-link')
+    break
+  case 'Criterios':
+    document.getElementById('aboutDropdown').classList.add('active-link')
     break
   default:
     document.getElementById('initialPage').classList.add('active-link')
   }
 }
 
+function setupDropdown() {
+  const dropdownToggle = document.getElementById('aboutDropdown');
+  const dropdownMenu = document.getElementById('dropdownMenu');
+
+  if (dropdownToggle) {
+    dropdownToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      const isExpanded = dropdownToggle.getAttribute('aria-expanded') === 'true';
+
+      // Alterna o dropdown
+      dropdownToggle.setAttribute('aria-expanded', !isExpanded);
+      dropdownMenu.style.display = isExpanded ? 'none' : 'block';
+    });
+  }
+
+  // Fechar dropdown ao clicar fora
+  document.addEventListener('click', (e) => {
+    if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+      dropdownMenu.style.display = 'none';
+      dropdownToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+}

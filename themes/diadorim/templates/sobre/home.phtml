@@ -1,133 +1,47 @@
-<?php $this->headTitle($this->translate('Sobre')); ?>
-<?php $this->layout()->searchbox = false; ?>
+<?php
+$this->headTitle($this->translate('Sobre'));
+$this->layout()->searchbox = false;
+?>
 
 <div class="about">
     <div class="wrapper">
         <!-- imagem gerada separadamente -->
     </div>
-    <!-- <div class="about-title" id="title-about">
-        <img class="img-about" src="../images/diadorim-about.png" alt="Logo diadorim">
-    </div> -->
+
+    <!-- Links de navegação sobre o Diadorim -->
     <div class="about-links">
         <ul>
-            <li>
-                <svg width="24" height="24" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="linkIconTitle" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#000000">
-                    <title id="linkIconTitle">Link</title>
-                    <path d="M10.5,15.5 C10.5,14.1666667 10.5,13.5 10.5,13.5 C10.5,10.7385763 8.26142375,8.5 5.5,8.5 C2.73857625,8.5 0.5,10.7385763 0.5,13.5 C0.5,13.5 0.5,14.1666667 0.5,15.5" transform="rotate(-90 5.5 12)" />
-                    <path d="M8,12 L16,12" />
-                    <path d="M23.5,15.5 C23.5,14.1666667 23.5,13.5 23.5,13.5 C23.5,10.7385763 21.2614237,8.5 18.5,8.5 C15.7385763,8.5 13.5,10.7385763 13.5,13.5 C13.5,13.5 13.5,14.1666667 13.5,15.5" transform="rotate(90 18.5 12)" />
-                </svg>
-                <a href="#OqDiadorim" rel="noopener noreferrer">O que é Diadorim?</a>
-            </li>
-            <li>
-                <svg width="24" height="24" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="linkIconTitle" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#000000">
-                    <title id="linkIconTitle">Link</title>
-                    <path d="M10.5,15.5 C10.5,14.1666667 10.5,13.5 10.5,13.5 C10.5,10.7385763 8.26142375,8.5 5.5,8.5 C2.73857625,8.5 0.5,10.7385763 0.5,13.5 C0.5,13.5 0.5,14.1666667 0.5,15.5" transform="rotate(-90 5.5 12)" />
-                    <path d="M8,12 L16,12" />
-                    <path d="M23.5,15.5 C23.5,14.1666667 23.5,13.5 23.5,13.5 C23.5,10.7385763 21.2614237,8.5 18.5,8.5 C15.7385763,8.5 13.5,10.7385763 13.5,13.5 C13.5,13.5 13.5,14.1666667 13.5,15.5" transform="rotate(90 18.5 12)" />
-                </svg>
-                <a href="#nameDiadorim" rel="noopener noreferrer">Por que o nome Diadorim?</a>
-            </li>
+            <?php
+            $links = [
+                ['#OqDiadorim', 'O que é Diadorim?'],
+                ['#nameDiadorim', 'Por que o nome Diadorim?'],
+                ['#ParaqServe', 'Para que serve o Diadorim?'],
+                ['#autores', 'Para os Autores:'],
+                ['#editores', 'Para os Editores:'],
+                ['#gestores', 'Para os Gestores dos repositórios institucionais:'],
+                ['#importante', 'Por que é importante para o editor cadastrar a política editorial da revista no Diadorim?'],
+                ['#ComoFunciona', 'Como funciona o sistema de cores?'],
+                ['#qualDiferenca', 'Qual a diferença do pós-print do autor e do pós-print da revista?'],
+                ['#sistemaDeCores', 'Por que o Diadorim usa este sistema de cores para categorizar as políticas?'],
+                ['#cadastroRevista', 'Como cadastrar minha revista?'],
+                ['#revistaDiadorim', 'Minha revista está no Miguilim mas não aparece no Diadorim. Por que isso acontece?'],
+                ['#revistaCadastrada', 'Qualquer revista pode ser cadastrada?'],
+                ['#comoAlterar', 'Como alterar as informações do registro?']
+            ];
 
-            <li>
-                <svg width="24" height="24" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="linkIconTitle" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#000000">
-                    <title id="linkIconTitle">Link</title>
-                    <path d="M10.5,15.5 C10.5,14.1666667 10.5,13.5 10.5,13.5 C10.5,10.7385763 8.26142375,8.5 5.5,8.5 C2.73857625,8.5 0.5,10.7385763 0.5,13.5 C0.5,13.5 0.5,14.1666667 0.5,15.5" transform="rotate(-90 5.5 12)" />
-                    <path d="M8,12 L16,12" />
-                    <path d="M23.5,15.5 C23.5,14.1666667 23.5,13.5 23.5,13.5 C23.5,10.7385763 21.2614237,8.5 18.5,8.5 C15.7385763,8.5 13.5,10.7385763 13.5,13.5 C13.5,13.5 13.5,14.1666667 13.5,15.5" transform="rotate(90 18.5 12)" />
-                </svg>
-                <a href="#ParaqServe" rel="noopener noreferrer">Para que serve o Diadorim?</a>
-            </li>
-            <li>
-                <svg width="24" height="24" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="linkIconTitle" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#000000">
-                    <title id="linkIconTitle">Link</title>
-                    <path d="M10.5,15.5 C10.5,14.1666667 10.5,13.5 10.5,13.5 C10.5,10.7385763 8.26142375,8.5 5.5,8.5 C2.73857625,8.5 0.5,10.7385763 0.5,13.5 C0.5,13.5 0.5,14.1666667 0.5,15.5" transform="rotate(-90 5.5 12)" />
-                    <path d="M8,12 L16,12" />
-                    <path d="M23.5,15.5 C23.5,14.1666667 23.5,13.5 23.5,13.5 C23.5,10.7385763 21.2614237,8.5 18.5,8.5 C15.7385763,8.5 13.5,10.7385763 13.5,13.5 C13.5,13.5 13.5,14.1666667 13.5,15.5" transform="rotate(90 18.5 12)" />
-                </svg>
-                <a href="#autores" rel="noopener noreferrer">Para os Autores:</a>
-            </li>
-            <li>
-                <svg width="24" height="24" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="linkIconTitle" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#000000">
-                    <title id="linkIconTitle">Link</title>
-                    <path d="M10.5,15.5 C10.5,14.1666667 10.5,13.5 10.5,13.5 C10.5,10.7385763 8.26142375,8.5 5.5,8.5 C2.73857625,8.5 0.5,10.7385763 0.5,13.5 C0.5,13.5 0.5,14.1666667 0.5,15.5" transform="rotate(-90 5.5 12)" />
-                    <path d="M8,12 L16,12" />
-                    <path d="M23.5,15.5 C23.5,14.1666667 23.5,13.5 23.5,13.5 C23.5,10.7385763 21.2614237,8.5 18.5,8.5 C15.7385763,8.5 13.5,10.7385763 13.5,13.5 C13.5,13.5 13.5,14.1666667 13.5,15.5" transform="rotate(90 18.5 12)" />
-                </svg>
-                <a href="#editores" rel="noopener noreferrer">Para os Editores:</a>
-            </li>
-            <li>
-                <svg width="24" height="24" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="linkIconTitle" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#000000">
-                    <title id="linkIconTitle">Link</title>
-                    <path d="M10.5,15.5 C10.5,14.1666667 10.5,13.5 10.5,13.5 C10.5,10.7385763 8.26142375,8.5 5.5,8.5 C2.73857625,8.5 0.5,10.7385763 0.5,13.5 C0.5,13.5 0.5,14.1666667 0.5,15.5" transform="rotate(-90 5.5 12)" />
-                    <path d="M8,12 L16,12" />
-                    <path d="M23.5,15.5 C23.5,14.1666667 23.5,13.5 23.5,13.5 C23.5,10.7385763 21.2614237,8.5 18.5,8.5 C15.7385763,8.5 13.5,10.7385763 13.5,13.5 C13.5,13.5 13.5,14.1666667 13.5,15.5" transform="rotate(90 18.5 12)" />
-                </svg>
-                <a href="#gestores" rel="noopener noreferrer">Para os Gestores dos repositórios institucionais:</a>
-            </li>
-            <li>
-                <svg width="24" height="24" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="linkIconTitle" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#000000">
-                    <title id="linkIconTitle">Link</title>
-                    <path d="M10.5,15.5 C10.5,14.1666667 10.5,13.5 10.5,13.5 C10.5,10.7385763 8.26142375,8.5 5.5,8.5 C2.73857625,8.5 0.5,10.7385763 0.5,13.5 C0.5,13.5 0.5,14.1666667 0.5,15.5" transform="rotate(-90 5.5 12)" />
-                    <path d="M8,12 L16,12" />
-                    <path d="M23.5,15.5 C23.5,14.1666667 23.5,13.5 23.5,13.5 C23.5,10.7385763 21.2614237,8.5 18.5,8.5 C15.7385763,8.5 13.5,10.7385763 13.5,13.5 C13.5,13.5 13.5,14.1666667 13.5,15.5" transform="rotate(90 18.5 12)" />
-                </svg>
-                <a href="#importante" rel="noopener noreferrer">Por que é importante para o editor cadastrar a política editorial da revista no Diadorim?</a>
-            </li>
-            <li>
-                <svg width="24" height="24" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="linkIconTitle" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#000000">
-                    <title id="linkIconTitle">Link</title>
-                    <path d="M10.5,15.5 C10.5,14.1666667 10.5,13.5 10.5,13.5 C10.5,10.7385763 8.26142375,8.5 5.5,8.5 C2.73857625,8.5 0.5,10.7385763 0.5,13.5 C0.5,13.5 0.5,14.1666667 0.5,15.5" transform="rotate(-90 5.5 12)" />
-                    <path d="M8,12 L16,12" />
-                    <path d="M23.5,15.5 C23.5,14.1666667 23.5,13.5 23.5,13.5 C23.5,10.7385763 21.2614237,8.5 18.5,8.5 C15.7385763,8.5 13.5,10.7385763 13.5,13.5 C13.5,13.5 13.5,14.1666667 13.5,15.5" transform="rotate(90 18.5 12)" />
-                </svg>
-                <a href="#ComoFunciona" rel="noopener noreferrer">Como funciona o sistema de cores?</a>
-            </li>
-            <li>
-                <svg width="24" height="24" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="linkIconTitle" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#000000">
-                    <title id="linkIconTitle">Link</title>
-                    <path d="M10.5,15.5 C10.5,14.1666667 10.5,13.5 10.5,13.5 C10.5,10.7385763 8.26142375,8.5 5.5,8.5 C2.73857625,8.5 0.5,10.7385763 0.5,13.5 C0.5,13.5 0.5,14.1666667 0.5,15.5" transform="rotate(-90 5.5 12)" />
-                    <path d="M8,12 L16,12" />
-                    <path d="M23.5,15.5 C23.5,14.1666667 23.5,13.5 23.5,13.5 C23.5,10.7385763 21.2614237,8.5 18.5,8.5 C15.7385763,8.5 13.5,10.7385763 13.5,13.5 C13.5,13.5 13.5,14.1666667 13.5,15.5" transform="rotate(90 18.5 12)" />
-                </svg>
-                <a href="#qualDiferenca" rel="noopener noreferrer">Qual a diferença do pós-print do autor e do pós-print da revista?</a>
-            </li>
-            <li>
-                <svg width="24" height="24" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="linkIconTitle" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#000000">
-                    <title id="linkIconTitle">Link</title>
-                    <path d="M10.5,15.5 C10.5,14.1666667 10.5,13.5 10.5,13.5 C10.5,10.7385763 8.26142375,8.5 5.5,8.5 C2.73857625,8.5 0.5,10.7385763 0.5,13.5 C0.5,13.5 0.5,14.1666667 0.5,15.5" transform="rotate(-90 5.5 12)" />
-                    <path d="M8,12 L16,12" />
-                    <path d="M23.5,15.5 C23.5,14.1666667 23.5,13.5 23.5,13.5 C23.5,10.7385763 21.2614237,8.5 18.5,8.5 C15.7385763,8.5 13.5,10.7385763 13.5,13.5 C13.5,13.5 13.5,14.1666667 13.5,15.5" transform="rotate(90 18.5 12)" />
-                </svg>
-                <a href="#sistemaDeCores" rel="noopener noreferrer">Por que o Diadorim usa este sistema de cores para categorizar as políticas?</a>
-            </li>
-            <li>
-                <svg width="24" height="24" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="linkIconTitle" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#000000">
-                    <title id="linkIconTitle">Link</title>
-                    <path d="M10.5,15.5 C10.5,14.1666667 10.5,13.5 10.5,13.5 C10.5,10.7385763 8.26142375,8.5 5.5,8.5 C2.73857625,8.5 0.5,10.7385763 0.5,13.5 C0.5,13.5 0.5,14.1666667 0.5,15.5" transform="rotate(-90 5.5 12)" />
-                    <path d="M8,12 L16,12" />
-                    <path d="M23.5,15.5 C23.5,14.1666667 23.5,13.5 23.5,13.5 C23.5,10.7385763 21.2614237,8.5 18.5,8.5 C15.7385763,8.5 13.5,10.7385763 13.5,13.5 C13.5,13.5 13.5,14.1666667 13.5,15.5" transform="rotate(90 18.5 12)" />
-                </svg>
-                <a href="#cadastroRevista" rel="noopener noreferrer">Como cadastrar minha revista?</a>
-            </li>
-            <li>
-                <svg width="24" height="24" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="linkIconTitle" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#000000">
-                    <title id="linkIconTitle">Link</title>
-                    <path d="M10.5,15.5 C10.5,14.1666667 10.5,13.5 10.5,13.5 C10.5,10.7385763 8.26142375,8.5 5.5,8.5 C2.73857625,8.5 0.5,10.7385763 0.5,13.5 C0.5,13.5 0.5,14.1666667 0.5,15.5" transform="rotate(-90 5.5 12)" />
-                    <path d="M8,12 L16,12" />
-                    <path d="M23.5,15.5 C23.5,14.1666667 23.5,13.5 23.5,13.5 C23.5,10.7385763 21.2614237,8.5 18.5,8.5 C15.7385763,8.5 13.5,10.7385763 13.5,13.5 C13.5,13.5 13.5,14.1666667 13.5,15.5" transform="rotate(90 18.5 12)" />
-                </svg>
-                <a href="#revistaCadastrada" rel="noopener noreferrer">Qualquer revista pode ser cadastrada?</a>
-            </li>
-            <li>
-                <svg width="24" height="24" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="linkIconTitle" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#000000">
-                    <title id="linkIconTitle">Link</title>
-                    <path d="M10.5,15.5 C10.5,14.1666667 10.5,13.5 10.5,13.5 C10.5,10.7385763 8.26142375,8.5 5.5,8.5 C2.73857625,8.5 0.5,10.7385763 0.5,13.5 C0.5,13.5 0.5,14.1666667 0.5,15.5" transform="rotate(-90 5.5 12)" />
-                    <path d="M8,12 L16,12" />
-                    <path d="M23.5,15.5 C23.5,14.1666667 23.5,13.5 23.5,13.5 C23.5,10.7385763 21.2614237,8.5 18.5,8.5 C15.7385763,8.5 13.5,10.7385763 13.5,13.5 C13.5,13.5 13.5,14.1666667 13.5,15.5" transform="rotate(90 18.5 12)" />
-                </svg>
-                <a href="#comoAlterar" rel="noopener noreferrer">Como alterar as informações do registro?</a>
-            </li>
+            foreach ($links as $link) {
+                echo '
+                        <li>
+                            <svg width="24" height="24" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="linkIconTitle" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#000000">
+                                <title id="linkIconTitle">Link</title>
+                                <path d="M10.5,15.5 C10.5,14.1666667 10.5,13.5 10.5,13.5 C10.5,10.7385763 8.26142375,8.5 5.5,8.5 C2.73857625,8.5 0.5,10.7385763 0.5,13.5 C0.5,13.5 0.5,14.1666667 0.5,15.5" transform="rotate(-90 5.5 12)" />
+                                <path d="M8,12 L16,12" />
+                                <path d="M23.5,15.5 C23.5,14.1666667 23.5,13.5 23.5,13.5 C23.5,10.7385763 21.2614237,8.5 18.5,8.5 C15.7385763,8.5 13.5,10.7385763 13.5,13.5 C13.5,13.5 13.5,14.1666667 13.5,15.5" transform="rotate(90 18.5 12)" />
+                            </svg>
+                            <a href="' . $link[0] . '" rel="noopener noreferrer">' . $link[1] . '</a>
+                        </li>';
+            }
+            ?>
         </ul>
     </div>
     <div class="container-about">
@@ -217,11 +131,14 @@
         <h2 id="cadastroRevista">Como cadastrar minha revista?</h2>
         <p class="text-about">O Diadorim funciona de maneira integrada a um outro serviço desenvolvido e mantido pelo <a href="https://ibict.br/" target="_blank" rel="noopener noreferrer"> Instituto Brasileiro de Informação em Ciência e Tecnologia (Ibict)</a>, o <a href="https://miguilim.ibict.br/" target="_blank" rel="noopener noreferrer">Diretório das revistas científicas eletrônicas brasileiras (Miguilim). </a>Desta forma, o cadastro de uma revista deve ser feito diretamente no Miguilim, e assim que o registro for aprovado ele aparecerá automaticamente nos dois serviços.
         </p>
+        <h2 id="revistaDiadorim">Minha revista está no Miguilim mas não aparece no Diadorim. Por que isso acontece?</h2>
+        <p class="text-about">Isso acontece porque algumas revistas que estão no Miguilim tiveram seus dados importados de outros serviços, como a Rede ISSN, o DOAJ, SciELO, etc. No entanto, nem todos os campos obrigatórios da revista estavam preenchidos nestas outras fontes, o que impede a coleta do registro para o Diadorim. Para resolver isso, basta atualizar o registro da revista diretamente no Miguilim, e assim que ele for aprovado já aparecerá em ambos os Diretórios. </p>
         <h2 id="revistaCadastrada">Qualquer revista pode ser cadastrada?</h2>
         <p class="text-about">Somente as revistas científicas eletrônicas editadas e publicadas no Brasil podem ser cadastradas. Dentre as revistas científicas brasileiras, qualquer uma pode se cadastrar, independente da área de conhecimento. No entanto, todo cadastro é sujeito à aprovação.</p>
         <h2 id="comoAlterar">Como alterar as informações do registro?</h2>
         <p class="text-about">Para alterar alguma informação do registro da revista, deve ser feita atualização nos dados diretamente no Miguilim. Assim que aprovada, as alterações constarão em ambos os serviços. Em caso de dúvidas, utilize o botão “Contato” do Diadorim para falar com a equipe gestora.
         </p>
+
     </div>
     <div class="topo">
         <a href="#OqDiadorim" rel="noopener noreferrer" class="btn-topo">

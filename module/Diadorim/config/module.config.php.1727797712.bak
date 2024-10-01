@@ -108,19 +108,6 @@ return array (
           ),
         ),
       ),
-      'criterios-home' => 
-      array (
-        'type' => 'Laminas\\Router\\Http\\Literal',
-        'options' => 
-        array (
-          'route' => '/Criterios/Home',
-          'defaults' => 
-          array (
-            'controller' => 'Criterios',
-            'action' => 'Home',
-          ),
-        ),
-      ),
     ),
   ),
 );
