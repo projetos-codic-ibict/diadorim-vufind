@@ -423,8 +423,8 @@ p#icon-selo {
   margin-bottom: 2rem;
 }
 
-img.logo-image.principal{
-padding-right: 32px;
+img.logo-image.principal {
+  padding-right: 32px;
 }
 
 .logo-image {
@@ -456,19 +456,13 @@ padding-right: 32px;
   fill: #ff9900;
 }
 
-// .searchHomeContent.selos.principal {
-//   background: #F1F5F9;
-//   box-shadow: none;
-// }
-
 .searchHomeContent.selos.secundario {
   display: block;
   background: #F1F5F9;
   box-shadow: none;
-  // margin-bottom: 5rem;
 }
 
-p.logo-description .principal{
+p.logo-description .principal {
   padding-left: 1rem;
 }
 
@@ -502,7 +496,7 @@ p.logo-description {
 .btn-logo {
   width: 150px;
   border: 1px solid #ff7900;
-  color:#fff ;
+  color: #fff;
   border-radius: 4px;
   background: #ff7900;
 
@@ -514,31 +508,32 @@ p.logo-description {
 }
 
 // Critérios
-.criterios-container{
+.criterios-container {
   margin-bottom: 48px;
 }
-.criterios-titulo{
+
+.criterios-titulo {
   margin-top: 24px;
   font-weight: 500;
   letter-spacing: 0.5px;
 }
+
 strong.criterios-titulo {
   color: #ff7900;
 }
 
-.criterios-descricao{
+.criterios-descricao {
   margin-bottom: 24px;
   line-height: 1.5rem;
 
 }
 
-.criterios-lista{
+.criterios-lista {
   margin: 8px 0;
- 
+
 }
 
 .caret {
-  // border-top: 5px solid #002B5C; 
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   display: inline-block;
@@ -546,7 +541,7 @@ strong.criterios-titulo {
 }
 
 .dropdown-toggle[aria-expanded="true"] .caret {
-  transform: rotate(180deg); 
+  transform: rotate(180deg);
 }
 
 
@@ -558,19 +553,14 @@ strong.criterios-titulo {
   .wrapper {
     background-size: 135%;
   }
-
-  .search-header.hidden-print {
-    display: flex;
-    align-items: center;
-  }
 }
 
 
-// btn Imprinir
+// botão de baixar as revistas em pdf
 
 .btn-pdf {
   color: #fff;
-  background:#ff9900;
+  background: #ff9900;
   border: 1px solid darkorange;
   border-radius: 5px;
   padding: 0.5rem;
@@ -578,7 +568,7 @@ strong.criterios-titulo {
   margin-bottom: 10px;
 }
 
-.btn-pdf:hover{
+.btn-pdf:hover {
   color: #ff9900;
   background: #fff;
 }
@@ -595,13 +585,26 @@ strong.criterios-titulo {
 }
 
 @media (max-width: 980px) {
+
+  //botão de exportar em Navegar 
   .export-link .export-text {
     display: none;
   }
 
+  // botão de download em Logomarcas 
   .download-icon {
-    max-width: 5%;
+    width: 5%;
   }
+
+  .search-header {
+    display: block;
+    flex-wrap: wrap;
+  }
+
+  .search-sort label[for="sort_options_1"] {
+    flex-wrap: wrap;
+  }
+
   // .modal-logo {
   //   display: flex;
   //   justify-content: center;
@@ -610,11 +613,11 @@ strong.criterios-titulo {
 }
 
 @media screen and (max-width: 768px) {
-  .social-media-icons a span{
+  .social-media-icons a span {
     display: none;
   }
 
-  .footer{
+  .footer {
     padding: 24px;
   }
 
@@ -623,9 +626,10 @@ strong.criterios-titulo {
   //   max-width: 100%;
   // }
 
-  .marcas img{
+  .marcas img {
     height: 55px;
   }
+
 
   .navbar {
     display: flex;
@@ -636,6 +640,7 @@ strong.criterios-titulo {
     position: absolute;
     right: 0;
     top: 0;
+    font-size: 25px;
   }
 
   .collapse {
@@ -673,10 +678,21 @@ strong.criterios-titulo {
     padding: 0;
   }
 
-  nav .navbar-nav {
+  // nav .navbar-nav {
+  //   display: flex;
+  //   justify-content: space-between;
+  // }
+
+  .nav.navbar-nav.image {
     display: flex;
-    justify-content: space-between;
   }
+
+
+  #initialPage span:last-child {
+    display: none;
+  }
+
+
 
   .home_search,
   .searchForm {
@@ -706,15 +722,10 @@ strong.criterios-titulo {
     display: none;
   }
 
-  .search-header {
-    flex-direction: column;
-  }
-
   .description {
     flex-direction: column;
     align-items: center;
   }
-
 
   .description img {
     margin-bottom: 0;
@@ -735,13 +746,22 @@ strong.criterios-titulo {
     justify-content: center;
   }
 
+
+  // Busca Avançada
+
+  .search-sort label[for="sort_options_1"] {
+    display: none;
+  }
+
 }
 
-@media screen and (min-width:768px) {
+@media screen and (min-width: 768px) {
   .search-header {
-    display: block;
+    flex-wrap: wrap;
   }
+
 }
+
 
 @media screen and (max-width: 576px) {
   .container {
@@ -760,7 +780,6 @@ strong.criterios-titulo {
 
   .home_title {
     font-size: 4rem !important;
-    // margin-bottom: 90px !important;
   }
 
   .home .home_background {
@@ -776,6 +795,7 @@ strong.criterios-titulo {
     flex-direction: row;
     justify-content: space-around;
   }
+
   .download-icon {
     max-width: 10%;
   }
