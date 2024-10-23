@@ -63,6 +63,9 @@ function verifyCurrentNavbarLinkActive() {
   case 'Criterios':
     document.getElementById('aboutDropdown').classList.add('active-link')
     break
+  case 'Feedback':
+    document.getElementById('feedbackLink').classList.add('active-link')
+    break;
   default:
     document.getElementById('initialPage').classList.add('active-link')
   }
@@ -75,19 +78,14 @@ function setupDropdown() {
   if (dropdownToggle) {
     dropdownToggle.addEventListener('click', (e) => {
       e.preventDefault();
-      const isExpanded = dropdownToggle.getAttribute('aria-expanded') === 'true';
-
-      // Alterna o dropdown
-      dropdownToggle.setAttribute('aria-expanded', !isExpanded);
-      dropdownMenu.style.display = isExpanded ? 'none' : 'block';
+      dropdownMenu.classList.toggle('show'); 
     });
   }
 
   // Fechar dropdown ao clicar fora
   document.addEventListener('click', (e) => {
     if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
-      dropdownMenu.style.display = 'none';
-      dropdownToggle.setAttribute('aria-expanded', 'false');
+      dropdownMenu.classList.remove('show'); 
     }
   });
 }

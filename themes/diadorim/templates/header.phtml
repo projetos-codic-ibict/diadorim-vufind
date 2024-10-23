@@ -51,9 +51,7 @@ $account = $this->auth()->getManager();
 
               <li><a id="logosSection" href="<?= $this->url('logomarcas-home') ?>" class="text-decoration-none text-center"><?= $this->transEsc("Logomarcas") ?></a></li>
               <li>
-                <a id="feedbackLink" class="text-decoration-none text-center" data-lightbox href="<?= $this->url('feedback-home') ?>">
-                  <?= $this->transEsc("Contact") ?>
-                </a>
+                <a id="feedbackLink" class="text-decoration-none text-center" href="<?= $this->url('feedback-home') ?>"><?= $this->transEsc("Contact") ?><!-- data-lightbox --></a>
               </li>
             </ul>
           </div>
