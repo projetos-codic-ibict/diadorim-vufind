@@ -20,7 +20,8 @@
   <?php if ($title): ?>
     <?php $this->headTitle($title); ?>
     <?php $headTag = $this->inLightbox ? 'h2' : 'h1'; ?>
-    <<?=$headTag?>><?=$this->escapeHtml($title)?> </<?=$headTag?>>
+    <<?=$headTag?>> Tem dúvidas ou deseja compartilhar sua opinião? Entre em contato ou deixe seu comentário abaixo!</<?=$headTag?>>
+    <!-- <?=$this->escapeHtml($title)?>  -->
   <?php endif; ?>
   <?=$this->flashmessages()?>
 
