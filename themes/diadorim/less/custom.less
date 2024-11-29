@@ -211,8 +211,13 @@ body {
   display: flex;
   justify-content: center;
   gap: 2rem;
+  max-width: 200px;
+  // margin: 3rem auto;
+}
+
+.img-mcti{
   max-width: 500px;
-  margin: 3rem auto;
+  height: 100px;
 }
 
 // Cor nas Facetas 
@@ -507,31 +512,51 @@ p.logo-description {
   color: #ff7900;
 }
 
+
+
 // Critérios
-.criterios-container {
+
+.minus-space {
+  margin: 0 auto;
+  max-width: 640px;
+  // font-size: 1.5rem;
+  font-family: "Open Sans", sans-serif;
   margin-bottom: 48px;
 }
 
-.criterios-titulo {
+.minus-space p {
+  margin-bottom: 24px;
   margin-top: 24px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
+  line-height: 1.2rem;
+  font-size: 1rem;
 }
+
+.minus-space ol li {
+  margin-bottom: 16px;
+}
+
+.minus-space li {
+  margin: 8px 0;
+  font-size: 1rem;
+}
+
 
 strong.criterios-titulo {
   color: #ff7900;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  line-height: 32px;
 }
 
-.criterios-descricao {
-  margin-bottom: 24px;
-  line-height: 1.5rem;
+// .criterios-descricao {
+//   margin-bottom: 24px;
 
-}
+// }
 
-.criterios-lista {
-  margin: 8px 0;
+// .criterios-lista {
+//   margin: 8px 0;
 
-}
+// }
 
 .caret {
   border-left: 5px solid transparent;
@@ -546,7 +571,7 @@ strong.criterios-titulo {
 
 //Contato
 
-.feedback-content{
+.feedback-content {
   padding: 30px;
   margin: 10px 0px 10px 0px;
   background-color: #f9f9f9;
@@ -571,11 +596,13 @@ strong.criterios-titulo {
   margin: 0 auto;
 }
 
-form textarea:invalid, form input:invalid {
+form textarea:invalid,
+form input:invalid {
   box-shadow: 0 0 2px 1px #E8E8E8;
 }
 
-form textarea:invalid:hover, form input:invalid:hover {
+form textarea:invalid:hover,
+form input:invalid:hover {
   box-shadow: 0 0 4px 2px #ff7900;
 }
 
@@ -669,7 +696,7 @@ input#form_FeedbackSite_submit {
   // }
 
   .marcas img {
-    height: 100px;
+    height: 44px;
 
   }
 

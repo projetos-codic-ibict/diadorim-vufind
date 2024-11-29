@@ -1,21 +1,34 @@
 <?php $this->headTitle($this->translate('Criterios')); ?>
 <?php $this->layout()->searchbox = false; ?>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<div class="about">
+<div class="minus-space">
 
     <h2> <strong class="criterios-titulo">Critérios básicos para cadastro</strong></h2>
     <p class="criterios-descricao">Para que uma revista seja aceita no Diadorim ela deverá cumprir os seguintes requisitos mínimos:</p>
-    <ul class="criterios-lista">
+    <ol class="criterios-lista">
         <li>Ter registro de ISSN para o suporte eletrônico;</li>
         <li>Ter o Brasil como país de publicação na rede ISSN;</li>
         <li>Ser eletrônica e estar disponível online;</li>
         <li>Manter conexão permanente e estável com a internet;</li>
-        <li>Ser de caráter acadêmico-científico, levando em consideração os seguintes requisitos:</li>
-        <ul>
+        <li>Ser de caráter acadêmico-científico, levando em consideração os seguintes requisitos:
+
+        <ol type="a">
             <li>Publicar artigos originais e que tenham sido previamente submetidos à revisão por pares;</li>
             <li>Ter corpo editorial composto por pesquisadores especialistas na área de atuação da revista.</li>
-        </ul>
+        </ol>
+        </li>
+        <li>
+            Caso a revista cobre algum tipo de taxa de avaliação, submissão, publicação e afins, sua aprovação no Diretório estará condicionada a:
+            <ol type="a">
+                <li>Indexação na seção Catálogo 2.0 do <a href="https://www.latindex.org/latindex/inicio" target="_blank" rel="noopener noreferrer">Latindex </a>e/ou</li>
+                <li>Indexação no <a href="https://doaj.org/" target="_blank">Directory of Open Access Journals (DOAJ)</a> e/ou</li>
+                <li>Indexação na coleção da <a href="https://www.scielo.br/" target="_blank">Scientific Electronic Library Online Brasil (SciELO Brasil)</a></li>
+            </ol>
+        </li>
+        <li>Não ter como publisher instituição que conste na lista <a href="https://predatoryjournals.org/publisher-list-1" target="_blank">Predatory Publishers</a>.</li>
+    
 
-    </ul>
+    </ol>
 
 </div>
