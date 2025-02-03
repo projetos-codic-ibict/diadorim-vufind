@@ -34,7 +34,9 @@ verificaões em labels diferentes sem quebrar o layout -->
 
   <?php if ($lowercaseLabel === 'handle' || $lowercaseLabel === 'identificador') : ?>
     <?php
-    $handleLink = '<a target="blank" href="' . $handleBaseUrl . $value . '">' . $handleBaseUrl  . $value . '</a>';
+    // Remove o sufixo ".2" ou outros números no final do handle
+    //$cleanValue = preg_replace('/\.\d+$/', '', $value);
+    $handleLink = '<a target="blank" href="' . $handleBaseUrl . $value . '">' . $handleBaseUrl  . $value .  '</a>';
     ?>
   <?php endif; ?>
 <?php endforeach; ?>

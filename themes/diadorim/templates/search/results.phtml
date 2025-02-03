@@ -75,28 +75,30 @@ if ($this->params->getOptions()->getListViewOption() !== 'full') {
 
           <?php if ($recordTotal > 0) : ?>
             <?= $this->context()->renderInContext('search/controls/showing.phtml', ['lookfor' => $lookfor, 'recordTotal' => $recordTotal]) ?>
-
-             <a href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&type=csv' ?>" class="export-link" data-lightbox>
-              <i style="font-size:20px; padding-left: 13px; color: #ff7900;" class="fa fa-file-excel-o" aria-hidden="true"></i> <span class="export-text">Exportar</span>
-            </a>
             <a class="search-filter-toggle visible-xs result-refine" href="#search-sidebar" data-toggle="offcanvas" title="<?= $this->transEscAttr('sidebar_expand') ?>">
               <?= $this->transEsc('Refine Results') ?>
             </a>
+
           <?php else : ?>
             <h2><?= $this->transEsc('nohit_heading') ?></h2>
           <?php endif; ?>
 
         </div>
+        <div class="searchExportContainer">
+          <?php if ($recordTotal > 0) : ?>
+            <div class="search-controls">
+              <?= $this->render('search/controls/limit.phtml') ?>
+              <?= $this->render('search/controls/sort.phtml') ?>
+              <?= $this->render('search/controls/view.phtml') ?>
+            </div>
+          <?php endif; ?>
 
+          <a href="<?= $this->url('bulkexport-home') . '?total=' . $recordTotal . '&type=csv' ?>" class="export-link" data-lightbox>
+            <span class="export-text">Exportar CSV</span>
+            <!-- <i style="font-size:20px; padding-left: 13px; color: #ff7900;" class="fa fa-file-excel-o" aria-hidden="true"></i> -->
+          </a>
+        </div>
 
-
-        <?php if ($recordTotal > 0) : ?>
-          <div class="search-controls">
-            <?= $this->render('search/controls/limit.phtml') ?>
-            <?= $this->render('search/controls/sort.phtml') ?>
-            <?= $this->render('search/controls/view.phtml') ?>
-          </div>
-        <?php endif; ?>
       </div>
 
       <?php /* End Listing Options */ ?>
