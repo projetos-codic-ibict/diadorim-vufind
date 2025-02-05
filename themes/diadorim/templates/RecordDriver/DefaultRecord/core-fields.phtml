@@ -36,7 +36,7 @@ verificaões em labels diferentes sem quebrar o layout -->
     <?php
     // Remove o sufixo ".2" ou outros números no final do handle
     $cleanValue = preg_replace('/\.\d+$/', '', $value);
-    $handleLink = '<a target="blank" href="' . $handleBaseUrl . $value . '">' . $handleBaseUrl  . $value .  '</a>';
+    $handleLink = '<a target="blank" href="' . $handleBaseUrl . $cleanValue . '">' . $handleBaseUrl  . $cleanValue .  '</a>';
     ?>
   <?php endif; ?>
 <?php endforeach; ?>
