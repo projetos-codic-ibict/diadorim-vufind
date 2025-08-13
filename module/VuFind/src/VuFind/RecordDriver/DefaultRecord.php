@@ -1515,6 +1515,7 @@ class DefaultRecord extends AbstractBase
     public function getUniqueID()
     {
         $uniqueID = $this->fields['id'] ?? $this->fields['handleId'];
+        $uniqueID = preg_replace('/\.\d+$/', '', $uniqueID);
 
         if (!isset($uniqueID)) {
             throw new \Exception('ID not set!');
