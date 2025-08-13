@@ -168,6 +168,18 @@
   <div class="offcanvas-overlay" data-toggle="offcanvas"></div>
   <?= $this->googleTagManager()->getBodyCode() ?>
   <?= $this->googleanalytics() ?>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CPGDH1WQDZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-CPGDH1WQDZ');
+  </script>
   <?= $this->piwik() ?>
   <?= $this->matomo() ?>
   <?php foreach ($this->captcha()->js() as $jsInclude) : ?>
