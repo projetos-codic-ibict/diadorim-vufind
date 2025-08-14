@@ -278,7 +278,7 @@ class ConnectorTest extends TestCase
             ->getMock();
         $httpService->expects($this->once())
             ->method('createClient')
-            ->with('http://localhost/select?q=search.uniqueid%3A%221%22')
+            ->with('http://localhost/select?q=handleId%3A%221%22')
             ->willReturn($this->createClient());
         $connector = new Connector(
             'http://localhost',
