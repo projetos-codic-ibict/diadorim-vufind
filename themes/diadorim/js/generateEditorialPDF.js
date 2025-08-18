@@ -12,17 +12,33 @@ if (window.location.hostname.includes('ibict.br')) {
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  function getIdFromURL() {
-    const currentUrl = window.location.href;
-    const idMatch = currentUrl.match(/Record\/(\d+-[a-fA-F0-9-]+)/);
+  // function getIdFromURL() {
+  //   const currentUrl = window.location.href;
+  //   const idMatch = currentUrl.match(/Record\/(\d+-[a-fA-F0-9-]+)/);
 
-    if (idMatch && idMatch[1]) {
-      return idMatch[1];
-    } else {
-      console.log('ID não encontrado na URL');
-      return null;
+  //   if (idMatch && idMatch[1]) {
+  //     return idMatch[1];
+  //   } else {
+  //     console.log('ID não encontrado na URL');
+  //     return null;
+  //   }
+  // }
+
+
+  function getIdFromURL() {
+    try {
+      const path = window.location.pathname;
+
+      const match = path.match(/\/Record\/([^/?#]+)/i);
+      if (match && match[1]) {
+        return decodeURIComponent(match[1]);
+      }
+    } catch (e) {
+      console.error('Erro ao extrair ID da URL:', e);
     }
+    return null;
   }
+
 
   document.getElementById('pdfButton').addEventListener('click', function () {
     const revistaId = getIdFromURL();
@@ -32,15 +48,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-async function gerarPDF(revistaId) {
-  // const revistaId = getIdFromURL();
+const gerarPDF = async function (revistaId) {
 
   if (!revistaId) {
     console.log('ID da revista não encontrado na URL.');
     return;
   }
-  // console para verificar o id da revista
-  // console.log("id", revistaId);
+  //console.log("id", revistaId);
   try {
     let RecordURL = `record?id=${revistaId}&field[]=title&field[]=publisher&field[]=issns&field[]=urls&field[]=sealColor&field[]=lastModified&field[]=dc.contributor.editor&field[]=dc.rights.preprint&field[]=dc.rights.authorpostprint&field[]=dc.rights.journalpostprint&field[]=dc.rights.access&field[]=dc.rights.creativecommons&field[]=dc.identifier.email&field[]=dc.description.phone`;
 
@@ -55,7 +69,7 @@ async function gerarPDF(revistaId) {
     }
 
     // console para verificar os dados vindos da api
-    // console.log("O que está vindo da api", data)
+    //console.log("O que está vindo da api", data)
 
     if (data && data.records.length > 0) {
       gerarPDfComDados(data.records[0]);
@@ -66,9 +80,6 @@ async function gerarPDF(revistaId) {
     console.error('Ocorreu um erro ao buscar a revista:', error);
   }
 }
-
-
-
 
 function gerarPDfComDados(record) {
   if (window.jspdf && window.jspdf.jsPDF) {
@@ -82,7 +93,17 @@ function gerarPDfComDados(record) {
     const urlObj = record['urls'] && record['urls'].length > 0 ? record['urls'][0] : null;
     const link = urlObj ? urlObj.url : 'URL indisponível';
     const selo = record['sealColor'] || 'Selo indisponível';
-    const dataModificacoes = record['lastModified'] || 'Não disponível ';
+    // const dataModificacoes = record['lastModified'] || 'Não disponível ';
+    let dataModificacoes = record['lastModified'];
+    if (dataModificacoes) {
+      const d = new Date(dataModificacoes);
+      dataModificacoes = d.toLocaleString('pt-BR', {
+        dateStyle: 'short',  // "28/02/2025"
+        timeStyle: 'short'   // "16:52"
+      });
+    } else {
+      dataModificacoes = 'Não disponível';
+    }
     const editor = record['dc.contributor.editor'] || 'Editor não disponível';
     const preprint = record['dc.rights.preprint'] || 'Informação indisponível';
     const authorPostprint = record['dc.rights.authorpostprint'] || 'Informação indisponível';
@@ -106,7 +127,7 @@ function gerarPDfComDados(record) {
 
     const maxLineWidth = pageWidth - 2 * margin;
 
-    doc.setFontSize(12); 
+    doc.setFontSize(12);
     doc.addImage(imgInicio, 'PNG', 20, 10, 50, 20);
 
     let y = 50;
@@ -114,49 +135,49 @@ function gerarPDfComDados(record) {
     function addTextWithCheck(text, isBold = false, fontSize = 12) {
       doc.setFontSize(fontSize);
       doc.setFont('helvetica', isBold ? 'bold' : 'normal');
-    
-      const lines = doc.splitTextToSize(text, maxLineWidth); 
-    
+
+      const lines = doc.splitTextToSize(text, maxLineWidth);
+
       lines.forEach(line => {
         if (y + lineHeight > pageHeight - margin) {
           doc.addPage();
-          y = margin;  
+          y = margin;
         }
-    
-    
+
+
         doc.text(line, margin, y, { align: 'justify' });
-        
+
         y += lineHeight;
       });
-    
+
       y += paragrafoSpacing;
     }
-    
+
     function addLabelAndValue(label, value) {
       if (y + lineHeight > pageHeight - margin) {
         doc.addPage();
-        y = margin; 
+        y = margin;
       }
-    
+
       doc.setFontSize(12);
       doc.setFont('helvetica', 'bold');
       doc.text(label, margin, y);
-    
+
       const labelWidth = doc.getTextWidth(label);
-    
-  
-      const valueLines = doc.splitTextToSize(value, maxLineWidth - labelWidth - margin); 
-      
+
+
+      const valueLines = doc.splitTextToSize(value, maxLineWidth - labelWidth - margin);
+
       valueLines.forEach((line, index) => {
         if (index === 0) {
           doc.setFont('helvetica', 'normal');
-          doc.text(line, margin + labelWidth + 1, y); 
+          doc.text(line, margin + labelWidth + 1, y);
         } else {
           y += lineHeight;
           doc.text(line, margin, y, { align: 'justify' });
         }
       });
-    
+
       y += lineHeight + paragrafoSpacing;
     }
 
@@ -173,7 +194,7 @@ function gerarPDfComDados(record) {
     addTextWithCheck(`${tipoAcesso}`, true);
     addTextWithCheck(`Estes documentos são licenciados sob a seguinte Licença Creative Commons: `);
     addTextWithCheck(`${licencaCC}`, true);
-    addTextWithCheck(`A última data e horário de atualização destes dados foi: ${dataModificacoes}`); 
+    addTextWithCheck(`A última data e horário de atualização destes dados foi: ${dataModificacoes}`);
     addTextWithCheck(`Para dúvidas ou mais informações, entre em contato com a equipe editorial por meio dos seguintes canais:`, true);
     addTextWithCheck(`E-mail: ${email}`);
     addTextWithCheck(`Telefone: ${telefone}`);
