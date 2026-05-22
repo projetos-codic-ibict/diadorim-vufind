@@ -11,7 +11,7 @@ $account = $this->auth()->getManager();
           <div>
             <div class="nav navbar-nav image">
               <a class="logo-ibict text-center" href="https://ibict.br" target="_blank">
-                <img src="<?= $this->imageLink('logoibictversao1.png'); ?>" alt="Logo IBICT" width="100" >
+                <img src="<?= $this->imageLink('logoibictversao1.png'); ?>" alt="Logo IBICT" width="100">
               </a>
 
               <a class="logo-diadorim text-center" href="<?= $this->url('home') ?>">
@@ -32,22 +32,7 @@ $account = $this->auth()->getManager();
               </li>
               <li><a id="navigate" href="<?= $this->url('search-results') ?>" class="text-decoration-none text-center"><?= $this->transEsc("Navigate") ?></a></li>
 
-
-              <li class="dropdown">
-                <a id="aboutDropdown" href="<?= $this->url('sobre-home') ?>" class="dropdown-toggle text-decoration-none text-center" data-toggle="dropdown" aria-expanded="false">
-                  <?= $this->transEsc("Sobre o Diadorim") ?> <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu" id="dropdownMenu" style="display: none;">
-                  <li>
-                    <a id="aboutDiadorim" href="<?= $this->url('sobre-home') ?>">Diadorim</a>
-                  </li>
-                  <li>
-                    <a id="aboutDiadorim" href="<?= $this->url('criterios-home') ?>">Critérios básicos para cadastro</a>
-                  </li>
-                </ul>
-              </li>
-
-
+              <li><a id="aboutDiadorim" href="<?= $this->url('sobre-home') ?>" class="text-decoration-none text-center"><?= $this->transEsc("Sobre ") ?></a></li>
 
               <li><a id="logosSection" href="<?= $this->url('logomarcas-home') ?>" class="text-decoration-none text-center"><?= $this->transEsc("Logomarcas") ?></a></li>
               <li>

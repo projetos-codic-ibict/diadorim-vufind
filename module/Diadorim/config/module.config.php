@@ -25,7 +25,6 @@ return array (
       'Diadorim\\Controller\\SobreController' => 'VuFind\\Controller\\AbstractBaseFactory',
       'Diadorim\\Controller\\BulkExportController' => 'VuFind\\Controller\\AbstractBaseFactory',
       'Diadorim\\Controller\\LogomarcasController' => 'VuFind\\Controller\\AbstractBaseFactory',
-      'Diadorim\\Controller\\CriteriosController' => 'VuFind\\Controller\\AbstractBaseFactory',
     ),
     'aliases' => 
     array (
@@ -35,8 +34,6 @@ return array (
       'bulkexport' => 'Diadorim\\Controller\\BulkExportController',
       'Logomarcas' => 'Diadorim\\Controller\\LogomarcasController',
       'logomarcas' => 'Diadorim\\Controller\\LogomarcasController',
-      'Criterios' => 'Diadorim\\Controller\\CriteriosController',
-      'criterios' => 'Diadorim\\Controller\\CriteriosController',
     ),
   ),
   'router' => 
@@ -104,19 +101,6 @@ return array (
           'defaults' => 
           array (
             'controller' => 'Logomarcas',
-            'action' => 'Home',
-          ),
-        ),
-      ),
-      'criterios-home' => 
-      array (
-        'type' => 'Laminas\\Router\\Http\\Literal',
-        'options' => 
-        array (
-          'route' => '/Criterios/Home',
-          'defaults' => 
-          array (
-            'controller' => 'Criterios',
             'action' => 'Home',
           ),
         ),

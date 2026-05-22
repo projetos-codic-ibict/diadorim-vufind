@@ -12,7 +12,6 @@ const navbarIds = [
   'navigate',
   'aboutDropdown',
   'aboutDiadorim',
-  'criterios',
   'logosSection',
   'register',
   'feedbackLink',
@@ -59,9 +58,6 @@ function verifyCurrentNavbarLinkActive() {
     break
   case 'Logomarcas':
     document.getElementById('logosSection').classList.add('active-link')
-    break
-  case 'Criterios':
-    document.getElementById('aboutDropdown').classList.add('active-link')
     break
   case 'Feedback':
     document.getElementById('feedbackLink').classList.add('active-link')
