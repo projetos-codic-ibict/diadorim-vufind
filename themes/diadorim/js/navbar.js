@@ -54,7 +54,7 @@ function verifyCurrentNavbarLinkActive() {
     document.getElementById('navigate').classList.add('active-link')
     break
   case 'Sobre':
-    document.getElementById('aboutDropdown').classList.add('active-link')
+    document.getElementById('sobre-home').classList.add('active-link')
     break
   case 'Logomarcas':
     document.getElementById('logosSection').classList.add('active-link')
